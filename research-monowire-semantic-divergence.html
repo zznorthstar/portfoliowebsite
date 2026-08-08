@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection — Hamdi Bouzidi</title>
+<meta name="description" content="A prior-art review for Monowire by Samiel — whether observing both a human's evolving understanding and a multi-agent system's actual state could detect divergence before it compounds. An unverified research hypothesis with a proposed falsification test, not a claimed capability.">
+<link rel="canonical" href="https://hamdibouzidi.com/research-monowire-semantic-divergence.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection">
+<meta property="og:description" content="A prior-art review and unverified research hypothesis — not a claimed Monowire capability — on detecting divergence between a human's understanding and a multi-agent system's actual state.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection",
+  "description": "A prior-art review and unverified research hypothesis on whether observing both a human's evolving understanding and a multi-agent system's actual state can detect divergence before it compounds.",
+  "author": { "@type": "Person", "name": "Hamdi Bouzidi", "jobTitle": "Independent AI Researcher", "url": "https://hamdibouzidi.com/about.html" },
+  "publisher": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hamdibouzidi.com/research-monowire-semantic-divergence.html" },
+  "articleSection": "Multi-Agent Systems, Human-AI Interaction, Software Architecture",
+  "inLanguage": "en",
+  "timeRequired": "PT10M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Samiel",
+  "description": "Independent AI research and product studio founded by Hamdi Bouzidi. Monowire is a Samiel product.",
+  "founder": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "makesOffer": { "@type": "SoftwareApplication", "name": "Monowire", "applicationCategory": "DeveloperApplication" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://hamdibouzidi.com/research.html" },
+    { "@type": "ListItem", "position": 3, "name": "Semantic Divergence Review", "item": "https://hamdibouzidi.com/research-monowire-semantic-divergence.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:720px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); }
+  .breadcrumb{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-5); }
+  .breadcrumb a{ color:var(--text-faint); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--purple-bright); }
+
+  .byline-block{ border-left:2px solid var(--purple); padding-left:var(--sp-4); margin-bottom:var(--sp-6); }
+  .byline-block .n{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .byline-block .t{ font-family:var(--mono); font-size:0.72rem; color:var(--purple-bright); margin-top:2px; }
+  .byline-block .l{ font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-top:2px; }
+
+  .article-tags{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-4); }
+  .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; border:1px solid var(--border); border-radius:var(--radius-pill); padding:4px 11px; color:var(--text-faint); }
+  .tag.doctype{ color:var(--lemon); border-color:rgba(255,224,102,0.35); }
+  h1{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.5rem,3.2vw,2.05rem); line-height:1.22; }
+  .dek{ color:var(--text-muted); font-size:1rem; margin-top:var(--sp-4); max-width:60ch; line-height:1.55; }
+  .meta-row{ display:flex; gap:var(--sp-5); margin-top:var(--sp-5); flex-wrap:wrap; font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); padding-bottom:var(--sp-5); }
+  .provenance{ padding-top:var(--sp-5); border-top:1px solid var(--border); padding-bottom:var(--sp-6); border-bottom:1px solid var(--border); margin-bottom:var(--sp-6); }
+  .provenance .p-row{ margin-bottom:var(--sp-3); }
+  .provenance .p-row:last-child{ margin-bottom:0; }
+  .provenance .p-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .provenance .p-text{ font-size:0.8rem; color:var(--text-muted); line-height:1.6; max-width:66ch; }
+
+  .toc{ margin:var(--sp-6) 0; padding:var(--sp-4) var(--sp-5); border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+  .toc .toc-label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-3); }
+  .toc ol{ list-style:none; display:flex; flex-wrap:wrap; gap:var(--sp-2) var(--sp-5); }
+  .toc a{ font-size:0.8rem; color:var(--text-muted); text-decoration:none; }
+  .toc a:hover{ color:var(--purple-bright); }
+
+  article{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-7) var(--sp-7) var(--sp-6); }
+  @media (max-width:640px){ article{ padding:var(--sp-5) var(--sp-4) var(--sp-4); } }
+  article > p, article > .lede{ color:var(--text); font-size:1rem; margin-bottom:var(--sp-4); max-width:68ch; }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); line-height:1.5; }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.24rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); scroll-margin-top:calc(var(--navh) + 20px); }
+  article h2 .num{ color:var(--text-faint); font-style:normal; font-family:var(--mono); font-size:0.74rem; margin-right:var(--sp-3); }
+  article h3{ font-family:var(--sans); font-weight:600; font-size:0.93rem; margin:var(--sp-6) 0 var(--sp-2); color:var(--text); }
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.96rem; max-width:68ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  article ul{ margin:0 0 var(--sp-4) var(--sp-5); color:var(--text); opacity:0.9; font-size:0.94rem; max-width:64ch; }
+  article li{ margin-bottom:var(--sp-2); line-height:1.6; }
+  .pull-quote{ font-family:var(--serif); font-style:italic; font-size:1.14rem; line-height:1.45; color:var(--text); border-left:2px solid var(--purple); padding:2px 0 2px var(--sp-5); margin:var(--sp-6) 0; max-width:56ch; }
+
+  .cmp-table{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); overflow-x:auto; background:var(--surface-2); }
+  table.cmp{ width:100%; border-collapse:collapse; font-size:0.78rem; min-width:700px; }
+  table.cmp th, table.cmp td{ text-align:left; padding:11px 13px; border-bottom:1px solid var(--border); vertical-align:top; }
+  table.cmp th{ font-family:var(--mono); font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-faint); background:var(--bg); white-space:nowrap; }
+  table.cmp td{ color:var(--text); opacity:0.9; }
+  table.cmp tr:last-child td{ border-bottom:none; }
+  table.cmp td.hl{ color:var(--purple-bright); font-weight:600; opacity:1; }
+  table.cmp .status{ font-family:var(--mono); font-size:0.62rem; padding:3px 9px; border-radius:var(--radius-pill); display:inline-block; white-space:nowrap; border:1px solid rgba(166,255,62,0.3); color:var(--lime); }
+  table.cmp .status.hl{ border-color:rgba(255,224,102,0.35); color:var(--lemon); }
+
+  .verdict{ margin:var(--sp-7) 0; border:1px solid rgba(255,224,102,0.3); background:rgba(255,224,102,0.08); border-radius:var(--radius); padding:var(--sp-5); }
+  .verdict .v-label{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--lemon); margin-bottom:var(--sp-3); }
+  .verdict h3{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); margin:0 0 var(--sp-3); }
+  .verdict p{ color:var(--text); opacity:0.9; font-size:0.9rem; margin-bottom:var(--sp-3); }
+  .verdict p:last-child{ margin-bottom:0; }
+
+  .status-pipeline{ margin:var(--sp-6) 0; border:1px solid rgba(155,92,255,0.3); background:var(--purple-soft); border-radius:var(--radius); padding:var(--sp-5); }
+  .status-pipeline .sp-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--purple-bright); margin-bottom:var(--sp-4); }
+  .sp-chain{ display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-2); }
+  .sp-step{ font-family:var(--mono); font-size:0.72rem; padding:6px 12px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); color:var(--text-muted); white-space:nowrap; }
+  .sp-step.done{ color:var(--lime); border-color:rgba(166,255,62,0.35); background:rgba(166,255,62,0.08); }
+  .sp-step.current{ color:var(--lemon); border-color:var(--lemon); background:rgba(255,224,102,0.14); }
+  .sp-arrow{ color:var(--text-faint); font-size:0.8rem; }
+  .status-pipeline p{ margin-top:var(--sp-4); margin-bottom:0; font-size:0.86rem; color:var(--text-muted); max-width:64ch; }
+
+  .exp-box{ margin:var(--sp-5) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5); }
+  .exp-box .exp-label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--turquoise); margin-bottom:var(--sp-3); }
+  .exp-step{ display:flex; gap:var(--sp-4); padding:8px 0; border-top:1px solid var(--border); font-size:0.86rem; }
+  .exp-step:first-of-type{ border-top:none; }
+  .exp-step .exp-n{ font-family:var(--mono); font-size:0.72rem; color:var(--turquoise); flex-shrink:0; width:20px; }
+
+  .refs{ margin:var(--sp-4) 0 0; padding:0; list-style:none; counter-reset:refcounter; }
+  .refs li{ counter-increment:refcounter; position:relative; padding-left:var(--sp-7); margin-bottom:var(--sp-4); font-size:0.82rem; color:var(--text-muted); max-width:64ch; }
+  .refs li::before{ content:"[" counter(refcounter) "]"; position:absolute; left:0; top:0; font-family:var(--mono); font-size:0.74rem; color:var(--purple-bright); }
+  .refs li a{ color:var(--text); text-decoration:underline; text-decoration-color:var(--border); text-underline-offset:3px; }
+  .refs li a:hover{ text-decoration-color:var(--purple-bright); }
+  .refs li .ref-note{ display:block; color:var(--text-faint); font-size:0.76rem; margin-top:3px; }
+
+  .article-footer{ margin-top:var(--sp-7); padding-top:var(--sp-6); border-top:1px solid var(--border); }
+  .author-card{ display:flex; gap:var(--sp-4); align-items:flex-start; }
+  .author-card .avatar{ width:42px; height:42px; border-radius:50%; background:var(--surface-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; color:var(--purple-bright); border:1px solid var(--border); }
+  .author-card p{ color:var(--text-muted); font-size:0.86rem; margin:0; max-width:none; }
+  .author-card b{ color:var(--text); }
+  .next-reading{ margin-top:var(--sp-6); }
+  .back-link{ display:inline-flex; align-items:center; gap:var(--sp-2); text-decoration:none; color:var(--purple-bright); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; }
+
+  .page-footer-links{ margin-top:var(--sp-6); padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .page-footer-links a{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--text-faint); text-decoration:none; }
+  .page-footer-links a:hover{ color:var(--purple-bright); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab active" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="research.html">Research</a> / Monowire by Samiel / Semantic Divergence</div>
+
+  <div class="byline-block">
+    <div class="n">Hamdi Bouzidi</div>
+    <div class="t">Independent AI Researcher</div>
+    <div class="l">Montreal, Canada</div>
+  </div>
+
+  <div class="article-tags"><span class="tag doctype">Research Hypothesis</span><span class="tag">Monowire by Samiel</span><span class="tag">Human-AI Interaction</span></div>
+  <h1>Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection</h1>
+  <p class="dek">A prior-art review and an unverified research hypothesis — not a claimed Monowire capability. No experiment has been run.</p>
+  <div class="meta-row">
+    <span>Published Aug 8, 2026</span>
+    <span>Updated Aug 8, 2026</span>
+    <span>10 min read</span>
+    <span>hamdibouzidi.com/research-monowire-semantic-divergence.html</span>
+  </div>
+
+  <div class="provenance">
+    <div class="p-row">
+      <div class="p-label">Research status</div>
+      <div class="p-text">Independent research review. Not peer reviewed. This document reviews prior art and proposes a falsifiable experiment; no experiment has been run and no claim of novelty is finalized.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">Provenance</div>
+      <div class="p-text">This review follows directly from the Monowire Research Map, which classified this topic as the highest-priority open question among Monowire's architectural mechanisms.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">AI assistance disclosure</div>
+      <div class="p-text">Generative AI tools were used during literature exploration, drafting, organization, and technical analysis. The research direction, classifications, and final editorial responsibility remain with the author.</div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-label">On This Page</div>
+    <ol>
+      <li><a href="#why">Why This Topic</a></li>
+      <li><a href="#hypothesis">The Hypothesis Under Review</a></li>
+      <li><a href="#intent-drift">Cluster 1 — Intent Drift Detection</a></li>
+      <li><a href="#traceability">Cluster 2 — Requirements Traceability</a></li>
+      <li><a href="#grounding">Cluster 3 — Common Ground &amp; Grounding Theory</a></li>
+      <li><a href="#multi-agent">Cluster 4 — Multi-Agent State Consistency</a></li>
+      <li><a href="#comparison">How the Clusters Compare</a></li>
+      <li><a href="#verdict">The Narrowest Defensible Gap</a></li>
+      <li><a href="#experiment">A Falsifiable Experiment</a></li>
+      <li><a href="#limits">Limitations of This Review</a></li>
+      <li><a href="#references">References</a></li>
+    </ol>
+  </div>
+
+  <article>
+
+    <h2 id="why"><span class="num">01</span>Why This Topic</h2>
+    <p class="lede">Monowire's design repeatedly returns to an idea worth testing: could a system track two things at once — what a human believes about a project, and what a hidden multi-agent organization has actually done — and use the gap between them to catch misunderstanding early? That is a hypothesis about what Monowire <em>could</em> do, not a description of a capability it currently has. Nothing described below has been built or tested. The Monowire Research Map classified this as the one mechanism it could not immediately locate clear, direct prior art for, and flagged it as the priority topic for a dedicated pass. This document is that pass.</p>
+    <p>The instruction going in was explicit: do not assume "watches both sides" is itself novel. Watching two things is not a research contribution by itself — plenty of systems observe multiple signals. The actual question is narrower and needs to survive contact with four adjacent, well-developed literatures before any claim gets made.</p>
+
+    <div class="status-pipeline">
+      <div class="sp-label">How to read this document</div>
+      <div class="sp-chain">
+        <span class="sp-step done">Prior art</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Identified gap</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Monowire hypothesis</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Proposed experiment</span><span class="sp-arrow">→</span>
+        <span class="sp-step current">Currently unverified</span>
+      </div>
+      <p>Every section below sits at one of these five stages. Sections 3–6 are prior art. Section 7 states the gap. Section 8 states the hypothesis and its falsification test. Nothing past that has happened yet — this page will be updated if and when it does.</p>
+    </div>
+
+    <h2 id="hypothesis"><span class="num">02</span>The Hypothesis Under Review</h2>
+    <p>Stated precisely, as a hypothesis rather than a description of current behavior: a system that continuously observed (a) a human's naturally expressed, evolving understanding of a project, extracted from ordinary conversation rather than explicit confirmation, and (b) the actual internal state of a multi-agent system executing that project over its full multi-session lifetime, would be able to detect semantic divergence between the two earlier than either side would independently notice — and intervene before the divergence compounds into wasted work. Monowire does not currently do this. Whether it could is the question.</p>
+    <p>Four literatures were checked against this, each covering part of the claim.</p>
+
+    <h2 id="intent-drift"><span class="num">03</span>Cluster 1 — Intent Drift Detection</h2>
+    <p>"Intent drift" is a fully established, actively commercialized 2026 field. Multiple vendors (Zenity, Varonis Agent IBAC, ARMO) ship products that monitor whether an agent's ongoing behavior — its tool calls, data access, and action chains — stays aligned with the intent behind the request that started its session. NIST's AI Risk Management Framework and the OWASP Top 10 for Agentic Applications both treat this as a named risk category. At least one formal framework (MI9) applies goal-conditioned drift detection using distributional-distance metrics with graduated containment responses.</p>
+    <p>This is close, but structurally one-sided. Every system found compares the agent's current behavior against a <em>fixed baseline</em> — the original request, or a policy derived from it. None of them treat the human side as a second, independently evolving signal. If the human's own understanding of the project changes — which it does, constantly, in any real multi-week engagement — intent-drift tooling has no mechanism for noticing that the baseline itself has moved.</p>
+
+    <h2 id="traceability"><span class="num">04</span>Cluster 2 — Requirements Traceability</h2>
+    <p>Requirements traceability is a decades-old, formalized software-engineering discipline, mandatory in regulated industries (ISO 26262, DO-178C, IEC 62304) and built around the traceability matrix: forward and backward links connecting stakeholder requirements to design, code, and tests. It exists specifically to catch mismatches between what stakeholders wanted and what got built.</p>
+    <p>Also close, and also structurally different from the hypothesis. Traceability is artifact-based and typically periodic or audit-triggered — it compares static documents at a point in time, not a continuously updated model of a person's currently-held beliefs extracted from ongoing natural conversation. Nobody in this cluster is trying to infer what a stakeholder currently believes; they're tracking whether a written requirement has a documented path to an implementation.</p>
+
+    <h2 id="grounding"><span class="num">05</span>Cluster 3 — Common Ground &amp; Grounding Theory</h2>
+    <p>This is the closest cluster, and it needed the most careful reading. Clark and Brennan's grounding theory — mutual knowledge built and repaired turn by turn in conversation — has a real, current line of human-AI research behind it in 2026: a benchmark for common ground in human-AI collaboration, a study titled "Navigating Rifts in Human-LLM Grounding," and work showing LLMs generate conversational text with measurably less grounding behavior (fewer clarifications, fewer acknowledgments) than humans do with each other.</p>
+    <p>This cluster directly studies misunderstanding between a human and an AI system, in real time, from conversational signals — which is most of what the Monowire hypothesis asks for. The scope, however, is consistently the single conversation: grounding breakdown is measured turn by turn, within one dialogue session, between a human and the conversational agent they're directly talking to. None of it extends to a human's belief about the state of a separate, downstream, multi-agent execution system that continues working autonomously between conversations — which is the specific situation Monowire's proposed Main Chat / Main Architect / Departments split would create, if built.</p>
+
+    <h2 id="multi-agent"><span class="num">06</span>Cluster 4 — Multi-Agent State Consistency</h2>
+    <p>A separate, practical body of work covers state mismatches <em>between agents</em> in production multi-agent systems — schema-version mismatches between deployed agents, order-status disagreements across fulfillment/billing/shipping agents, decomposition-trace logging gaps in hierarchical task planning that hide non-determinism from monitoring. This is real, established engineering practice for keeping a multi-agent system internally consistent.</p>
+    <p>It's the wrong side of the boundary for this hypothesis, though — it's agent-to-agent, not human-to-organization. It's a useful adjacent pattern (the detection techniques generalize), but it doesn't touch the human's belief state at all.</p>
+
+    <h2 id="comparison"><span class="num">07</span>How the Clusters Compare</h2>
+    <div class="cmp-table">
+      <table class="cmp">
+        <thead><tr><th>Cluster</th><th>What it compares</th><th>Time frame</th><th>Human side modeled?</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">Intent drift detection</td><td>Agent behavior vs. original request baseline</td><td>Single session, continuous</td><td>No — baseline is fixed</td></tr>
+          <tr><td class="hl">Requirements traceability</td><td>Written requirements vs. implementation artifacts</td><td>Periodic / audit-triggered</td><td>No — static documents only</td></tr>
+          <tr><td class="hl">Common ground / grounding theory</td><td>Human utterance vs. AI's inferred understanding</td><td>Turn-by-turn, single conversation</td><td>Yes — but scoped to one dialogue</td></tr>
+          <tr><td class="hl">Multi-agent state consistency</td><td>Agent state vs. other agent state</td><td>Continuous, production runtime</td><td>No — agent-to-agent only</td></tr>
+          <tr><td class="hl">This hypothesis</td><td>Human's evolving belief vs. org's actual state</td><td>Continuous, across a project's full multi-session lifetime</td><td>Yes — modeled independently, across sessions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <div class="v-label">Key finding</div>
+      <h3>Every individual piece exists. The specific combination does not, as far as this review found.</h3>
+      <p>Intent drift detection tracks agent behavior against a fixed baseline. Requirements traceability tracks documents against documents, periodically. Grounding theory tracks human-AI misunderstanding, but within one conversation. None of the four clusters model a human's currently-held belief about a system as an independently evolving signal, sustained and re-inferred across many separate sessions over a project's full lifetime, and diffed continuously against that system's real internal state.</p>
+      <p>That is a narrower claim than "Monowire watches both sides," and it should be treated as unproven rather than established. The gap is real enough on paper to justify one experiment. It is not yet evidence that the mechanism works, or that it would outperform the two literatures it sits closest to — grounding theory's single-conversation detectors and intent-drift's continuous behavioral monitors — if those techniques were simply extended across sessions instead.</p>
+    </div>
+
+    <h2 id="experiment"><span class="num">08</span>A Falsifiable Experiment</h2>
+    <p>The hypothesis is testable without building the full Monowire architecture. A minimal version:</p>
+    <div class="exp-box">
+      <div class="exp-label">Proposed design — not yet run</div>
+      <div class="exp-step"><span class="exp-n">01</span>Run a multi-session project (real or simulated) where a human directs a multi-agent system across several separated conversations, with autonomous work happening between sessions.</div>
+      <div class="exp-step"><span class="exp-n">02</span>At the start of each new session, extract the human's current belief about key project facts from their natural conversational opening — not through explicit confirmation prompts.</div>
+      <div class="exp-step"><span class="exp-n">03</span>Independently extract the system's actual current state for those same facts from its own documentation, delegation records, or code.</div>
+      <div class="exp-step"><span class="exp-n">04</span>Diff the two. Log every detected divergence, its magnitude, and how many turns or how much time passed before the human noticed it unaided (or the project completed without either side noticing).</div>
+      <div class="exp-step"><span class="exp-n">05</span>Compare against two baselines: a single-conversation grounding-detection approach applied naively across sessions, and an intent-drift monitor comparing only against the original request.</div>
+    </div>
+    <p>The hypothesis is falsified if the dual-observation approach detects divergence no earlier, and no more often, than either baseline extended across sessions — in which case the honest conclusion is that this reduces to the existing literature rather than extending it.</p>
+
+    <h2 id="limits"><span class="num">09</span>Limitations of This Review</h2>
+    <ul>
+      <li>This is a search-based literature review, not a systematic one. A dedicated search of a specific venue (CHI, CSCW, or a multi-agent-systems-specific outlet) might surface work this pass missed.</li>
+      <li>"No prior art found" is a claim about search results, not a claim about the field. The clusters above were chosen because they were the closest candidates found — a genuinely matching system under different terminology could exist and simply not have surfaced.</li>
+      <li>The proposed experiment measures detection timing and frequency, not downstream impact (rework avoided, cost saved). A positive result on detection alone would still leave the practical value of the mechanism unproven.</li>
+      <li>Extracting a human's "current belief" from natural conversation without explicit confirmation is itself an unsolved measurement problem — the grounding-theory literature reviewed here (Cluster 3) is largely about how hard this is to do reliably even within a single turn.</li>
+    </ul>
+
+    <p class="pull-quote">The honest version of this review is: the mechanism is plausible, the individual pieces are well studied, and the specific combination — sustained across a project's lifetime rather than one conversation — appears to be an open gap. That is a reason to run the experiment, not a reason to claim the result.</p>
+
+    <h2 id="references"><span class="num">—</span>References</h2>
+    <ol class="refs">
+      <li><a href="https://zenity.io/academy/ai-intent-detection" target="_blank" rel="noopener">"AI Intent Detection: Securing Agent Behavior at Runtime." Zenity, 2026.</a><span class="ref-note">Intent drift framed as a runtime security category, distinct from prompt-level filtering.</span></li>
+      <li><a href="https://www.emergentmind.com/topics/agentic-alignment-drift" target="_blank" rel="noopener">"Agentic Alignment Drift." Emergent Mind, 2026.</a><span class="ref-note">Survey of drift-detection metrics including the MI9 goal-conditioned runtime monitoring framework.</span></li>
+      <li><a href="https://taylorandfrancis.com/knowledge/Engineering_and_technology/Computer_science/Requirements_traceability/" target="_blank" rel="noopener">"Requirements Traceability." Taylor &amp; Francis Knowledge Reference.</a><span class="ref-note">Definition and scope of forward/backward traceability as an artifact-based, audit-oriented discipline.</span></li>
+      <li><a href="https://arxiv.org/pdf/2602.21337" target="_blank" rel="noopener">"A Benchmark to Assess Common Ground in Human-AI Collaboration." arXiv:2602.21337, 2026.</a><span class="ref-note">Applies Clark and Brennan's grounding theory directly to human-AI interaction, with an evaluation benchmark.</span></li>
+      <li><a href="https://arxiv.org/pdf/2503.13975" target="_blank" rel="noopener">"Navigating Rifts in Human-LLM Grounding: Study and Benchmark." arXiv:2503.13975.</a><span class="ref-note">Documents that LLMs perform measurably less grounding behavior than humans in conversation, within single-session dialogue.</span></li>
+      <li><a href="https://www.getmaxim.ai/articles/multi-agent-system-reliability-failure-patterns-root-causes-and-production-validation-strategies/" target="_blank" rel="noopener">"Multi-Agent System Reliability: Failure Patterns, Root Causes, and Production Validation Strategies." 2026.</a><span class="ref-note">Schema-mismatch and state-consistency failures between deployed agents in production multi-agent systems.</span></li>
+    </ol>
+
+    <div class="article-footer">
+      <div class="author-card">
+        <div class="avatar">H.B.</div>
+        <p><b>Hamdi Bouzidi</b> is an Independent AI Researcher working on AI-native software engineering, organizational intelligence, and software architecture. Based in Montreal. <a href="mailto:hamdi.bz@proton.me">Get in touch</a> or find him on <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+      <div class="next-reading">
+        <a class="back-link" href="research-monowire-map.html">← Back to the Monowire by Samiel Research Map</a>
+      </div>
+    </div>
+
+  </article>
+
+  <div class="page-footer-links">
+    <a href="mailto:hamdi.bz@proton.me">hamdi.bz@proton.me</a>
+    <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="research.html">Back to Research</a>
+  </div>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>

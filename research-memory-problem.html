@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organizations Don't Have an AI Problem. They Have a Memory Problem. — Hamdi Bouzidi</title>
+<meta name="description" content="The real bottleneck in AI adoption isn't model choice or context length. It's that organizations lose context faster than any model can restore it. By Hamdi Bouzidi, Independent AI Researcher.">
+<link rel="canonical" href="https://hamdibouzidi.com/research-memory-problem.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Organizations Don't Have an AI Problem. They Have a Memory Problem.">
+<meta property="og:description" content="The real bottleneck in AI adoption isn't model choice or context length. It's that organizations lose context faster than any model can restore it.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Organizations Don't Have an AI Problem. They Have a Memory Problem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Organizations Don't Have an AI Problem. They Have a Memory Problem.",
+  "description": "The real bottleneck in AI adoption isn't model choice or context length. It's that organizations lose context faster than any model can restore it.",
+  "author": { "@type": "Person", "name": "Hamdi Bouzidi", "jobTitle": "Independent AI Researcher", "url": "https://hamdibouzidi.com/about.html" },
+  "publisher": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "datePublished": "2026-08-01",
+  "dateModified": "2026-08-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hamdibouzidi.com/research-memory-problem.html" },
+  "articleSection": "AI Systems, Organizational Intelligence, Architecture",
+  "inLanguage": "en",
+  "timeRequired": "PT9M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://hamdibouzidi.com/research.html" },
+    { "@type": "ListItem", "position": 3, "name": "Organizations Don't Have an AI Problem", "item": "https://hamdibouzidi.com/research-memory-problem.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:680px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); }
+
+  .breadcrumb{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-5); }
+  .breadcrumb a{ color:var(--text-faint); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--purple-bright); }
+
+  .byline-block{ border-left:2px solid var(--purple); padding-left:var(--sp-4); margin-bottom:var(--sp-6); }
+  .byline-block .n{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .byline-block .t{ font-family:var(--mono); font-size:0.72rem; color:var(--purple-bright); margin-top:2px; }
+  .byline-block .l{ font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-top:2px; }
+
+  .article-tags{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-4); }
+  .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; border:1px solid var(--border); border-radius:var(--radius-pill); padding:4px 11px; color:var(--text-faint); }
+  h1{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.7rem,3.6vw,2.4rem); line-height:1.15; max-width:20ch; }
+  .dek{ color:var(--text-muted); font-size:1.02rem; margin-top:var(--sp-4); max-width:56ch; line-height:1.55; }
+  .meta-row{ display:flex; gap:var(--sp-5); margin-top:var(--sp-5); flex-wrap:wrap; font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); padding-bottom:var(--sp-5); }
+  .provenance{ padding-top:var(--sp-5); border-top:1px solid var(--border); padding-bottom:var(--sp-6); border-bottom:1px solid var(--border); margin-bottom:var(--sp-6); }
+  .provenance .p-row{ margin-bottom:var(--sp-3); }
+  .provenance .p-row:last-child{ margin-bottom:0; }
+  .provenance .p-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .provenance .p-text{ font-size:0.8rem; color:var(--text-muted); line-height:1.6; max-width:64ch; }
+
+  article{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-7) var(--sp-7) var(--sp-6); }
+  @media (max-width:640px){ article{ padding:var(--sp-5) var(--sp-4) var(--sp-4); } }
+  article > p, article > .lede{ color:var(--text); font-size:1rem; margin-bottom:var(--sp-4); max-width:66ch; }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.14rem; color:var(--text); line-height:1.5; margin-top:var(--sp-6); }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.35rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); scroll-margin-top:calc(var(--navh) + 20px); }
+  article h2 .num{ color:var(--text-faint); font-style:normal; font-family:var(--mono); font-size:0.78rem; margin-right:var(--sp-3); }
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.97rem; max-width:66ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  .pull-quote{ font-family:var(--serif); font-style:italic; font-size:1.22rem; line-height:1.45; color:var(--text); border-left:2px solid var(--purple); padding:2px 0 2px var(--sp-5); margin:var(--sp-6) 0; max-width:56ch; }
+
+  .figure{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5) var(--sp-4) var(--sp-4); }
+  .figure svg{ width:100%; height:auto; display:block; }
+  .figure figcaption{ font-family:var(--mono); font-size:0.68rem; color:var(--text-faint); margin-top:var(--sp-4); padding-top:var(--sp-3); border-top:1px solid var(--border); line-height:1.5; }
+
+  .compare{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:var(--sp-6) 0; }
+  .compare .col{ background:var(--bg); padding:var(--sp-5); }
+  .compare .col-head{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:var(--sp-4); color:var(--text-faint); }
+  .compare .col.c-a .col-head{ color:var(--turquoise); }
+  .compare .col.c-b .col-head{ color:var(--purple-bright); }
+  .compare .row{ padding:var(--sp-3) 0; border-top:1px solid var(--border); }
+  .compare .row:first-of-type{ border-top:none; }
+  .compare .row .k{ font-family:var(--mono); font-size:0.6rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-faint); margin-bottom:4px; }
+  .compare .row .v{ font-size:0.84rem; color:var(--text); opacity:0.9; }
+  @media (max-width:600px){ .compare{ grid-template-columns:1fr; } }
+
+  .erosion{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5) var(--sp-4) var(--sp-4); }
+  .erosion-bars{ display:flex; align-items:flex-end; gap:var(--sp-4); height:150px; }
+  .erosion-bar{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .erosion-bar .fill{ width:100%; border-radius:3px 3px 0 0; }
+  .erosion-bar .pct{ font-family:var(--mono); font-size:0.72rem; margin-bottom:var(--sp-2); color:var(--text-muted); }
+  .erosion-bar .lbl{ font-family:var(--mono); font-size:0.6rem; color:var(--text-faint); text-transform:uppercase; margin-top:var(--sp-2); text-align:center; }
+  .erosion figcaption{ font-family:var(--mono); font-size:0.68rem; color:var(--text-faint); margin-top:var(--sp-4); padding-top:var(--sp-3); border-top:1px solid var(--border); line-height:1.5; }
+
+  details.expand{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); margin:var(--sp-5) 0; }
+  details.expand summary{ cursor:pointer; list-style:none; padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.02em; text-transform:uppercase; color:var(--purple-bright); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-3); }
+  details.expand summary::-webkit-details-marker{ display:none; }
+  details.expand summary::after{ content:"+"; font-family:var(--sans); font-size:1.05rem; color:var(--text-faint); }
+  details.expand[open] summary::after{ content:"–"; }
+  details.expand .expand-body{ padding:0 var(--sp-5) var(--sp-5); border-top:1px solid var(--border); padding-top:var(--sp-4); }
+  details.expand .expand-body p{ color:var(--text); opacity:0.88; margin-bottom:var(--sp-3); font-size:0.9rem; }
+
+  .cite-block{ margin-top:var(--sp-8); padding-top:var(--sp-5); border-top:1px solid var(--border); }
+  .cite-block h2{ margin-top:0; }
+  .cite-box{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; }
+  .cite-box .field{ color:var(--text); }
+
+  .article-footer{ margin-top:var(--sp-7); padding-top:var(--sp-6); border-top:1px solid var(--border); }
+  .author-card{ display:flex; gap:var(--sp-4); align-items:flex-start; }
+  .author-card .avatar{ width:42px; height:42px; border-radius:50%; background:var(--surface-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; color:var(--purple-bright); border:1px solid var(--border); }
+  .author-card p{ color:var(--text-muted); font-size:0.86rem; margin:0; max-width:none; }
+  .author-card b{ color:var(--text); }
+  .next-reading{ margin-top:var(--sp-6); }
+  .back-link{ display:inline-flex; align-items:center; gap:var(--sp-2); text-decoration:none; color:var(--purple-bright); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; }
+
+  .page-footer-links{ margin-top:var(--sp-6); padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .page-footer-links a{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--text-faint); text-decoration:none; }
+  .page-footer-links a:hover{ color:var(--purple-bright); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab active" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="research.html">Research</a> / Working Paper 001</div>
+
+  <div class="byline-block">
+    <div class="n">Hamdi Bouzidi</div>
+    <div class="t">Independent AI Researcher</div>
+    <div class="l">Montreal, Canada</div>
+  </div>
+
+  <div class="article-tags"><span class="tag">AI Systems</span><span class="tag">Organizational Intelligence</span><span class="tag">Architecture</span></div>
+  <h1>Organizations Don't Have an AI Problem. They Have a Memory Problem.</h1>
+  <p class="dek">Every conversation about AI adoption starts with the model. It should start with what the organization already knows, and how fast that knowledge disappears.</p>
+  <div class="meta-row">
+    <span>Published Aug 1, 2026</span>
+    <span>Updated Aug 8, 2026</span>
+    <span>9 min read</span>
+    <span>hamdibouzidi.com/research-memory-problem.html</span>
+  </div>
+
+  <div class="provenance">
+    <div class="p-row">
+      <div class="p-label">Research status</div>
+      <div class="p-text">Independent research conducted through software development, experimentation, and literature review. This work has not undergone formal peer review.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">Research provenance</div>
+      <div class="p-text">This work emerged from observations, hypotheses, and system designs developed during my independent software research and development. Generative AI tools are used as research and writing assistants for literature exploration, critique, synthesis, organization, and editorial refinement. They are not treated as authoritative sources or authors. The hypotheses, technical decisions, claims, and final work remain the responsibility of the author.</div>
+    </div>
+  </div>
+
+  <article>
+
+    <p class="lede">Which model? How many tokens? How much context? Which provider? These are the questions that dominate almost every conversation about AI inside a company today. They are reasonable questions. They are also not the fundamental one.</p>
+
+    <p>The fundamental one is quieter, and it has nothing to do with model architecture: what happens to everything an organization figures out, the moment nobody is actively looking at it?</p>
+
+    <h2><span class="num">01</span>The wrong question</h2>
+    <p>Model capability has improved so quickly, and so publicly, that it has absorbed almost all of the strategic attention available for AI. Procurement conversations are about which provider. Engineering conversations are about which context window. Budget conversations are about API spend per seat.</p>
+    <p>None of that is wrong to think about. But it treats intelligence as the scarce resource, when for most organizations, intelligence was never actually the bottleneck. What's scarce is <em>continuity</em> — the ability for anyone, human or AI, to pick up exactly where the organization's understanding left off.</p>
+    <p>A more capable model does not fix a missing decision log. A longer context window does not recover a rationale that only ever existed in one person's head, on a call nobody recorded, three months before that person changed teams.</p>
+
+    <h2><span class="num">02</span>What actually gets lost</h2>
+    <p>Organizations generate an enormous amount of knowledge every single day. Meetings. Emails. Architectural decisions made in a fifteen-minute Slack thread. Customer conversations that reveal exactly why a feature matters. Design tradeoffs debated and resolved, then never written down. Lessons learned the hard way, once, by one person.</p>
+    <p>Almost none of this is systematically preserved in a form that explains <em>why</em>, not just <em>what</em>. Version control tells you a file changed. It rarely tells you which alternative was rejected, and why that rejection made sense at the time.</p>
+    <p>Over weeks, this is a minor inconvenience. Over months, it becomes re-litigation: teams re-arguing decisions that were already made, because the reasoning that made them evaporated along with the meeting that produced it. Over years, in a company with any amount of turnover, it becomes structural amnesia.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig1title fig1desc">
+        <title id="fig1title">Diagram: shared understanding fragmenting over time</title>
+        <desc id="fig1desc">Five knowledge sources — meetings, emails, Slack, decisions, and customer calls — converge into a single shared understanding today. Six months later, without a memory layer, those same sources no longer converge; the connections have broken and understanding has fragmented.</desc>
+        <text x="230" y="34" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--text-faint)">TODAY</text>
+        <text x="690" y="34" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--text-faint)">SIX MONTHS, NO MEMORY LAYER</text>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--text)">
+          <circle cx="60" cy="70" r="5" fill="var(--turquoise)"></circle><text x="76" y="74">Meetings</text>
+          <circle cx="60" cy="130" r="5" fill="var(--turquoise)"></circle><text x="76" y="134">Emails</text>
+          <circle cx="60" cy="190" r="5" fill="var(--turquoise)"></circle><text x="76" y="194">Slack</text>
+          <circle cx="60" cy="250" r="5" fill="var(--turquoise)"></circle><text x="76" y="254">Decisions</text>
+          <circle cx="60" cy="310" r="5" fill="var(--turquoise)"></circle><text x="76" y="314">Customer calls</text>
+        </g>
+        <g stroke="var(--purple-bright)" stroke-width="1.4" opacity="0.75">
+          <line x1="66" y1="70" x2="220" y2="190"></line><line x1="66" y1="130" x2="220" y2="190"></line>
+          <line x1="66" y1="190" x2="220" y2="190"></line><line x1="66" y1="250" x2="220" y2="190"></line><line x1="66" y1="310" x2="220" y2="190"></line>
+        </g>
+        <circle cx="230" cy="190" r="26" fill="var(--surface)" stroke="var(--purple-bright)" stroke-width="2"></circle>
+        <text x="230" y="235" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="13" fill="var(--text)">Shared</text>
+        <text x="230" y="252" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="13" fill="var(--text)">understanding</text>
+        <line x1="330" y1="190" x2="450" y2="190" stroke="var(--lemon)" stroke-width="1.4" stroke-dasharray="4 4"></line>
+        <polygon points="450,184 462,190 450,196" fill="var(--lemon)"></polygon>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--text-faint)">
+          <circle cx="840" cy="70" r="5" fill="var(--text-faint)" opacity="0.6"></circle><text x="824" y="74" text-anchor="end">Meetings</text>
+          <circle cx="840" cy="130" r="5" fill="var(--text-faint)" opacity="0.6"></circle><text x="824" y="134" text-anchor="end">Emails</text>
+          <circle cx="840" cy="190" r="5" fill="var(--text-faint)" opacity="0.6"></circle><text x="824" y="194" text-anchor="end">Slack</text>
+          <circle cx="840" cy="250" r="5" fill="var(--text-faint)" opacity="0.6"></circle><text x="824" y="254" text-anchor="end">Decisions</text>
+          <circle cx="840" cy="310" r="5" fill="var(--text-faint)" opacity="0.6"></circle><text x="824" y="314" text-anchor="end">Customer calls</text>
+        </g>
+        <g stroke="var(--text-faint)" stroke-width="1.2" opacity="0.4" stroke-dasharray="3 5">
+          <line x1="834" y1="70" x2="760" y2="130"></line><line x1="834" y1="130" x2="770" y2="150"></line>
+          <line x1="834" y1="250" x2="770" y2="230"></line><line x1="834" y1="310" x2="760" y2="250"></line>
+        </g>
+        <circle cx="670" cy="190" r="20" fill="var(--surface)" stroke="var(--text-faint)" stroke-width="1.5" opacity="0.7"></circle>
+        <text x="670" y="230" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="12" fill="var(--text-faint)">Fragmented</text>
+        <text x="670" y="245" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="12" fill="var(--text-faint)">understanding</text>
+      </svg>
+      <figcaption>Fig. 1 — The same five sources of organizational knowledge, before and after six months without a system built to retain the reasoning behind them, not just the artifacts.</figcaption>
+    </div>
+
+    <h2><span class="num">03</span>Where knowledge fragments</h2>
+    <p>This isn't a story about bad tools or careless teams. It's structural. Every tool an organization uses is optimized to be excellent at its own narrow slice, and organized around a different unit: a channel, a ticket, a repository, a calendar event. None of them is organized around the actual unit that matters, which is the <em>mission</em>: why the project exists, what's been tried, what's been ruled out, and what should happen next.</p>
+    <p>Git records what changed in the code. It does not record why the team chose that direction over the other two that were seriously considered. Knowledge doesn't disappear all at once. It fragments, tool by tool, meeting by meeting, until reconstructing "why" takes longer than doing the work again from scratch.</p>
+
+    <h2><span class="num">04</span>Two kinds of investment</h2>
+    <p>Put next to each other, the difference in where organizations spend their AI attention becomes obvious.</p>
+    <div class="compare">
+      <div class="col c-a">
+        <div class="col-head">Model Upgrades</div>
+        <div class="row"><div class="k">What it improves</div><div class="v">Reasoning quality on a single, isolated task</div></div>
+        <div class="row"><div class="k">Budget priority</div><div class="v">High — usually first in line</div></div>
+        <div class="row"><div class="k">Where value compounds</div><div class="v">It doesn't — resets with every new context window</div></div>
+      </div>
+      <div class="col c-b">
+        <div class="col-head">Memory Infrastructure</div>
+        <div class="row"><div class="k">What it improves</div><div class="v">Continuity of reasoning across people, time, and tools</div></div>
+        <div class="row"><div class="k">Budget priority</div><div class="v">Low — usually an afterthought, if considered at all</div></div>
+        <div class="row"><div class="k">Where value compounds</div><div class="v">Continuously — every session adds to the next one</div></div>
+      </div>
+    </div>
+    <p>A better model makes a single answer better. Better memory makes every future answer, from any model, better than it would have otherwise been. These aren't competing investments. They're just rarely funded at the same time, because only one of them is easy to demo.</p>
+
+    <h2><span class="num">05</span>How understanding erodes</h2>
+    <p>The decay is not linear, and it's fast. In the absence of a system built specifically to hold onto reasoning, most of what a team understood about a project's "why" is gone well before the project itself is finished.</p>
+    <div class="erosion">
+      <div class="erosion-bars">
+        <div class="erosion-bar"><div class="pct" style="color:var(--turquoise);">100%</div><div class="fill" style="height:130px; background:var(--turquoise);"></div><div class="lbl">Day 1</div></div>
+        <div class="erosion-bar"><div class="pct" style="color:var(--lime);">70%</div><div class="fill" style="height:91px; background:var(--lime);"></div><div class="lbl">Week 2</div></div>
+        <div class="erosion-bar"><div class="pct" style="color:var(--lemon);">40%</div><div class="fill" style="height:52px; background:var(--lemon);"></div><div class="lbl">Month 3</div></div>
+        <div class="erosion-bar"><div class="pct">15%</div><div class="fill" style="height:20px; background:var(--text-faint);"></div><div class="lbl">Month 6</div></div>
+      </div>
+      <figcaption>Fig. 2 — Illustrative erosion of a team's ability to explain its own past decisions without a durable reasoning record. Directional, not a measured statistic.</figcaption>
+    </div>
+
+    <h2><span class="num">06</span>Why AI can't fully compensate</h2>
+    <p>It's tempting to assume a good enough AI assistant solves this by default. It helps. It does not solve the underlying problem: an assistant can only reason over what still exists somewhere, in some retrievable form. It cannot retrieve a decision that was never written down.</p>
+    <p>AI compresses the cost of <em>searching</em> for context that already exists. It does almost nothing for context that was never captured in the first place.</p>
+
+    <details class="expand">
+      <summary>A note on what this isn't arguing</summary>
+      <div class="expand-body">
+        <p>This isn't an argument that model capability doesn't matter. Model quality is real, and it compounds within a single task.</p>
+        <p>The argument is narrower: model capability and memory infrastructure solve different problems, and treating the first as a substitute for the second is where most AI initiatives quietly stall.</p>
+      </div>
+    </details>
+
+    <h2><span class="num">07</span>Toward organizations that remember</h2>
+    <p>The organizations that get the most out of AI over the next decade probably won't be the ones with access to the newest model first. They'll be the ones that treated organizational memory as infrastructure: built deliberately, maintained continuously, and trusted enough that people actually go back to it.</p>
+    <p>That's the core idea behind <strong>Monowire</strong>, a Samiel product and continuity layer I'm currently researching for AI-assisted work. Its job is to hold onto the mission — the reasoning, the open questions, the decisions and why they were made — so that returning to a project after time away costs almost nothing to reconstruct. The follow-up essay, <a href="research-documentation-as-ir.html">on documentation as an intermediate representation</a>, looks at how that memory actually gets turned into something AI agents can execute against.</p>
+
+    <p class="pull-quote">Before organizations become more intelligent, they need to become better at remembering.</p>
+
+    <div class="cite-block">
+      <h2><span class="num">—</span>How to cite this work</h2>
+      <div class="cite-box">
+        <span class="field">Bouzidi, H.</span> (2026). <span class="field">Organizations Don't Have an AI Problem. They Have a Memory Problem.</span> HB Research.<br>
+        https://hamdibouzidi.com/research-memory-problem.html
+      </div>
+    </div>
+
+    <div class="article-footer">
+      <div class="author-card">
+        <div class="avatar">H.B.</div>
+        <p><b>Hamdi Bouzidi</b> is an Independent AI Researcher working on AI-native software engineering, organizational intelligence, and software architecture. Based in Montreal. <a href="mailto:hamdi.bz@proton.me">Get in touch</a> or find him on <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+      <div class="next-reading">
+        <a class="back-link" href="research-documentation-as-ir.html">Documentation as an Intermediate Representation →</a>
+      </div>
+    </div>
+
+  </article>
+
+  <div class="page-footer-links">
+    <a href="mailto:hamdi.bz@proton.me">hamdi.bz@proton.me</a>
+    <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="research.html">Back to Research</a>
+  </div>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>

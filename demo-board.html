@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Role-Fit Simulator: Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand:#6366F1; --brand-dark:#4F46E5; --bg:#F4F4FA; --panel:#FFFFFF; --border:#E7E6F2;
+    --text:#211D33; --muted:#7A7690;
+    --c-unsorted:#94A3B8; --c-schedule:#22C55E; --c-later:#F59E0B; --c-pass:#F43F5E;
+    --display:'Space Grotesk', sans-serif; --body:'Plus Jakarta Sans', sans-serif;
+  }
+  * { box-sizing:border-box; }
+  body { font-family:var(--body); background:var(--bg); color:var(--text); margin:0; padding:0; }
+  h1, h2, h3 { font-family:var(--display); }
+
+  header { padding:18px 32px; display:flex; align-items:center; gap:16px; }
+  header img { width:64px; height:64px; object-fit:contain; }
+  header h1 { font-size:1.3rem; margin:0; font-weight:700; }
+  header .demo-badge { margin-left:auto; font-size:0.7rem; font-weight:700; text-transform:uppercase;
+                        letter-spacing:0.05em; background:#EEF2FF; color:var(--brand-dark);
+                        padding:6px 12px; border-radius:100px; }
+
+  .job-card { margin:0 32px 20px; background:var(--panel); border:1px solid var(--border);
+              border-radius:14px; padding:18px 22px; box-shadow:0 2px 8px rgba(30,20,60,0.05); }
+  .job-card .role { font-family:var(--display); font-weight:700; font-size:1.05rem; margin-bottom:4px; }
+  .job-card .company { color:var(--brand-dark); font-size:0.85rem; font-weight:600; margin-bottom:10px; }
+  .job-card p { font-size:0.85rem; color:var(--muted); margin:0; line-height:1.5; }
+  .job-card details summary { cursor:pointer; font-size:0.8rem; color:var(--brand-dark); font-weight:600; margin-top:8px; }
+
+  .hint-bar { margin:0 32px 20px; background:#EEF2FF; border:1px solid #C7D2FE; color:#4338CA;
+              font-size:0.85rem; padding:10px 16px; border-radius:10px; display:flex; align-items:center; gap:8px; }
+
+  .layout { display:flex; gap:22px; padding:0 32px 32px; align-items:flex-start; }
+  .board { display:flex; gap:18px; overflow-x:auto; flex:1; padding-bottom:8px; }
+  .column { flex:0 0 280px; }
+  .column h2 { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;
+               color:var(--muted); margin:0 0 12px 4px; display:flex; align-items:center; gap:8px; font-weight:700; }
+  .column h2 .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .column .count { background:#fff; border:1px solid var(--border); color:var(--muted); border-radius:100px;
+                    padding:1px 8px; font-size:0.68rem; font-weight:600; }
+  .drop-zone { min-height:140px; border:2px dashed var(--border); border-radius:14px; padding:8px;
+               transition:background 0.2s ease, border-color 0.2s ease; }
+  .drop-zone.drag-over { background:#EEF2FF; border-color:var(--brand); }
+
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:14px;
+          padding:16px; margin-bottom:12px; cursor:grab; box-shadow:0 1px 3px rgba(30,20,60,0.06);
+          border-left:4px solid var(--card-color, var(--c-unsorted));
+          transition:transform 0.15s ease, box-shadow 0.15s ease; }
+  .card:hover { box-shadow:0 4px 14px rgba(30,20,60,0.10); transform:translateY(-1px); }
+  .card:active { cursor:grabbing; }
+  .card.dragging { opacity:0.4; }
+  .card.just-dropped { animation:settle 0.45s ease; }
+  @keyframes settle { 0% { transform:scale(1.04); box-shadow:0 10px 26px rgba(99,102,241,0.25); }
+                       100% { transform:scale(1); } }
+
+  .card h3 { margin:0 0 6px; font-size:1.02rem; font-weight:700; }
+  .card .brief { font-size:0.85rem; color:var(--muted); line-height:1.45; margin-bottom:12px; }
+
+  .section-btns { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .section-btns button {
+    font-size:0.68rem; letter-spacing:0.02em; font-weight:600;
+    background:#F4F4FA; color:var(--muted); border:1px solid var(--border);
+    border-radius:100px; padding:5px 10px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .section-btns button:hover { color:var(--brand-dark); border-color:var(--brand); }
+  .section-btns button.active { background:var(--brand); color:#fff; border-color:var(--brand); }
+
+  .detail-panel { font-size:0.83rem; color:var(--text); background:#F8F8FC;
+                   border-radius:10px; padding:12px; margin-bottom:10px; display:none;
+                   max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s ease; }
+  .detail-panel.open { display:block; max-height:600px; padding:12px; }
+  .detail-panel .q-period { color:var(--brand-dark); font-size:0.7rem; font-weight:700; margin-top:8px; }
+  .detail-panel .q-period:first-child { margin-top:0; }
+  .detail-panel ul { padding-left:16px; margin:0; }
+  .detail-panel li { margin-bottom:5px; }
+
+  .notes-label { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.03em;
+                 color:var(--muted); margin-top:10px; display:block; font-weight:700; }
+  .notes-box { width:100%; background:#FBFBFE; border:1px solid var(--border); color:var(--text);
+               border-radius:8px; padding:8px; font-size:0.8rem; font-family:inherit;
+               min-height:50px; resize:vertical; margin-top:4px; }
+  .notes-box:focus { outline:none; border-color:var(--brand); }
+
+  .sidebar { flex:0 0 280px; background:var(--panel); border:1px solid var(--border);
+             border-radius:16px; padding:22px; box-shadow:0 2px 10px rgba(30,20,60,0.05);
+             position:sticky; top:24px; }
+  .sidebar .badge { display:inline-block; background:#FEF3C7; color:#92400E; font-size:0.65rem;
+                     font-weight:700; padding:3px 9px; border-radius:100px; margin-bottom:10px; }
+  .sidebar h3 { margin:0 0 8px; font-size:1rem; font-weight:700; }
+  .sidebar p { font-size:0.83rem; color:var(--muted); line-height:1.5; margin:0 0 16px; }
+  .sidebar .g-btn { width:100%; background:#fff; border:1.5px solid var(--border); border-radius:10px;
+                     padding:11px; font-size:0.85rem; font-weight:600; color:var(--text); cursor:pointer;
+                     display:flex; align-items:center; justify-content:center; gap:8px; }
+  .sidebar .g-btn:hover { border-color:var(--brand); }
+  .sidebar .flow { margin-top:18px; font-size:0.78rem; color:var(--muted); }
+  .sidebar .flow div { padding:6px 0; border-top:1px dashed var(--border); }
+  .sidebar .flow div:first-child { border-top:none; }
+  .toast { position:fixed; bottom:24px; right:24px; background:#211D33; color:#fff; padding:12px 18px;
+           border-radius:10px; font-size:0.85rem; box-shadow:0 8px 24px rgba(0,0,0,0.2);
+           opacity:0; transform:translateY(10px); transition:all 0.3s ease; pointer-events:none; }
+  .toast.show { opacity:1; transform:translateY(0); }
+
+  ::-webkit-scrollbar { height:8px; }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:8px; }
+</style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="logo">
+  <h1>Candidate Profiling Board</h1>
+  <a href="demo.html" style="color:var(--brand-dark); font-size:0.85rem; text-decoration:none; font-weight:600; margin-left:16px;">&larr; Back to start</a>
+  <span class="demo-badge">Demo, fixed example, no live AI calls</span>
+</header>
+
+<div class="job-card">
+  <div class="role">Senior Growth &amp; Expansion Manager</div>
+  <div class="company">Apex Cloud Solutions, enterprise cloud infrastructure &amp; B2B SaaS, San Francisco</div>
+  <p>Leads enterprise expansion strategy across North America and EMEA, scaling multi-market B2B revenue
+  operations, mentoring sales reps and solutions engineers, and partnering with Product and Marketing on
+  CRM-driven forecasting. Requires 7+ years of B2B SaaS scaling experience and a proven multi-million
+  dollar expansion track record.</p>
+  <details>
+    <summary>Full job &amp; company description</summary>
+    <p style="margin-top:10px;">
+    Direct enterprise go-to-market (GTM) execution, tier-switching frameworks, and localized market
+    capture. Build and mentor high-performing sales representatives, account managers, and solutions
+    engineers. Collaborate with Product and Marketing to optimize sales pipelines using advanced CRM
+    analytics and forecasting models. Requirements: 7+ years of B2B SaaS scaling and revenue operations
+    experience, a proven track record managing multi-million dollar expansion portfolios and closing
+    enterprise accounts, and an MBA or Bachelor's degree in Economics, Business, or a related technical field.
+    <br><br>
+    Apex Cloud Solutions is a fast-growing enterprise cloud infrastructure and B2B SaaS provider
+    headquartered in San Francisco, specializing in hybrid-cloud workflow orchestration and data-driven
+    operational software for mid-market and Fortune 500 companies. Days start with stand-ups reviewing
+    real-time Salesforce and Tableau pipeline metrics, midday is spent coordinating with product engineers
+    and regional marketing leads on GTM strategy and deployment issues, and afternoons are dedicated to
+    C-suite demos, contract negotiations, and churn-reduction reviews.
+    </p>
+  </details>
+</div>
+
+<div class="hint-bar">💡 Drag and drop candidate cards between the columns below to sort them as you review.</div>
+
+<div class="layout">
+  <div class="board" id="board">
+    <div class="column" data-column="unsorted">
+      <h2><span class="dot" style="background:var(--c-unsorted)"></span>Unsorted <span class="count"></span></h2>
+      <div class="drop-zone" data-column="unsorted"></div>
+    </div>
+    <div class="column" data-column="schedule">
+      <h2><span class="dot" style="background:var(--c-schedule)"></span>Schedule Interview <span class="count"></span></h2>
+      <div class="drop-zone" data-column="schedule"></div>
+    </div>
+    <div class="column" data-column="later">
+      <h2><span class="dot" style="background:var(--c-later)"></span>Come Back Later <span class="count"></span></h2>
+      <div class="drop-zone" data-column="later"></div>
+    </div>
+    <div class="column" data-column="pass">
+      <h2><span class="dot" style="background:var(--c-pass)"></span>Not Interested <span class="count"></span></h2>
+      <div class="drop-zone" data-column="pass"></div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <span class="badge">CONCEPT PREVIEW</span>
+    <h3>📅 Auto-Schedule with Gemini</h3>
+    <p>Connect your Google account and Gemini watches this board. The moment
+    you drag a candidate into <strong>Schedule Interview</strong>, it books
+    a slot on your calendar and emails the candidate a Google Meet link,
+    automatically.</p>
+    <button class="g-btn" onclick="fakeGoogleConnect()">🔗 Connect Google Account</button>
+    <div class="flow">
+      <div>1. You drag a candidate to "Schedule Interview"</div>
+      <div>2. Gemini checks your calendar for open slots</div>
+      <div>3. It creates the event + Meet link</div>
+      <div>4. Candidate gets an email invite instantly</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Fixed, hand-written example output. This is a static demo page.
+// No API calls happen here; the real tool generates this per-candidate live.
+const RESULTS = {
+  "Marcus Vance": {
+    "brief": "Already in a senior growth role at Apex Cloud Solutions itself, strong EMEA and enterprise track record, but the move may be more lateral than new territory.",
+    "snapshot": "Currently Senior Growth Manager at Apex Cloud Solutions since 2023, with 7 years of B2B SaaS expansion experience, a documented $4.5M EMEA pipeline win, and an MBA from Michigan.",
+    "quarters": [
+      { "period": "Month 1-3", "narrative": "Already familiar with Apex's Salesforce/Tableau stack and internal team structure from his current Senior Growth Manager role, likely a fast start with minimal systems ramp. The main open question is how much this role's scope actually differs from what he already leads." },
+      { "period": "Month 4-6", "narrative": "His track record of leading a 12-person cross-functional team and building a tier-switching framework that cut churn by 4.2% suggests he could extend or formalize similar frameworks at a larger scale, if the new role gives him a genuinely bigger mandate." },
+      { "period": "Month 7-12", "narrative": "Given his prior EMEA go-to-market launch capturing $4.5M in new pipeline within 6 months, a full year with explicit EMEA scope could plausibly repeat or extend that kind of result, contingent on market conditions and team support." }
+    ],
+    "likely_strengths": [
+      "Direct, current experience with Apex's own CRM analytics pipeline (Salesforce + Tableau), since he already works there",
+      "Documented EMEA market entry success ($4.5M pipeline in 6 months) directly matching the role's EMEA expansion requirement",
+      "Built and shipped an enterprise tier-switching framework, closely matching the job's tier-switching responsibility",
+      "MBA plus a 135% YoY quota-beat track record"
+    ],
+    "friction_points": [
+      "He already holds a senior growth title at this same company; if the new role isn't meaningfully broader in scope or authority, it may read as a lateral move rather than a promotion, worth clarifying what's actually new",
+      "His largest documented team lead was 12 people; if this role expects a substantially larger org, that scale is unproven",
+      "His resume lists a blended team of 'sales representatives and solutions engineers' without detail on the split, worth confirming his direct experience mentoring solutions engineers specifically"
+    ],
+    "open_questions": [
+      "What specifically would change about his scope, authority, or team size compared to his current Senior Growth Manager role at Apex?",
+      "Was the EMEA pipeline win a one-time push or a repeatable motion he could apply to other markets?",
+      "Why is he looking to move roles if he's already at this company in an adjacent senior position?"
+    ]
+  },
+  "Jordan Lee": {
+    "brief": "Strong account management and quota track record at a smaller scale, but the role calls for 7+ years and cross-functional GTM leadership neither shown yet.",
+    "snapshot": "5 years in B2B sales, currently Expansion Account Manager at Veloce Tech Solutions managing 65 mid-market accounts, with a BA in Communication Studies rather than the Economics/Business background listed as a requirement.",
+    "quarters": [
+      { "period": "Month 1-3", "narrative": "Comfortable early with core CRM hygiene and account management, both demonstrated strengths from his BDR and account manager history, but the job's cross-functional GTM and product/marketing coordination work isn't something his resume shows him doing yet, likely a genuine learning curve here." },
+      { "period": "Month 4-6", "narrative": "His demonstrated upsell success (112% of quota, $1.8M net-new revenue over two years) suggests he could grow account value within an assigned book, but building GTM strategy and tier-switching frameworks from scratch is a different, unproven skill set for him." },
+      { "period": "Month 7-12", "narrative": "Given real mentorship on the enterprise/EMEA and cross-functional leadership side, his steady step-up career pattern (sales associate to BDR to account manager) suggests continued growth, but matching the job's full stated scope within one year looks like a stretch based on what's documented." }
+    ],
+    "likely_strengths": [
+      "Demonstrated upsell and retention performance: 112% of annual upsell quota and $1.8M in net-new recurring revenue across a 65-account portfolio",
+      "Direct outbound experience, over 150 qualified discovery meetings booked from cold outreach",
+      "Clean CRM/Salesforce data discipline mentioned explicitly from his BDR role",
+      "Clear upward career trajectory across three roles in five years"
+    ],
+    "friction_points": [
+      "The role calls for 7+ years of B2B SaaS scaling experience; he has 5, worth discussing directly rather than assuming it's a blocker or a non-issue",
+      "No stated experience with EMEA or multi-market expansion, and the job specifically asks for North American and EMEA scaling",
+      "No stated experience leading a cross-functional team of reps and solutions engineers, his roles to date are individual-contributor and account-management, not people leadership",
+      "Education is a BA in Communication Studies, not the Economics/Business/technical background listed, worth clarifying how firm that requirement is"
+    ],
+    "open_questions": [
+      "How would he approach building a GTM strategy for a new market, given he hasn't done that specifically before?",
+      "Is he open to a lower starting scope with a path to the full role, or expecting full scope on day one?",
+      "What does he see as the biggest gap between his current Expansion Account Manager role and this one, in his own words?"
+    ]
+  }
+};
+
+const STORAGE_KEY = "role_fit_demo_board_state_v1";
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  const state = { columns: {}, notes: {} };
+  Object.keys(RESULTS).forEach(name => { state.columns[name] = "unsorted"; state.notes[name] = ""; });
+  return state;
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+let state = loadState();
+Object.keys(RESULTS).forEach(name => {
+  if (!(name in state.columns)) state.columns[name] = "unsorted";
+  if (!(name in state.notes)) state.notes[name] = "";
+});
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove("show"), 3200);
+}
+
+function fakeGoogleConnect() {
+  showToast("This is a concept preview. No real Google account is connected.");
+}
+
+function buildDetailHtml(section, data) {
+  if (section === "quarters") {
+    return data.quarters.map(q =>
+      `<div class="q-period">${escapeHtml(q.period)}</div><div>${escapeHtml(q.narrative)}</div>`
+    ).join("");
+  }
+  if (section === "strengths") {
+    return "<ul>" + data.likely_strengths.map(s => `<li>${escapeHtml(s)}</li>`).join("") + "</ul>";
+  }
+  if (section === "friction") {
+    return "<ul>" + data.friction_points.map(s => `<li>${escapeHtml(s)}</li>`).join("") + "</ul>";
+  }
+  if (section === "questions") {
+    return "<ul>" + data.open_questions.map(s => `<li>${escapeHtml(s)}</li>`).join("") + "</ul>";
+  }
+  return "";
+}
+
+const COLUMN_VARS = { unsorted:"--c-unsorted", schedule:"--c-schedule", later:"--c-later", pass:"--c-pass" };
+
+function renderCard(name) {
+  const data = RESULTS[name];
+  const card = document.createElement("div");
+  card.className = "card";
+  card.draggable = true;
+  card.dataset.name = name;
+
+  const sections = [
+    ["quarters", "Projected First Year"],
+    ["strengths", "Likely Strengths"],
+    ["friction", "Possible Friction Points"],
+    ["questions", "Questions Worth Asking"],
+  ];
+
+  card.innerHTML = `
+    <h3>${escapeHtml(name)}</h3>
+    <div class="brief">${escapeHtml(data.brief || data.snapshot || "")}</div>
+    <div class="section-btns">
+      ${sections.map(([key, label]) => `<button data-section="${key}">${label}</button>`).join("")}
+    </div>
+    ${sections.map(([key]) => `<div class="detail-panel" data-panel="${key}"></div>`).join("")}
+    <label class="notes-label">Notes</label>
+    <textarea class="notes-box" placeholder="Your notes on this candidate...">${escapeHtml(state.notes[name] || "")}</textarea>
+  `;
+
+  card.querySelectorAll(".section-btns button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.section;
+      const panel = card.querySelector(`.detail-panel[data-panel="${key}"]`);
+      const isOpen = panel.classList.contains("open");
+      card.querySelectorAll(".detail-panel").forEach(p => p.classList.remove("open"));
+      card.querySelectorAll(".section-btns button").forEach(b => b.classList.remove("active"));
+      if (!isOpen) {
+        panel.innerHTML = buildDetailHtml(key, data);
+        panel.classList.add("open");
+        btn.classList.add("active");
+      }
+    });
+  });
+
+  const notesBox = card.querySelector(".notes-box");
+  notesBox.addEventListener("input", () => {
+    state.notes[name] = notesBox.value;
+    saveState();
+  });
+
+  card.addEventListener("dragstart", () => card.classList.add("dragging"));
+  card.addEventListener("dragend", () => card.classList.remove("dragging"));
+
+  return card;
+}
+
+function applyCardColor(card, column) {
+  card.style.setProperty("--card-color", `var(${COLUMN_VARS[column] || "--c-unsorted"})`);
+}
+
+function renderBoard() {
+  document.querySelectorAll(".drop-zone").forEach(zone => zone.innerHTML = "");
+  Object.keys(RESULTS).forEach(name => {
+    const col = state.columns[name] || "unsorted";
+    const zone = document.querySelector(`.drop-zone[data-column="${col}"]`);
+    if (zone) {
+      const card = renderCard(name);
+      applyCardColor(card, col);
+      zone.appendChild(card);
+    }
+  });
+  updateCounts();
+}
+
+function updateCounts() {
+  document.querySelectorAll(".column").forEach(col => {
+    const key = col.dataset.column;
+    const n = Object.values(state.columns).filter(c => c === key).length;
+    col.querySelector(".count").textContent = n;
+  });
+}
+
+document.querySelectorAll(".drop-zone").forEach(zone => {
+  zone.addEventListener("dragover", e => {
+    e.preventDefault();
+    zone.classList.add("drag-over");
+  });
+  zone.addEventListener("dragleave", () => zone.classList.remove("drag-over"));
+  zone.addEventListener("drop", e => {
+    e.preventDefault();
+    zone.classList.remove("drag-over");
+    const dragging = document.querySelector(".card.dragging");
+    if (!dragging) return;
+    zone.appendChild(dragging);
+    dragging.classList.add("just-dropped");
+    applyCardColor(dragging, zone.dataset.column);
+    setTimeout(() => dragging.classList.remove("just-dropped"), 450);
+    state.columns[dragging.dataset.name] = zone.dataset.column;
+    saveState();
+    updateCounts();
+
+    if (zone.dataset.column === "schedule") {
+      showToast(`Concept preview: Gemini would now email ${dragging.dataset.name} a Meet invite.`);
+    }
+  });
+});
+
+renderBoard();
+</script>
+</body>
+</html>

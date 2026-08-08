@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monowire by Samiel: Conversational Human-to-Agent Organizational Architecture — Hamdi Bouzidi</title>
+<meta name="description" content="A prior-art review for Monowire by Samiel — whether separating a human-facing conversational layer from a hidden orchestrating layer produces a measurable difference in cognitive overhead or reasoning quality. An unverified research hypothesis, not a claimed capability.">
+<link rel="canonical" href="https://hamdibouzidi.com/research-monowire-conversational-architecture.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monowire by Samiel: Conversational Human-to-Agent Organizational Architecture">
+<meta property="og:description" content="A prior-art review and unverified research hypothesis on separating a conversational front-end from a hidden orchestrating layer in a multi-agent system.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Monowire by Samiel: Conversational Human-to-Agent Organizational Architecture",
+  "description": "A prior-art review and unverified research hypothesis on separating a conversational front-end from a hidden orchestrating layer in a multi-agent system.",
+  "author": { "@type": "Person", "name": "Hamdi Bouzidi", "jobTitle": "Independent AI Researcher", "url": "https://hamdibouzidi.com/about.html" },
+  "publisher": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hamdibouzidi.com/research-monowire-conversational-architecture.html" },
+  "articleSection": "Multi-Agent Systems, Human-AI Interaction, Software Architecture",
+  "inLanguage": "en",
+  "timeRequired": "PT10M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Samiel",
+  "description": "Independent AI research and product studio founded by Hamdi Bouzidi. Monowire is a Samiel product.",
+  "founder": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "makesOffer": { "@type": "SoftwareApplication", "name": "Monowire", "applicationCategory": "DeveloperApplication" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://hamdibouzidi.com/research.html" },
+    { "@type": "ListItem", "position": 3, "name": "Conversational Architecture Review", "item": "https://hamdibouzidi.com/research-monowire-conversational-architecture.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:720px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); }
+  .breadcrumb{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-5); }
+  .breadcrumb a{ color:var(--text-faint); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--purple-bright); }
+
+  .byline-block{ border-left:2px solid var(--purple); padding-left:var(--sp-4); margin-bottom:var(--sp-6); }
+  .byline-block .n{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .byline-block .t{ font-family:var(--mono); font-size:0.72rem; color:var(--purple-bright); margin-top:2px; }
+  .byline-block .l{ font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-top:2px; }
+
+  .article-tags{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-4); }
+  .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; border:1px solid var(--border); border-radius:var(--radius-pill); padding:4px 11px; color:var(--text-faint); }
+  .tag.doctype{ color:var(--lemon); border-color:rgba(255,224,102,0.35); }
+  h1{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.5rem,3.2vw,2.05rem); line-height:1.22; }
+  .dek{ color:var(--text-muted); font-size:1rem; margin-top:var(--sp-4); max-width:60ch; line-height:1.55; }
+  .meta-row{ display:flex; gap:var(--sp-5); margin-top:var(--sp-5); flex-wrap:wrap; font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); padding-bottom:var(--sp-5); }
+  .provenance{ padding-top:var(--sp-5); border-top:1px solid var(--border); padding-bottom:var(--sp-6); border-bottom:1px solid var(--border); margin-bottom:var(--sp-6); }
+  .provenance .p-row{ margin-bottom:var(--sp-3); }
+  .provenance .p-row:last-child{ margin-bottom:0; }
+  .provenance .p-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .provenance .p-text{ font-size:0.8rem; color:var(--text-muted); line-height:1.6; max-width:66ch; }
+
+  .toc{ margin:var(--sp-6) 0; padding:var(--sp-4) var(--sp-5); border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+  .toc .toc-label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-3); }
+  .toc ol{ list-style:none; display:flex; flex-wrap:wrap; gap:var(--sp-2) var(--sp-5); }
+  .toc a{ font-size:0.8rem; color:var(--text-muted); text-decoration:none; }
+  .toc a:hover{ color:var(--purple-bright); }
+
+  article{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-7) var(--sp-7) var(--sp-6); }
+  @media (max-width:640px){ article{ padding:var(--sp-5) var(--sp-4) var(--sp-4); } }
+  article > p, article > .lede{ color:var(--text); font-size:1rem; margin-bottom:var(--sp-4); max-width:68ch; }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); line-height:1.5; }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.24rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); scroll-margin-top:calc(var(--navh) + 20px); }
+  article h2 .num{ color:var(--text-faint); font-style:normal; font-family:var(--mono); font-size:0.74rem; margin-right:var(--sp-3); }
+  article h3{ font-family:var(--sans); font-weight:600; font-size:0.93rem; margin:var(--sp-6) 0 var(--sp-2); color:var(--text); }
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.96rem; max-width:68ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  article ul{ margin:0 0 var(--sp-4) var(--sp-5); color:var(--text); opacity:0.9; font-size:0.94rem; max-width:64ch; }
+  article li{ margin-bottom:var(--sp-2); line-height:1.6; }
+  .pull-quote{ font-family:var(--serif); font-style:italic; font-size:1.14rem; line-height:1.45; color:var(--text); border-left:2px solid var(--purple); padding:2px 0 2px var(--sp-5); margin:var(--sp-6) 0; max-width:56ch; }
+
+  .cmp-table{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); overflow-x:auto; background:var(--surface-2); }
+  table.cmp{ width:100%; border-collapse:collapse; font-size:0.78rem; min-width:700px; }
+  table.cmp th, table.cmp td{ text-align:left; padding:11px 13px; border-bottom:1px solid var(--border); vertical-align:top; }
+  table.cmp th{ font-family:var(--mono); font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-faint); background:var(--bg); white-space:nowrap; }
+  table.cmp td{ color:var(--text); opacity:0.9; }
+  table.cmp tr:last-child td{ border-bottom:none; }
+  table.cmp td.hl{ color:var(--purple-bright); font-weight:600; opacity:1; }
+  table.cmp .status{ font-family:var(--mono); font-size:0.62rem; padding:3px 9px; border-radius:var(--radius-pill); display:inline-block; white-space:nowrap; border:1px solid rgba(166,255,62,0.3); color:var(--lime); }
+  table.cmp .status.hl{ border-color:rgba(255,224,102,0.35); color:var(--lemon); }
+
+  .verdict{ margin:var(--sp-7) 0; border:1px solid rgba(255,224,102,0.3); background:rgba(255,224,102,0.08); border-radius:var(--radius); padding:var(--sp-5); }
+  .verdict .v-label{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--lemon); margin-bottom:var(--sp-3); }
+  .verdict h3{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); margin:0 0 var(--sp-3); }
+  .verdict p{ color:var(--text); opacity:0.9; font-size:0.9rem; margin-bottom:var(--sp-3); }
+  .verdict p:last-child{ margin-bottom:0; }
+
+  .status-pipeline{ margin:var(--sp-6) 0; border:1px solid rgba(155,92,255,0.3); background:var(--purple-soft); border-radius:var(--radius); padding:var(--sp-5); }
+  .status-pipeline .sp-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--purple-bright); margin-bottom:var(--sp-4); }
+  .sp-chain{ display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-2); }
+  .sp-step{ font-family:var(--mono); font-size:0.72rem; padding:6px 12px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); color:var(--text-muted); white-space:nowrap; }
+  .sp-step.done{ color:var(--lime); border-color:rgba(166,255,62,0.35); background:rgba(166,255,62,0.08); }
+  .sp-step.current{ color:var(--lemon); border-color:var(--lemon); background:rgba(255,224,102,0.14); }
+  .sp-arrow{ color:var(--text-faint); font-size:0.8rem; }
+  .status-pipeline p{ margin-top:var(--sp-4); margin-bottom:0; font-size:0.86rem; color:var(--text-muted); max-width:64ch; }
+
+  .exp-box{ margin:var(--sp-5) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5); }
+  .exp-box .exp-label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--turquoise); margin-bottom:var(--sp-3); }
+  .exp-step{ display:flex; gap:var(--sp-4); padding:8px 0; border-top:1px solid var(--border); font-size:0.86rem; }
+  .exp-step:first-of-type{ border-top:none; }
+  .exp-step .exp-n{ font-family:var(--mono); font-size:0.72rem; color:var(--turquoise); flex-shrink:0; width:20px; }
+
+  .refs{ margin:var(--sp-4) 0 0; padding:0; list-style:none; counter-reset:refcounter; }
+  .refs li{ counter-increment:refcounter; position:relative; padding-left:var(--sp-7); margin-bottom:var(--sp-4); font-size:0.82rem; color:var(--text-muted); max-width:64ch; }
+  .refs li::before{ content:"[" counter(refcounter) "]"; position:absolute; left:0; top:0; font-family:var(--mono); font-size:0.74rem; color:var(--purple-bright); }
+  .refs li a{ color:var(--text); text-decoration:underline; text-decoration-color:var(--border); text-underline-offset:3px; }
+  .refs li a:hover{ text-decoration-color:var(--purple-bright); }
+  .refs li .ref-note{ display:block; color:var(--text-faint); font-size:0.76rem; margin-top:3px; }
+
+  .cite-block{ margin-top:var(--sp-8); padding-top:var(--sp-5); border-top:1px solid var(--border); }
+  .cite-box{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.78rem; color:var(--text-muted); line-height:1.7; }
+  .cite-box .field{ color:var(--text); }
+
+  .article-footer{ margin-top:var(--sp-7); padding-top:var(--sp-6); border-top:1px solid var(--border); }
+  .author-card{ display:flex; gap:var(--sp-4); align-items:flex-start; }
+  .author-card .avatar{ width:42px; height:42px; border-radius:50%; background:var(--surface-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; color:var(--purple-bright); border:1px solid var(--border); }
+  .author-card p{ color:var(--text-muted); font-size:0.86rem; margin:0; max-width:none; }
+  .author-card b{ color:var(--text); }
+  .next-reading{ margin-top:var(--sp-6); }
+  .back-link{ display:inline-flex; align-items:center; gap:var(--sp-2); text-decoration:none; color:var(--purple-bright); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; }
+
+  .page-footer-links{ margin-top:var(--sp-6); padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .page-footer-links a{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--text-faint); text-decoration:none; }
+  .page-footer-links a:hover{ color:var(--purple-bright); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab active" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="research.html">Research</a> / Monowire by Samiel / Conversational Architecture</div>
+
+  <div class="byline-block">
+    <div class="n">Hamdi Bouzidi</div>
+    <div class="t">Independent AI Researcher</div>
+    <div class="l">Montreal, Canada</div>
+  </div>
+
+  <div class="article-tags"><span class="tag doctype">Research Hypothesis</span><span class="tag">Monowire by Samiel</span><span class="tag">Human-AI Interaction</span></div>
+  <h1>Monowire by Samiel: Conversational Human-to-Agent Organizational Architecture</h1>
+  <p class="dek">A prior-art review and an unverified research hypothesis — not a claimed Monowire capability. This topic turns out to be more established than the Research Map anticipated.</p>
+  <div class="meta-row">
+    <span>Published Aug 8, 2026</span>
+    <span>Updated Aug 8, 2026</span>
+    <span>10 min read</span>
+    <span>hamdibouzidi.com/research-monowire-conversational-architecture.html</span>
+  </div>
+
+  <div class="provenance">
+    <div class="p-row">
+      <div class="p-label">Research status</div>
+      <div class="p-text">Independent research review. Not peer reviewed. This document reviews prior art and proposes a falsifiable experiment; no experiment has been run and no claim of novelty is finalized.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">Provenance</div>
+      <div class="p-text">This review follows directly from the Monowire by Samiel Research Map, which queued the Main Chat / Hidden Architect / Departments topology question, merged with the agent-agnostic-infrastructure question, for a dedicated pass.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">AI assistance disclosure</div>
+      <div class="p-text">Generative AI tools were used during literature exploration, drafting, organization, and technical analysis. The research direction, classifications, and final editorial responsibility remain with the author.</div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-label">On This Page</div>
+    <ol>
+      <li><a href="#why">Why This Topic</a></li>
+      <li><a href="#hypothesis">The Hypothesis Under Review</a></li>
+      <li><a href="#topology">Cluster 1 — Supervisor-Worker Topology</a></li>
+      <li><a href="#frontstage">Cluster 2 — Frontstage/Backstage Service Design</a></li>
+      <li><a href="#gateways">Cluster 3 — Orchestration Gateway Implementations</a></li>
+      <li><a href="#transparency">Cluster 4 — Transparency, Trust &amp; Cognitive Load</a></li>
+      <li><a href="#comparison">How the Clusters Compare</a></li>
+      <li><a href="#verdict">The Narrowest Defensible Gap</a></li>
+      <li><a href="#experiment">A Falsifiable Experiment</a></li>
+      <li><a href="#limits">Limitations of This Review</a></li>
+      <li><a href="#references">References</a></li>
+    </ol>
+  </div>
+
+  <article>
+
+    <h2 id="why"><span class="num">01</span>Why This Topic</h2>
+    <p class="lede">Monowire's design separates a human-facing conversational layer (Main Chat) from a hidden reasoning and orchestration layer (Main Architect), which in turn delegates to specialized departments. The Monowire by Samiel Research Map queued this as an "Investigate — narrow" topic. This review checks that classification directly, and the honest result is that the classification needs to move further toward "established" than originally expected.</p>
+    <p>As with the semantic-divergence review, nothing described below is a claim about what Monowire currently does. It is a hypothesis under review, and this document follows the same standard: <strong>prior art → identified gap → Monowire hypothesis → proposed experiment → result</strong>. No experiment has been run.</p>
+
+    <div class="status-pipeline">
+      <div class="sp-label">How to read this document</div>
+      <div class="sp-chain">
+        <span class="sp-step done">Prior art</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Identified gap</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Monowire hypothesis</span><span class="sp-arrow">→</span>
+        <span class="sp-step done">Proposed experiment</span><span class="sp-arrow">→</span>
+        <span class="sp-step current">Currently unverified</span>
+      </div>
+      <p>Sections 3–6 are prior art. Section 8 states the narrowed gap. Section 9 states the hypothesis and its falsification test. Nothing past that has happened yet.</p>
+    </div>
+
+    <h2 id="hypothesis"><span class="num">02</span>The Hypothesis Under Review</h2>
+    <p>As originally queued on the Research Map: separating a human-facing conversational layer from a hidden orchestrating layer, on top of an otherwise standard supervisor-worker topology, would produce a measurable difference in either human cognitive overhead or downstream reasoning quality — independent of which transport protocol carries the messages. Monowire does not currently measure either effect. Whether it could is the question this review narrows down.</p>
+
+    <h2 id="topology"><span class="num">03</span>Cluster 1 — Supervisor-Worker Topology</h2>
+    <p>Already covered in the Research Map's first pass and confirmed again here: supervisor-worker / orchestrator-worker is the dominant production multi-agent pattern in 2026, cited at roughly 70% of deployments in one industry survey. A central orchestrator decomposes tasks and dispatches to specialized workers. This part of Monowire's architecture is not in question — it's a well-worn pattern with known trade-offs (coordination latency, single traceable control flow, easier debugging).</p>
+
+    <h2 id="frontstage"><span class="num">04</span>Cluster 2 — Frontstage/Backstage Service Design</h2>
+    <p>This is where the review changes the picture. "Frontstage" and "backstage" are established service-design terms — Shostack (1982) and Bitner (1992) — describing the split between what a customer sees (frontstage) and the internal processes that support it (backstage), specifically so the customer never has to see the plumbing. This is not new theory. What's directly relevant is that it's being actively reapplied to AI agent systems right now: a 2026 academic framework titled "AI in Service Design: A New Framework for Hybrid Human–AI Service Encounters" extends frontstage/backstage blueprinting explicitly to AI-driven service environments, and Nielsen Norman Group's 2025 piece on service design and AI agents makes the same frontstage/backstage argument for AI assistants specifically.</p>
+    <p>Read plainly, Monowire's Main Chat is frontstage and the Main Architect plus departments are backstage. That is close enough to be the same idea under different names, not a variant of it.</p>
+
+    <h2 id="gateways"><span class="num">05</span>Cluster 3 — Orchestration Gateway Implementations</h2>
+    <p>Beyond theory, concrete systems already implement this exact separation. An "Agent Orchestration Gateway" architecture for AI-driven virtual worlds is explicitly designed so the client "is fully decoupled from service selection and has no knowledge of where individual services are hosted" — a single conversational endpoint fronting a heterogeneous backend of routed services. Separately, patented "Conversation Orchestration Engine" architectures for contact centers describe a conversational layer that "acts as a conduit orchestrating all event flow" between a customer-facing dialogue and backend agents, bots, and supervisors, invisible to the customer.</p>
+    <p>Both of these are production-oriented, already-built systems doing what Monowire's Main Chat / Main Architect split does structurally: one conversational surface, a hidden coordination layer behind it, and backend specialists the user never talks to directly.</p>
+
+    <h2 id="transparency"><span class="num">06</span>Cluster 4 — Transparency, Trust &amp; Cognitive Load</h2>
+    <p>A separate, active HCI and trust-research literature studies what happens to users when AI decision-making is exposed versus hidden. Findings are genuinely mixed rather than uniformly in one direction: some work finds transparency increases trust; other work documents a "transparency overload" phenomenon and proposes "context-dependent transparency" or strategic opacity as a better model given users' cognitive limits; a 2025 automated-vehicle explanation study found an inverted-U relationship between explanation detail and both trust and cognitive load, with over-detailed explanations performing worse than moderate ones.</p>
+    <p>This establishes, at the general HCI level, that hiding versus exposing system reasoning has measurable effects on user trust and cognitive load. It does not test this specifically in a multi-agent software-engineering context, and none of it measures the second half of the original hypothesis: whether hiding orchestration from the user also changes the reasoning quality of the backend system itself, as opposed to only how the user perceives it.</p>
+
+    <h2 id="comparison"><span class="num">07</span>How the Clusters Compare</h2>
+    <div class="cmp-table">
+      <table class="cmp">
+        <thead><tr><th>Cluster</th><th>What it establishes</th><th>Covers architecture?</th><th>Covers reasoning-quality effect?</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">Supervisor-worker topology</td><td>Central orchestrator, specialized workers, dominant production pattern</td><td>Yes — fully</td><td>No</td></tr>
+          <tr><td class="hl">Frontstage/backstage service design</td><td>Hiding backend process behind a single customer-facing surface, now applied to AI</td><td>Yes — very closely</td><td>No</td></tr>
+          <tr><td class="hl">Orchestration gateway implementations</td><td>Concrete systems where the client has no visibility into backend service routing</td><td>Yes — nearly identical structure</td><td>No</td></tr>
+          <tr><td class="hl">Transparency / trust / cognitive load</td><td>Hiding vs. exposing reasoning measurably affects user trust and cognitive load</td><td>No — user perception only</td><td>No</td></tr>
+          <tr><td class="hl">This hypothesis</td><td>Whether hiding orchestration also changes the backend system's own reasoning quality</td><td>Inherits established architecture</td><td>Untested</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <div class="v-label">Key finding</div>
+      <h3>The architecture is established. What's left is narrower than originally queued.</h3>
+      <p>The separation itself — a conversational surface fronting a hidden orchestration layer — is not a novel architectural claim. It is decades-old service-design theory, actively reapplied to AI agents in 2025–2026 academic work, and already implemented in production-oriented gateway and contact-center architectures. Monowire's Main Chat / Main Architect split should be described as an application of frontstage/backstage design to a multi-agent coding system, not as a new pattern.</p>
+      <p>The transparency/trust/cognitive-load half of the original hypothesis is also covered by existing HCI research, even though the findings there are genuinely mixed and context-dependent rather than settled in one direction.</p>
+      <p>What this review did not find is any study measuring the second, narrower question: whether keeping orchestration reasoning hidden from the user-facing surface changes the <em>reasoning quality of the backend system itself</em> — not how the user perceives it, but what the backend actually produces. Every source found studies user-side effects (trust, cognitive load, perceived transparency). None studies whether the backend behaves differently when it isn't required to narrate itself for a human audience in real time.</p>
+    </div>
+
+    <h2 id="experiment"><span class="num">08</span>A Falsifiable Experiment</h2>
+    <p>The narrowed hypothesis is testable independently of building Monowire's full architecture:</p>
+    <div class="exp-box">
+      <div class="exp-label">Proposed design — not yet run</div>
+      <div class="exp-step"><span class="exp-n">01</span>Run the same multi-agent orchestration task under two conditions: (A) the orchestrator's intermediate reasoning is streamed to the user in real time, as in AG-UI-style transparent workflows; (B) the same orchestrator runs the identical task with its intermediate reasoning hidden from the user, exposed only in logs.</div>
+      <div class="exp-step"><span class="exp-n">02</span>Hold the underlying model, prompts, and task set identical between conditions — only the requirement to produce user-facing narration of each step changes.</div>
+      <div class="exp-step"><span class="exp-n">03</span>Measure backend outcome quality: task completion rate, plan coherence over long-horizon tasks, and rework required — not user-reported trust or satisfaction.</div>
+      <div class="exp-step"><span class="exp-n">04</span>Separately measure user-side cognitive load and trust in both conditions, to confirm the study replicates the known transparency/trust literature before trusting any backend-quality result.</div>
+    </div>
+    <p>The hypothesis is falsified if backend outcome quality shows no meaningful difference between conditions A and B — in which case the honest conclusion is that hiding orchestration is a user-experience decision with no effect on the system's own reasoning, and Monowire's Main Chat / Main Architect split should be justified purely on frontstage/backstage UX grounds, not on any reasoning-quality claim.</p>
+
+    <h2 id="limits"><span class="num">09</span>Limitations of This Review</h2>
+    <ul>
+      <li>This is a search-based review, not systematic. The transparency/trust literature in particular is large; the sources found here are representative, not exhaustive.</li>
+      <li>The proposed experiment assumes narration overhead is the mechanism by which visibility could affect backend quality. There may be other mechanisms (e.g., different tool budgets, different latency tolerances) this design doesn't isolate.</li>
+      <li>Even a positive result would be one data point on one task type; long-horizon coding-agent tasks may behave differently from the shorter interactions most transparency studies use.</li>
+      <li>This review does not resolve which is the better design choice for Monowire regardless of the reasoning-quality question — frontstage/backstage separation may be justified purely on UX and trust grounds even if it has zero effect on backend reasoning quality.</li>
+    </ul>
+
+    <p class="pull-quote">The honest downgrade here matters more than the finding. This topic looked narrow on the Research Map; a dedicated pass showed the architecture itself is thoroughly established. What's left to test is smaller and more specific than what was originally proposed.</p>
+
+    <h2 id="references"><span class="num">—</span>References</h2>
+    <ol class="refs">
+      <li><a href="https://decodethefuture.org/en/multi-agent-systems-explained/" target="_blank" rel="noopener">"Multi-Agent Systems Explained: 2026 Patterns." decodethefuture, 2026.</a><span class="ref-note">Supervisor/hierarchical and orchestrator-worker topologies as the dominant production pattern.</span></li>
+      <li><a href="https://www.nngroup.com/articles/service-design-evolve-ai-agents/" target="_blank" rel="noopener">"How Service Design Will Evolve with AI Agents." Nielsen Norman Group, 2025.</a><span class="ref-note">Frontstage/backstage rethinking applied directly to AI assistants and agents.</span></li>
+      <li><a href="https://journals.sagepub.com/doi/10.1177/10946705251344387" target="_blank" rel="noopener">Mortati, M. and Freitas, G. V. M. "AI in Service Design: A New Framework for Hybrid Human–AI Service Encounters." 2026.</a><span class="ref-note">Formal extension of frontstage/backstage service blueprinting to AI-driven service environments.</span></li>
+      <li><a href="https://arxiv.org/pdf/2606.03557" target="_blank" rel="noopener">"From Prompt to Service: An SLM-Based Agent Orchestration Gateway for AI-Driven Virtual Worlds." arXiv:2606.03557, 2026.</a><span class="ref-note">A production-oriented gateway architecture where the client has no knowledge of backend service routing.</span></li>
+      <li><a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11134152" target="_blank" rel="noopener">"System and method for managing a dialog between a contact center system and a user thereof." US Patent 11,134,152.</a><span class="ref-note">A Conversation Orchestration Engine acting as a hidden conduit between a customer dialogue and backend agents/bots.</span></li>
+      <li><a href="https://asb.pmf.unibl.org/index.php/asb/article/view/10" target="_blank" rel="noopener">"The Unintended Consequences of Algorithmic Transparency on Trust." Acta Scientifica Balcanica, 2025.</a><span class="ref-note">Documents "transparency overload" and proposes context-dependent, strategically opaque disclosure.</span></li>
+      <li><a href="https://www.sciencedirect.com/science/article/pii/S259019822500421X" target="_blank" rel="noopener">"Balancing transparency and control: The impact of AI explanation detail on user perception in automated vehicles." ScienceDirect, 2025.</a><span class="ref-note">Inverted-U relationship between explanation detail and both trust and cognitive load.</span></li>
+    </ol>
+
+    <div class="cite-block">
+      <h2><span class="num">—</span>How to cite this work</h2>
+      <div class="cite-box">
+        <span class="field">Bouzidi, H.</span> (2026). <span class="field">Conversational Human-to-Agent Organizational Architecture: A Monowire by Samiel Research Review.</span> HB Research.<br>
+        https://hamdibouzidi.com/research-monowire-conversational-architecture.html
+      </div>
+    </div>
+
+    <div class="article-footer">
+      <div class="author-card">
+        <div class="avatar">H.B.</div>
+        <p><b>Hamdi Bouzidi</b> is an Independent AI Researcher working on AI-native software engineering, organizational intelligence, and software architecture. Based in Montreal. <a href="mailto:hamdi.bz@proton.me">Get in touch</a> or find him on <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+      <div class="next-reading">
+        <a class="back-link" href="research-monowire-map.html">← Back to the Monowire by Samiel Research Map</a>
+      </div>
+    </div>
+
+  </article>
+
+  <div class="page-footer-links">
+    <a href="mailto:hamdi.bz@proton.me">hamdi.bz@proton.me</a>
+    <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="research.html">Back to Research</a>
+  </div>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monowire by Samiel: Research Map — Hamdi Bouzidi</title>
+<meta name="description" content="A working classification of every Monowire by Samiel architectural mechanism against the existing literature — which are already well established, which show a narrow potential difference, and which are worth a full working paper.">
+<link rel="canonical" href="https://hamdibouzidi.com/research-monowire-map.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monowire by Samiel: Research Map">
+<meta property="og:description" content="A working classification of every Monowire by Samiel architectural mechanism against the existing literature, and which ones are actually worth investigating further.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Monowire by Samiel: Research Map",
+  "description": "A working classification of every Monowire by Samiel architectural mechanism against the existing literature, and which ones are worth investigating further.",
+  "author": { "@type": "Person", "name": "Hamdi Bouzidi", "jobTitle": "Independent AI Researcher", "url": "https://hamdibouzidi.com/about.html" },
+  "publisher": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hamdibouzidi.com/research-monowire-map.html" },
+  "articleSection": "Multi-Agent Systems, Software Architecture",
+  "inLanguage": "en",
+  "timeRequired": "PT11M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Samiel",
+  "description": "Independent AI research and product studio founded by Hamdi Bouzidi. Monowire is a Samiel product.",
+  "founder": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "makesOffer": { "@type": "SoftwareApplication", "name": "Monowire", "applicationCategory": "DeveloperApplication" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://hamdibouzidi.com/research.html" },
+    { "@type": "ListItem", "position": 3, "name": "Monowire Research Map", "item": "https://hamdibouzidi.com/research-monowire-map.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:760px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); }
+  .breadcrumb{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-5); }
+  .breadcrumb a{ color:var(--text-faint); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--purple-bright); }
+
+  .byline-block{ border-left:2px solid var(--purple); padding-left:var(--sp-4); margin-bottom:var(--sp-6); }
+  .byline-block .n{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .byline-block .t{ font-family:var(--mono); font-size:0.72rem; color:var(--purple-bright); margin-top:2px; }
+  .byline-block .l{ font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-top:2px; }
+
+  .article-tags{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-4); }
+  .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; border:1px solid var(--border); border-radius:var(--radius-pill); padding:4px 11px; color:var(--text-faint); }
+  .tag.doctype{ color:var(--lemon); border-color:rgba(255,224,102,0.35); }
+  h1{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.6rem,3.4vw,2.2rem); line-height:1.2; }
+  .dek{ color:var(--text-muted); font-size:1rem; margin-top:var(--sp-4); max-width:60ch; line-height:1.55; }
+  .meta-row{ display:flex; gap:var(--sp-5); margin-top:var(--sp-5); flex-wrap:wrap; font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); padding-bottom:var(--sp-5); }
+  .provenance{ padding-top:var(--sp-5); border-top:1px solid var(--border); padding-bottom:var(--sp-6); border-bottom:1px solid var(--border); margin-bottom:var(--sp-6); }
+  .provenance .p-row{ margin-bottom:var(--sp-3); }
+  .provenance .p-row:last-child{ margin-bottom:0; }
+  .provenance .p-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .provenance .p-text{ font-size:0.8rem; color:var(--text-muted); line-height:1.6; max-width:68ch; }
+
+  article{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-7) var(--sp-7) var(--sp-6); }
+  @media (max-width:640px){ article{ padding:var(--sp-5) var(--sp-4) var(--sp-4); } }
+  article > p, article > .lede{ color:var(--text); font-size:1rem; margin-bottom:var(--sp-4); max-width:70ch; }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); line-height:1.5; }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.28rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); scroll-margin-top:calc(var(--navh) + 20px); }
+  article h2 .num{ color:var(--text-faint); font-style:normal; font-family:var(--mono); font-size:0.74rem; margin-right:var(--sp-3); }
+  article h3{ font-family:var(--sans); font-weight:600; font-size:0.95rem; margin:var(--sp-6) 0 var(--sp-2); color:var(--text); }
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.96rem; max-width:70ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  article ul{ margin:0 0 var(--sp-4) var(--sp-5); color:var(--text); opacity:0.9; font-size:0.94rem; max-width:66ch; }
+  article li{ margin-bottom:var(--sp-2); line-height:1.6; }
+  .pull-quote{ font-family:var(--serif); font-style:italic; font-size:1.16rem; line-height:1.45; color:var(--text); border-left:2px solid var(--purple); padding:2px 0 2px var(--sp-5); margin:var(--sp-6) 0; max-width:58ch; }
+
+  /* Research map table */
+  .map-table{ margin:var(--sp-5) 0; border:1px solid var(--border); border-radius:var(--radius); overflow-x:auto; background:var(--surface-2); }
+  table.rmap{ width:100%; border-collapse:collapse; font-size:0.8rem; min-width:820px; }
+  table.rmap th, table.rmap td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  table.rmap th{ font-family:var(--mono); font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-faint); background:var(--bg); white-space:nowrap; position:sticky; top:0; }
+  table.rmap td{ color:var(--text); opacity:0.92; }
+  table.rmap tr:last-child td{ border-bottom:none; }
+  table.rmap td.topic{ color:var(--purple-bright); font-weight:600; opacity:1; min-width:190px; }
+  table.rmap td.prior{ min-width:220px; }
+  table.rmap td.diff{ min-width:260px; }
+  .status-chip{ font-family:var(--mono); font-size:0.62rem; padding:3px 10px; border-radius:var(--radius-pill); display:inline-block; white-space:nowrap; border:1px solid; }
+  .status-chip.investigate{ color:var(--lemon); border-color:rgba(255,224,102,0.35); background:rgba(255,224,102,0.08); }
+  .status-chip.priority{ color:var(--lemon); border-color:var(--lemon); background:rgba(255,224,102,0.14); }
+  .status-chip.reject{ color:var(--text-faint); border-color:var(--border-strong); }
+  .status-chip.merge{ color:var(--turquoise); border-color:rgba(47,230,216,0.3); background:rgba(47,230,216,0.06); }
+  .status-chip.complete{ color:var(--lime); border-color:rgba(166,255,62,0.3); background:rgba(166,255,62,0.08); }
+  .worthy-yes{ color:var(--lime); font-weight:600; }
+  .worthy-narrow{ color:var(--lemon); font-weight:600; }
+  .worthy-no{ color:var(--text-faint); }
+
+  .legend{ display:flex; gap:var(--sp-4); flex-wrap:wrap; margin:var(--sp-4) 0 var(--sp-6); font-family:var(--mono); font-size:0.7rem; color:var(--text-muted); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  .track-list{ display:flex; flex-direction:column; gap:var(--sp-3); margin:var(--sp-4) 0; }
+  .track-item{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-4) var(--sp-5); }
+  .track-item .track-title{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1rem; color:var(--purple-bright); }
+  .track-item .track-status{ font-family:var(--mono); font-size:0.62rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-faint); margin-top:2px; }
+  .track-item p{ margin-top:var(--sp-2); margin-bottom:0; font-size:0.86rem; }
+
+  details.expand{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); margin:var(--sp-5) 0; }
+  details.expand summary{ cursor:pointer; list-style:none; padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; text-transform:uppercase; color:var(--purple-bright); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-3); }
+  details.expand summary::-webkit-details-marker{ display:none; }
+  details.expand summary::after{ content:"+"; font-family:var(--sans); font-size:1.05rem; color:var(--text-faint); }
+  details.expand[open] summary::after{ content:"–"; }
+  details.expand .expand-body{ padding:0 var(--sp-5) var(--sp-5); border-top:1px solid var(--border); padding-top:var(--sp-4); }
+  details.expand .expand-body p{ color:var(--text); opacity:0.88; margin-bottom:var(--sp-3); font-size:0.88rem; }
+
+  .refs{ margin:var(--sp-4) 0 0; padding:0; list-style:none; counter-reset:refcounter; }
+  .refs li{ counter-increment:refcounter; position:relative; padding-left:var(--sp-7); margin-bottom:var(--sp-4); font-size:0.82rem; color:var(--text-muted); max-width:66ch; }
+  .refs li::before{ content:"[" counter(refcounter) "]"; position:absolute; left:0; top:0; font-family:var(--mono); font-size:0.74rem; color:var(--purple-bright); }
+  .refs li a{ color:var(--text); text-decoration:underline; text-decoration-color:var(--border); text-underline-offset:3px; }
+  .refs li a:hover{ text-decoration-color:var(--purple-bright); }
+  .refs li .ref-note{ display:block; color:var(--text-faint); font-size:0.76rem; margin-top:3px; }
+
+  .article-footer{ margin-top:var(--sp-7); padding-top:var(--sp-6); border-top:1px solid var(--border); }
+  .author-card{ display:flex; gap:var(--sp-4); align-items:flex-start; }
+  .author-card .avatar{ width:42px; height:42px; border-radius:50%; background:var(--surface-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; color:var(--purple-bright); border:1px solid var(--border); }
+  .author-card p{ color:var(--text-muted); font-size:0.86rem; margin:0; max-width:none; }
+  .author-card b{ color:var(--text); }
+  .next-reading{ margin-top:var(--sp-6); }
+  .back-link{ display:inline-flex; align-items:center; gap:var(--sp-2); text-decoration:none; color:var(--purple-bright); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; }
+
+  .page-footer-links{ margin-top:var(--sp-6); padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .page-footer-links a{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--text-faint); text-decoration:none; }
+  .page-footer-links a:hover{ color:var(--purple-bright); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab active" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="research.html">Research</a> / Monowire by Samiel / Research Map</div>
+
+  <div class="byline-block">
+    <div class="n">Hamdi Bouzidi</div>
+    <div class="t">Independent AI Researcher</div>
+    <div class="l">Montreal, Canada</div>
+  </div>
+
+  <div class="article-tags"><span class="tag doctype">Research Map</span><span class="tag">Monowire by Samiel</span><span class="tag">Software Architecture</span></div>
+  <h1>Monowire by Samiel: Research Map</h1>
+  <p class="dek">Every architectural mechanism in Monowire, Samiel's continuity-layer product, checked against the existing literature before any of them gets a full working paper.</p>
+  <div class="meta-row">
+    <span>Published Aug 8, 2026</span>
+    <span>Updated Aug 8, 2026</span>
+    <span>11 min read</span>
+    <span>hamdibouzidi.com/research-monowire-map.html</span>
+  </div>
+
+  <div class="provenance">
+    <div class="p-row">
+      <div class="p-label">Research status</div>
+      <div class="p-text">Independent research note / working document. Not peer reviewed. This is a living index, not a completed study — its classifications will be revised as individual topics get deeper review.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">Provenance</div>
+      <div class="p-text">This map originated from architectural discussions and design documents produced while building Monowire and related AI-native software systems.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">AI assistance disclosure</div>
+      <div class="p-text">Generative AI tools were used during literature exploration, drafting, organization, and technical analysis. The research direction, classifications, and final editorial responsibility remain with the author.</div>
+    </div>
+  </div>
+
+  <article>
+
+    <p class="lede">Monowire is not one architectural claim. It's a collection of them — a conversational front-end, a hidden reasoning layer, a deterministic governance layer, a communication substrate, department specialization, an event-to-narrative system, a skill-execution graph, and a proposed learning loop. Bundling all of that into one paper would make every individual claim weaker and harder to check. This page does the opposite: it takes each mechanism separately, asks what the field already knows about it, and only recommends a full paper where there's an actual open question left.</p>
+
+    <p>The question this map asks, for every row, is deliberately not "is Monowire unique." It's: <em>which individual mechanism represents a genuinely interesting engineering hypothesis, and what evidence exists for or against it?</em> Most rows below turn out to be well-established patterns with a working name already in the 2026 literature. That's a good outcome, not a disappointing one — it means those pieces of Monowire don't need defending, they need citing.</p>
+
+    <h2><span class="num">01</span>A Note on Scope: Topology vs. Transport</h2>
+    <p>One distinction governs several rows below and is worth stating up front. Communication protocols — MCP, ACP, A2A, Streamable HTTP, JSON-RPC notifications — are infrastructure choices, not architecture. They are also, as of mid-2026, thoroughly solved: the Agent Client Protocol already supports bidirectional JSON-RPC requests, real-time streaming notifications, and multiple concurrent sessions per connection, and MCP and A2A cover the adjacent tool-access and agent-to-agent legs of the same problem. None of that is Monowire's to claim.</p>
+    <p>What's left as an actual research question, once the transport layer is set aside, is Monowire's <strong>organizational topology</strong>: the separation between a human-facing conversational layer, a hidden reasoning layer, a deterministic governance layer, specialized departments, and a skill-governed execution graph — and whether that specific arrangement produces a measurable difference in outcome, independent of which protocol happens to carry the messages between them. Every row below that concerns "how components talk to each other" is marked Reject or Merge for exactly this reason; every row that concerns "who is responsible for what, and in what order" is treated as a live question.</p>
+
+    <h2><span class="num">02</span>The Research Map</h2>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--lemon);"></span> Investigate</span>
+      <span><span class="dot" style="background:var(--lemon); box-shadow:0 0 6px var(--lemon);"></span> Investigate — priority</span>
+      <span><span class="dot" style="background:var(--turquoise);"></span> Merge into another topic</span>
+      <span><span class="dot" style="background:var(--text-faint);"></span> Reject as standalone</span>
+      <span><span class="dot" style="background:var(--lime);"></span> Complete — already published</span>
+    </div>
+
+    <div class="map-table">
+      <table class="rmap">
+        <thead>
+          <tr><th>Topic</th><th>Prior Art</th><th>Potential Difference</th><th>Research-Worthy?</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="topic">Main Chat → Hidden Architect → Departments</td>
+            <td class="prior">Supervisor-worker / orchestrator-worker hierarchical multi-agent pattern — the dominant production topology in 2026 (~70% of deployments in one industry survey).</td>
+            <td class="diff">Standard supervisor-worker usually has the user talk directly to the supervisor. Monowire adds a distinct conversational layer in front of it, whose entire job is human rapport, not task decomposition — an orchestrator deliberately not exposed to the user.</td>
+            <td><span class="worthy-narrow">Narrow</span></td>
+            <td><span class="status-chip investigate">Investigate</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Deterministic governance / Mechanical Layer</td>
+            <td class="prior">"Deterministic AI architecture" — state machines and hard-coded checkpoints wrapping probabilistic agents to prevent hallucinated or contradictory state — is a mainstream, well-documented 2026 industry pattern, including dedicated governance toolkits built around exactly this problem.</td>
+            <td class="diff">None identified. Monowire's delegation ledger / ADR-conflict check is a specific instance of an already-named pattern, not a new mechanism.</td>
+            <td><span class="worthy-no">Applied case study only</span></td>
+            <td><span class="status-chip reject">Established — document, don't claim</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Agent communication substrate (MCP / ACP / A2A / Streamable HTTP)</td>
+            <td class="prior">Fully established and standardized. ACP already provides bidirectional requests, streaming notifications, and concurrent sessions per connection.</td>
+            <td class="diff">None. This is an infrastructure choice, not architecture.</td>
+            <td><span class="worthy-no">No</span></td>
+            <td><span class="status-chip reject">Reject as standalone</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Structured internal messages (delegation schema)</td>
+            <td class="prior">ACP / A2A / MCP already define typed message envelopes; A2A Agent Cards already carry capability and session metadata.</td>
+            <td class="diff">Monowire's proposed fields (mission_id, department, skill_requirements, decision_id) are domain-specific instances of an already-standard pattern.</td>
+            <td><span class="worthy-no">No</span></td>
+            <td><span class="status-chip merge">Merge — implementation detail only</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Notifications vs. responses / task lifecycle events</td>
+            <td class="prior">First-class in ACP already (streaming session/update notifications); general event-sourcing and observability practice covers the rest.</td>
+            <td class="diff">None identified.</td>
+            <td><span class="worthy-no">No</span></td>
+            <td><span class="status-chip reject">Reject as standalone</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Human ↔ machine semantic divergence detection</td>
+            <td class="prior">Adjacent fields exist — requirements traceability, agent audit-trail intent reconstruction — but a dedicated line of research on detecting real-time mismatches between a human's stated understanding and a multi-agent system's actual internal state wasn't found in this review.</td>
+            <td class="diff">Potentially the most distinct idea on this page, precisely because it wasn't clearly located elsewhere. Needs a deeper, dedicated search before that claim is trusted.</td>
+            <td><span class="worthy-yes">Yes</span></td>
+            <td><span class="status-chip priority">Review complete — gap identified</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Follow the Thread (event stream → human narrative)</td>
+            <td class="prior">Process-mining-to-narrative work exists (event logs transformed into LLM-generated "stories" of process state); LLM audit-trail and observability tooling is a dense, mature, compliance-oriented field.</td>
+            <td class="diff">Purpose, not mechanism. Audit trails answer "what happened and who's accountable." Follow the Thread is framed around reconstructing how understanding evolved, for the human's own benefit on return — a real but narrow distinction; the underlying mechanism (events → LLM narrative) is not new.</td>
+            <td><span class="worthy-narrow">Narrow</span></td>
+            <td><span class="status-chip investigate">Investigate — narrow framing only</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Follow the Thread vs. conventional agent memory</td>
+            <td class="prior">Same literature as the row above.</td>
+            <td class="diff">Overlaps heavily with Follow the Thread's core claim; doesn't stand on its own.</td>
+            <td><span class="worthy-no">No</span></td>
+            <td><span class="status-chip merge">Merge with Follow the Thread</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Organizational learning through persistent skills</td>
+            <td class="prior">Extremely dense and active in 2026 — automatic skill generation and refinement from agent experience and interaction traces is a named "generate-store-reuse" pattern with multiple published systems and at least one dedicated benchmark.</td>
+            <td class="diff">None clearly identified. The human-governance-gate detail (candidate → review → registry) already appears in the skill-permissions literature reviewed for Working Paper 003.</td>
+            <td><span class="worthy-no">Not as a standalone paper</span></td>
+            <td><span class="status-chip reject">Reject — note briefly inside Working Paper 003 instead</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Agent-agnostic organizational infrastructure</td>
+            <td class="prior">Exactly what ACP, MCP, and A2A already pursue at the protocol level — any editor to any agent, any agent to any tool, any agent to any agent.</td>
+            <td class="diff">The live question isn't "should the protocol be agent-agnostic" — that's already answered. It's "what organizational value remains once the protocol layer is fully commoditized," which is really the topology question from row one.</td>
+            <td><span class="worthy-no">Not separately</span></td>
+            <td><span class="status-chip merge">Merge with Main Chat → Architect → Departments</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Documentation as an intermediate representation</td>
+            <td class="prior">MetaGPT, BMAD, spec-driven development, Anthropic Agent Skills — reviewed in full.</td>
+            <td class="diff">A narrow synthesis: documentation as long-lived organizational memory, compiled into a reusable skill format. Published with that verdict stated directly.</td>
+            <td><span class="worthy-narrow">Narrow, published</span></td>
+            <td><span class="status-chip complete">Complete — Working Paper 002</span></td>
+          </tr>
+          <tr>
+            <td class="topic">Skill-governed execution graphs</td>
+            <td class="prior">AIP, SIGIL/AG-IR, SkVM, Superpowers, OrgAgent — reviewed in full.</td>
+            <td class="diff">Scope: graphing skill assignment across a project's documentation, upstream of any single skill's compilation, rather than inside one skill's own steps. Published with that verdict stated directly.</td>
+            <td><span class="worthy-narrow">Narrow, published</span></td>
+            <td><span class="status-chip complete">Complete — Working Paper 003</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2><span class="num">03</span>What Gets Promoted Next</h2>
+    <p>Two topics are queued for a dedicated literature pass before a full paper gets written on either:</p>
+    <div class="track-list">
+      <div class="track-item">
+        <div class="track-title">Monowire: Conversational Human-to-Agent Organizational Architecture</div>
+        <div class="track-status">Queued — main-chat/architect/department topology, folded together with the agent-agnostic-infrastructure question</div>
+        <p>The candidate hypothesis: separating a human-facing conversational layer from a hidden orchestrating layer, on top of an otherwise standard supervisor-worker topology, produces a measurable difference in either human cognitive overhead or downstream reasoning quality — independent of which transport protocol carries the messages.</p>
+      </div>
+      <div class="track-item">
+        <div class="track-title">Monowire: Human-Machine Semantic Divergence Detection</div>
+        <div class="track-status">High-priority research hypothesis — prior-art review complete, <a href="research-monowire-semantic-divergence.html">read the review</a>. Gap identified; hypothesis and falsification test defined; experiment not yet run. Not a claimed Monowire capability.</div>
+        <p>The candidate hypothesis: a system observing both a human's stated understanding and a multi-agent system's actual internal state could detect semantic mismatches between the two earlier than either side would independently notice. Unverified.</p>
+      </div>
+    </div>
+    <p>One topic is queued with a narrower scope than originally proposed:</p>
+    <div class="track-list">
+      <div class="track-item">
+        <div class="track-title">Monowire: Follow the Thread and Project Continuity</div>
+        <div class="track-status">Queued — narrow framing only (continuity vs. compliance), not the underlying event-to-narrative mechanism</div>
+        <p>The mechanism (events → LLM-generated narrative) is not new. What may be worth a short paper is narrower: whether narrative reconstructed for the purpose of restoring a human's own mental model differs, in what it needs to include, from narrative reconstructed for audit or compliance purposes.</p>
+      </div>
+    </div>
+    <p>Three topics are not being promoted to their own papers, based on this review:</p>
+    <ul>
+      <li><strong>Deterministic governance layer</strong> — established industry pattern; worth a short applied section inside whichever topology paper needs it, not a standalone novelty claim.</li>
+      <li><strong>Organizational learning through persistent skills</strong> — collapses into an already dense 2026 literature; a brief note inside Working Paper 003's skill-registry section covers it more honestly than a dedicated paper would.</li>
+      <li><strong>Communication substrate, structured messages, notification semantics</strong> — infrastructure, not architecture, per the scope note in Section 1. These get mentioned as implementation detail wherever a paper actually needs them, and nowhere else.</li>
+    </ul>
+
+    <details class="expand">
+      <summary>Why reject topics instead of writing a paper anyway</summary>
+      <div class="expand-body">
+        <p>A paper can always be written about something well established — that's just a survey. The reason to not write one here is narrower: the stated goal of this research track is to find out which parts of Monowire are worth another engineer's attention, not to produce a fixed quota of papers. Writing a paper that concludes "this is a standard pattern, already well documented elsewhere" for every topic would dilute the two or three findings on this page that are actually worth someone's time to read.</p>
+        <p>Rejected topics aren't discarded — they're documented here, with their prior art, so the classification itself is checkable and revisable later if new evidence changes the picture.</p>
+      </div>
+    </details>
+
+    <h2><span class="num">04</span>The Learning Loop This Map Is Part Of</h2>
+    <p>The longer-term intent behind this map is that Monowire's own architecture should be revisable by what these papers find, not just described by them:</p>
+    <p style="font-family:var(--mono); font-size:0.84rem; color:var(--text-muted); line-height:2;">Monowire Architecture → Research Hypothesis → Prior Art Review → Formal Model → Experiment → Results → Adopt / Reject / Refine → Monowire Architecture</p>
+    <p>If a future experiment disproves one of the assumptions behind a row on this map, the corresponding piece of Monowire's design should change, not the other way around. That loop hasn't been closed yet for any row here — every "Investigate" status above is a hypothesis with a proposed next step, not a result.</p>
+
+    <p class="pull-quote">The objective was never "prove Monowire invented this." It's "here is a specific problem, here is what the field already knows, here is what Monowire proposes differently, and here is whether that difference seems worth testing."</p>
+
+    <h2><span class="num">—</span>References</h2>
+    <ol class="refs">
+      <li><a href="https://decodethefuture.org/en/multi-agent-systems-explained/" target="_blank" rel="noopener">"Multi-Agent Systems Explained: 2026 Patterns." decodethefuture, 2026.</a><span class="ref-note">Supervisor/hierarchical and orchestrator-worker topologies as the dominant production patterns in 2026.</span></li>
+      <li><a href="https://konghq.com/blog/engineering/deterministic-ai-architecture-enterprise-reliability" target="_blank" rel="noopener">"Deterministic AI Architecture: 5 Layers for Reliability." Kong Inc., 2026.</a><span class="ref-note">State-machine and deterministic-checkpoint wrapping of probabilistic agents, as an established enterprise pattern.</span></li>
+      <li><a href="https://agentclientprotocol.com/overview/architecture" target="_blank" rel="noopener">"Architecture." Agent Client Protocol documentation.</a><span class="ref-note">Confirms bidirectional JSON-RPC requests, streaming notifications, and concurrent sessions per connection.</span></li>
+      <li><a href="https://arxiv.org/pdf/2512.19841" target="_blank" rel="noopener">"A Multi-Agent Retrieval-Augmented Framework for Work-in-Progress Prediction." arXiv, 2026.</a><span class="ref-note">Transforms structured event logs into human-readable narrative "stories" — the closest mechanism found to Follow the Thread.</span></li>
+      <li><a href="https://arxiv.org/html/2604.20087v1" target="_blank" rel="noopener">"SkillLearnBench: Benchmarking Continual Learning Methods for Agent Skill Generation." arXiv:2604.20087, 2026.</a><span class="ref-note">Dedicated benchmark for automatic skill generation from agent experience, confirming this is a dense, active area.</span></li>
+      <li><a href="https://arxiv.org/html/2604.01020v1" target="_blank" rel="noopener">"OrgAgent: Organize Your Multi-Agent System like a Company." arXiv:2604.01020, 2026.</a><span class="ref-note">Hierarchical, company-modeled agent layers where a top layer determines downstream execution configuration.</span></li>
+    </ol>
+
+    <div class="article-footer">
+      <div class="author-card">
+        <div class="avatar">H.B.</div>
+        <p><b>Hamdi Bouzidi</b> is an Independent AI Researcher working on AI-native software engineering, organizational intelligence, and software architecture. Based in Montreal. <a href="mailto:hamdi.bz@proton.me">Get in touch</a> or find him on <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+      <div class="next-reading">
+        <a class="back-link" href="research-skill-governed-execution-graphs.html">Skill-Governed Execution Graphs →</a>
+      </div>
+    </div>
+
+  </article>
+
+  <div class="page-footer-links">
+    <a href="mailto:hamdi.bz@proton.me">hamdi.bz@proton.me</a>
+    <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="research.html">Back to Research</a>
+  </div>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>

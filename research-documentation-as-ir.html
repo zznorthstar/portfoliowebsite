@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation as an Intermediate Representation for AI-Native Software Engineering — Hamdi Bouzidi</title>
+<meta name="description" content="A proposed workflow — Idea, Conversation, Documentation, Knowledge Compilation, Creation — tested against the existing literature. By Hamdi Bouzidi, Independent AI Researcher.">
+<link rel="canonical" href="https://hamdibouzidi.com/research-documentation-as-ir.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Documentation as an Intermediate Representation for AI-Native Software Engineering">
+<meta property="og:description" content="A proposed workflow that treats documentation as a compiled intermediate representation, tested against the existing literature.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Documentation as an Intermediate Representation for AI-Native Software Engineering",
+  "description": "A proposed workflow that treats documentation as a compiled intermediate representation, tested against the existing literature.",
+  "author": { "@type": "Person", "name": "Hamdi Bouzidi", "jobTitle": "Independent AI Researcher", "url": "https://hamdibouzidi.com/about.html" },
+  "publisher": { "@type": "Person", "name": "Hamdi Bouzidi" },
+  "datePublished": "2026-08-07",
+  "dateModified": "2026-08-08",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hamdibouzidi.com/research-documentation-as-ir.html" },
+  "articleSection": "AI-Native Engineering, Multi-Agent Systems, Software Architecture",
+  "inLanguage": "en",
+  "timeRequired": "PT16M"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://hamdibouzidi.com/research.html" },
+    { "@type": "ListItem", "position": 3, "name": "Documentation as an Intermediate Representation", "item": "https://hamdibouzidi.com/research-documentation-as-ir.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:700px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); }
+  .breadcrumb{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-5); }
+  .breadcrumb a{ color:var(--text-faint); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--purple-bright); }
+
+  .byline-block{ border-left:2px solid var(--purple); padding-left:var(--sp-4); margin-bottom:var(--sp-6); }
+  .byline-block .n{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.02rem; color:var(--text); }
+  .byline-block .t{ font-family:var(--mono); font-size:0.72rem; color:var(--purple-bright); margin-top:2px; }
+  .byline-block .l{ font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-top:2px; }
+
+  .article-tags{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-4); }
+  .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; border:1px solid var(--border); border-radius:var(--radius-pill); padding:4px 11px; color:var(--text-faint); }
+  h1{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(1.6rem,3.4vw,2.2rem); line-height:1.2; }
+  .dek{ color:var(--text-muted); font-size:1rem; margin-top:var(--sp-4); max-width:56ch; line-height:1.55; }
+  .meta-row{ display:flex; gap:var(--sp-5); margin-top:var(--sp-5); flex-wrap:wrap; font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); padding-bottom:var(--sp-5); }
+  .provenance{ padding-top:var(--sp-5); border-top:1px solid var(--border); padding-bottom:var(--sp-6); border-bottom:1px solid var(--border); margin-bottom:var(--sp-6); }
+  .provenance .p-row{ margin-bottom:var(--sp-3); }
+  .provenance .p-row:last-child{ margin-bottom:0; }
+  .provenance .p-label{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:4px; }
+  .provenance .p-text{ font-size:0.8rem; color:var(--text-muted); line-height:1.6; max-width:64ch; }
+
+  .toc{ margin:var(--sp-6) 0; padding:var(--sp-4) var(--sp-5); border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+  .toc .toc-label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:var(--sp-3); }
+  .toc ol{ list-style:none; display:flex; flex-wrap:wrap; gap:var(--sp-2) var(--sp-5); }
+  .toc a{ font-size:0.8rem; color:var(--text-muted); text-decoration:none; }
+  .toc a:hover{ color:var(--purple-bright); }
+
+  article{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-7) var(--sp-7) var(--sp-6); }
+  @media (max-width:640px){ article{ padding:var(--sp-5) var(--sp-4) var(--sp-4); } }
+  article > p, article > .lede{ color:var(--text); font-size:1rem; margin-bottom:var(--sp-4); max-width:66ch; }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); line-height:1.5; }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.3rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); scroll-margin-top:calc(var(--navh) + 20px); }
+  article h2 .num{ color:var(--text-faint); font-style:normal; font-family:var(--mono); font-size:0.76rem; margin-right:var(--sp-3); }
+  article h3{ font-family:var(--sans); font-weight:600; font-size:0.95rem; margin:var(--sp-6) 0 var(--sp-3); color:var(--text); }
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.96rem; max-width:66ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  article ul{ margin:0 0 var(--sp-4) var(--sp-5); color:var(--text); opacity:0.9; font-size:0.94rem; max-width:64ch; }
+  article li{ margin-bottom:var(--sp-2); line-height:1.6; }
+  .pull-quote{ font-family:var(--serif); font-style:italic; font-size:1.18rem; line-height:1.45; color:var(--text); border-left:2px solid var(--purple); padding:2px 0 2px var(--sp-5); margin:var(--sp-6) 0; max-width:56ch; }
+
+  .figure{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5) var(--sp-4) var(--sp-4); }
+  .figure svg{ width:100%; height:auto; display:block; }
+  .figure figcaption{ font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); margin-top:var(--sp-4); padding-top:var(--sp-3); border-top:1px solid var(--border); line-height:1.5; }
+
+  .cmp-table{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); overflow-x:auto; }
+  table.cmp{ width:100%; border-collapse:collapse; font-size:0.8rem; min-width:600px; }
+  table.cmp th, table.cmp td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  table.cmp th{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-faint); background:var(--surface-2); white-space:nowrap; }
+  table.cmp td{ color:var(--text); opacity:0.9; }
+  table.cmp tr:last-child td{ border-bottom:none; }
+  table.cmp td.hl{ color:var(--purple-bright); font-weight:600; opacity:1; }
+  table.cmp .status{ font-family:var(--mono); font-size:0.64rem; padding:3px 9px; border-radius:var(--radius-pill); display:inline-block; white-space:nowrap; border:1px solid rgba(166,255,62,0.3); color:var(--lime); }
+  table.cmp .status.hl{ border-color:rgba(255,224,102,0.35); color:var(--lemon); }
+
+  .timeline{ margin:var(--sp-6) 0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-5) var(--sp-4); }
+  .timeline-track{ position:relative; padding-left:var(--sp-5); border-left:2px solid var(--border); }
+  .t-item{ position:relative; padding-bottom:var(--sp-5); }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{ content:""; position:absolute; left:-25px; top:3px; width:8px; height:8px; border-radius:50%; background:var(--turquoise); border:2px solid var(--bg); }
+  .t-item .t-date{ font-family:var(--mono); font-size:0.66rem; color:var(--turquoise); letter-spacing:0.03em; }
+  .t-item .t-label{ font-family:var(--serif); font-style:italic; font-size:0.98rem; color:var(--text); margin-top:3px; }
+  .t-item .t-desc{ font-size:0.83rem; color:var(--text-muted); margin-top:3px; max-width:52ch; }
+  .timeline figcaption{ font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); margin-top:var(--sp-4); padding-top:var(--sp-3); border-top:1px solid var(--border); }
+
+  .verdict{ margin:var(--sp-7) 0; border:1px solid rgba(255,224,102,0.3); background:rgba(255,224,102,0.08); border-radius:var(--radius); padding:var(--sp-5); }
+  .verdict .v-label{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--lemon); margin-bottom:var(--sp-3); }
+  .verdict h3{ font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--text); margin:0 0 var(--sp-3); }
+  .verdict p{ color:var(--text); opacity:0.9; font-size:0.92rem; margin-bottom:var(--sp-3); }
+  .verdict p:last-child{ margin-bottom:0; }
+
+  details.expand{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); margin:var(--sp-5) 0; }
+  details.expand summary{ cursor:pointer; list-style:none; padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.02em; text-transform:uppercase; color:var(--purple-bright); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-3); }
+  details.expand summary::-webkit-details-marker{ display:none; }
+  details.expand summary::after{ content:"+"; font-family:var(--sans); font-size:1.05rem; color:var(--text-faint); }
+  details.expand[open] summary::after{ content:"–"; }
+  details.expand .expand-body{ padding:0 var(--sp-5) var(--sp-5); border-top:1px solid var(--border); padding-top:var(--sp-4); }
+  details.expand .expand-body p{ color:var(--text); opacity:0.88; margin-bottom:var(--sp-3); font-size:0.9rem; }
+
+  .refs{ margin:var(--sp-4) 0 0; padding:0; list-style:none; counter-reset:refcounter; }
+  .refs li{ counter-increment:refcounter; position:relative; padding-left:var(--sp-7); margin-bottom:var(--sp-4); font-size:0.84rem; color:var(--text-muted); max-width:64ch; }
+  .refs li::before{ content:"[" counter(refcounter) "]"; position:absolute; left:0; top:0; font-family:var(--mono); font-size:0.76rem; color:var(--purple-bright); }
+  .refs li a{ color:var(--text); text-decoration:underline; text-decoration-color:var(--border); text-underline-offset:3px; }
+  .refs li a:hover{ text-decoration-color:var(--purple-bright); }
+  .refs li .ref-note{ display:block; color:var(--text-faint); font-size:0.78rem; margin-top:3px; }
+
+  .cite-block{ margin-top:var(--sp-8); padding-top:var(--sp-5); border-top:1px solid var(--border); }
+  .cite-box{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface-2); padding:var(--sp-4) var(--sp-5); font-family:var(--mono); font-size:0.8rem; color:var(--text-muted); line-height:1.7; }
+  .cite-box .field{ color:var(--text); }
+
+  .article-footer{ margin-top:var(--sp-7); padding-top:var(--sp-6); border-top:1px solid var(--border); }
+  .author-card{ display:flex; gap:var(--sp-4); align-items:flex-start; }
+  .author-card .avatar{ width:42px; height:42px; border-radius:50%; background:var(--surface-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; color:var(--purple-bright); border:1px solid var(--border); }
+  .author-card p{ color:var(--text-muted); font-size:0.86rem; margin:0; max-width:none; }
+  .author-card b{ color:var(--text); }
+  .next-reading{ margin-top:var(--sp-6); }
+  .back-link{ display:inline-flex; align-items:center; gap:var(--sp-2); text-decoration:none; color:var(--purple-bright); font-family:var(--mono); font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; }
+
+  .page-footer-links{ margin-top:var(--sp-6); padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .page-footer-links a{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--text-faint); text-decoration:none; }
+  .page-footer-links a:hover{ color:var(--purple-bright); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab active" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="research.html">Research</a> / Working Paper 002</div>
+
+  <div class="byline-block">
+    <div class="n">Hamdi Bouzidi</div>
+    <div class="t">Independent AI Researcher</div>
+    <div class="l">Montreal, Canada</div>
+  </div>
+
+  <div class="article-tags"><span class="tag">AI-Native Engineering</span><span class="tag">Multi-Agent Systems</span><span class="tag">Software Architecture</span></div>
+  <h1>Documentation as an Intermediate Representation for AI-Native Software Engineering</h1>
+  <p class="dek">A proposed workflow — Idea, Conversation, Documentation, Knowledge Compilation, Creation — and an honest test of whether it's actually new.</p>
+  <div class="meta-row">
+    <span>Published Aug 7, 2026</span>
+    <span>Updated Aug 8, 2026</span>
+    <span>16 min read</span>
+    <span>hamdibouzidi.com/research-documentation-as-ir.html</span>
+  </div>
+
+  <div class="provenance">
+    <div class="p-row">
+      <div class="p-label">Research status</div>
+      <div class="p-text">Independent research conducted through software development, experimentation, and literature review. This work has not undergone formal peer review.</div>
+    </div>
+    <div class="p-row">
+      <div class="p-label">Research provenance</div>
+      <div class="p-text">This work emerged from observations, hypotheses, and system designs developed during my independent software research and development. Generative AI tools are used as research and writing assistants for literature exploration, critique, synthesis, organization, and editorial refinement. They are not treated as authoritative sources or authors. The hypotheses, technical decisions, claims, and final work remain the responsibility of the author.</div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-label">On This Page</div>
+    <ol>
+      <li><a href="#missing-layer">The missing layer</a></li>
+      <li><a href="#proposed-pipeline">The proposed pipeline</a></li>
+      <li><a href="#compiler-analogy">The compiler analogy</a></li>
+      <li><a href="#related-work">Related work</a></li>
+      <li><a href="#comparison">How it compares</a></li>
+      <li><a href="#timeline">A field that moved fast</a></li>
+      <li><a href="#verdict">Is this actually novel?</a></li>
+      <li><a href="#limitations">Limitations</a></li>
+      <li><a href="#references">References</a></li>
+    </ol>
+  </div>
+
+  <article>
+
+    <p class="lede">Most descriptions of AI-native software development still reduce to two steps: idea, then prompt, then code. That collapses a layer of thinking that matters, the layer where a person's intent gets worked out in enough detail that it can be executed reliably by something other than the person who had it.</p>
+
+    <p>This paper proposes a five-stage workflow, <strong>Idea → Conversation → Documentation → Knowledge Compilation → Creation</strong>, in which documentation is not the byproduct of building software but an intermediate representation of it: a structured, durable artifact that sits between human reasoning and AI execution, and that gets compiled, not just read.</p>
+
+    <p>Monowire, a continuity layer for AI-assisted work discussed elsewhere in this Research section (a Samiel product), is one implementation of this idea. It is not the point of this paper. The point is the workflow itself, checked against what the field has already built.</p>
+
+    <h2 id="missing-layer"><span class="num">01</span>The missing layer</h2>
+    <p>Two shorthand descriptions dominate how people talk about building software with AI today: <em>Idea → Prompt → Code</em>, and its slightly more disciplined cousin, <em>Idea → Requirements → Code</em>. Both treat the prompt, or a short requirements note, as the entire interface between what a person wants and what gets built.</p>
+    <p>That interface is thin. A prompt captures intent at one moment, compressed to fit inside a context window, and mostly discarded once the code exists. It rarely survives the next session, the next contributor, or the next six months.</p>
+    <p>The claim of this paper is narrow: there is a cognitive layer that today lives briefly inside a chat window and then evaporates, and that layer deserves to be treated as a durable, structured artifact, because it is the thing future agents and future humans actually need to pick the work back up correctly.</p>
+
+    <h2 id="proposed-pipeline"><span class="num">02</span>The proposed pipeline</h2>
+    <p>The workflow has five stages. An idea starts as loosely as it always has. A conversation works that idea into shape. That conversation is captured as documentation, organized by domain. Once enough of that documentation exists and holds together, a distinct compilation step reads across all of it and produces deterministic, execution-ready artifacts. Only then does creation happen, driven by those compiled artifacts rather than by the original conversation.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig1title fig1desc">
+        <title id="fig1title">Diagram: the five-stage proposed pipeline</title>
+        <desc id="fig1desc">Idea flows into Conversation, which flows into Documentation organized by department, which flows into a Knowledge Compilation step, which produces Creation.</desc>
+        <g font-family="IBM Plex Mono, monospace" font-size="11">
+          <rect x="10" y="90" width="120" height="60" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="70" y="124" text-anchor="middle" fill="var(--text)" font-family="Fraunces, serif" font-style="italic" font-size="13">Idea</text>
+          <rect x="170" y="90" width="130" height="60" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="235" y="124" text-anchor="middle" fill="var(--text)" font-family="Fraunces, serif" font-style="italic" font-size="13">Conversation</text>
+          <rect x="340" y="70" width="150" height="100" rx="6" fill="var(--surface-2)" stroke="var(--turquoise)" stroke-width="1.5"></rect>
+          <text x="415" y="104" text-anchor="middle" fill="var(--turquoise)" font-family="Fraunces, serif" font-style="italic" font-size="13">Documentation</text>
+          <text x="415" y="124" text-anchor="middle" fill="var(--text-faint)" font-size="9">Product · Systems</text>
+          <text x="415" y="138" text-anchor="middle" fill="var(--text-faint)" font-size="9">Backend · UX · Infra</text>
+          <rect x="530" y="70" width="150" height="100" rx="6" fill="var(--purple-soft)" stroke="var(--purple-bright)" stroke-width="1.5"></rect>
+          <text x="605" y="104" text-anchor="middle" fill="var(--purple-bright)" font-family="Fraunces, serif" font-style="italic" font-size="13">Knowledge</text>
+          <text x="605" y="122" text-anchor="middle" fill="var(--purple-bright)" font-family="Fraunces, serif" font-style="italic" font-size="13">Compilation</text>
+          <text x="605" y="142" text-anchor="middle" fill="var(--text-faint)" font-size="9">reads everything,</text>
+          <text x="605" y="154" text-anchor="middle" fill="var(--text-faint)" font-size="9">writes nothing new</text>
+          <rect x="740" y="90" width="150" height="60" rx="6" fill="var(--surface-2)" stroke="var(--lime)" stroke-width="1.5"></rect>
+          <text x="815" y="118" text-anchor="middle" fill="var(--lime)" font-family="Fraunces, serif" font-style="italic" font-size="13">Creation</text>
+          <text x="815" y="134" text-anchor="middle" fill="var(--text-faint)" font-size="9">builder agents execute</text>
+          <g stroke="var(--text-faint)" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+            <line x1="130" y1="120" x2="166" y2="120"></line><line x1="300" y1="120" x2="336" y2="120"></line>
+            <line x1="490" y1="120" x2="526" y2="120"></line><line x1="680" y1="120" x2="736" y2="120"></line>
+          </g>
+        </g>
+        <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--text-faint)"></path></marker></defs>
+        <text x="450" y="220" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1" fill="var(--text-faint)">DOCUMENTATION IS WRITTEN CONTINUOUSLY · COMPILATION HAPPENS ON DEMAND</text>
+      </svg>
+      <figcaption>Fig. 1 — The proposed pipeline. Documentation is the durable layer; knowledge compilation is a distinct, repeatable step.</figcaption>
+    </div>
+
+    <p>The compilation step is the part that actually does work. In the implementation this paper draws on, a single role, referred to internally as Coach, performs it: it reads the accumulated documentation across every domain and produces deterministic, department-scoped skill files that downstream builder agents execute against. Its job is synthesis, not authorship.</p>
+
+    <h2 id="compiler-analogy"><span class="num">03</span>The compiler analogy</h2>
+    <p>The analogy to a traditional compiler pipeline is direct enough to be useful, and precise enough to be worth stating carefully.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig2title fig2desc">
+        <title id="fig2title">Diagram: compiler pipeline compared to the proposed engineering workflow</title>
+        <desc id="fig2desc">Traditional compilation moves from source code through an intermediate representation to machine code. The proposed workflow moves from founder conversation through organizational documentation and a knowledge compilation step to executable agent skills, which builder agents then run.</desc>
+        <text x="225" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1" fill="var(--text-faint)">TRADITIONAL COMPILATION</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="12">
+          <rect x="30" y="55" width="130" height="50" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="95" y="85" text-anchor="middle" fill="var(--text)">Source (C++)</text>
+          <rect x="200" y="55" width="130" height="50" rx="6" fill="var(--surface-2)" stroke="var(--turquoise)" stroke-width="1.5"></rect>
+          <text x="265" y="85" text-anchor="middle" fill="var(--turquoise)">LLVM IR</text>
+          <rect x="370" y="55" width="130" height="50" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="435" y="78" text-anchor="middle" fill="var(--text)">Machine</text><text x="435" y="93" text-anchor="middle" fill="var(--text)">Code</text>
+          <g stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#arrow2)">
+            <line x1="160" y1="80" x2="196" y2="80"></line><line x1="330" y1="80" x2="366" y2="80"></line>
+          </g>
+        </g>
+        <line x1="0" y1="130" x2="900" y2="130" stroke="var(--border)"></line>
+        <text x="280" y="152" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1" fill="var(--text-faint)">PROPOSED WORKFLOW</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="10.5">
+          <rect x="20" y="170" width="130" height="42" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="85" y="195" text-anchor="middle" fill="var(--text)">Conversation</text>
+          <rect x="180" y="170" width="150" height="42" rx="6" fill="var(--surface-2)" stroke="var(--turquoise)" stroke-width="1.5"></rect>
+          <text x="255" y="195" text-anchor="middle" fill="var(--turquoise)">Org. Documentation</text>
+          <rect x="360" y="170" width="150" height="42" rx="6" fill="var(--purple-soft)" stroke="var(--purple-bright)" stroke-width="1.5"></rect>
+          <text x="435" y="195" text-anchor="middle" fill="var(--purple-bright)">Knowledge Compiler</text>
+          <rect x="540" y="170" width="150" height="42" rx="6" fill="var(--surface-2)" stroke="var(--lime)" stroke-width="1.5"></rect>
+          <text x="615" y="195" text-anchor="middle" fill="var(--lime)">Agent Skill Files</text>
+          <rect x="720" y="170" width="150" height="42" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)"></rect>
+          <text x="795" y="195" text-anchor="middle" fill="var(--text)">Builder Agents</text>
+          <g stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#arrow2)">
+            <line x1="150" y1="191" x2="176" y2="191"></line><line x1="330" y1="191" x2="356" y2="191"></line>
+            <line x1="510" y1="191" x2="536" y2="191"></line><line x1="690" y1="191" x2="716" y2="191"></line>
+          </g>
+        </g>
+        <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--text-faint)"></path></marker></defs>
+      </svg>
+      <figcaption>Fig. 2 — Organizational documentation occupies the same structural position LLVM IR occupies in a traditional compiler: a stable, inspectable middle layer that decouples the front end from the back end.</figcaption>
+    </div>
+
+    <p>The analogy is not original to this paper, section four covers that directly. What this paper adds is specificity about what plays the role of the front end, the IR, and the back end in an organizational rather than a single-file context, and an argument that the IR should be long-lived organizational memory rather than a spec authored once per feature and discarded.</p>
+
+    <h2 id="related-work"><span class="num">04</span>Related work</h2>
+    <p>None of the individual pieces of this workflow are new. What follows is a direct accounting of the closest prior work.</p>
+
+    <h3>Multi-agent frameworks that encode process as documents</h3>
+    <p><strong>MetaGPT</strong> (Hong et al., 2023) is the closest and earliest prior art. It assigns software-engineering roles to distinct LLM agents and encodes Standardized Operating Procedures into their prompts, requiring each role to produce structured intermediate artifacts before code is generated. <strong>ChatDev</strong> (Qian et al., 2023) takes a similar premise, structured as a "chat chain" rather than SOPs.</p>
+
+    <h3>Agile-flavored planning agents</h3>
+    <p><strong>BMAD-METHOD</strong> runs an agentic planning phase that produces PRDs and architecture documents as versioned, living artifacts, then a distinct "sharding" step breaks those documents into focused, execution-ready story files. That shard step is functionally close to the knowledge-compilation stage proposed here.</p>
+
+    <h3>Spec-driven development</h3>
+    <p>By 2026, a "spec-driven development" movement, GitHub's Spec Kit, AWS's Kiro, OpenSpec, Tessl, treats a written specification as the source of truth, with implementation generated from and validated against it. This is the same core inversion this paper argues for.</p>
+
+    <h3>The compiler and IR analogy, stated explicitly elsewhere</h3>
+    <p>The comparison between agent planning artifacts and compiler intermediate representations has already been drawn explicitly and independently of this paper. Commentary on emerging "deterministic agent runtimes" in mid-2026 describes agents as functioning like a compiler front end. Separately, an open-source project offers a language-agnostic textual intermediate representation specifically designed for LLM agents to target instead of generating code directly.</p>
+
+    <h3>Anthropic's reusable skill format</h3>
+    <p>The specific compilation <em>target</em> this paper's implementation uses is Anthropic's Agent Skills, a folder-based, filesystem-native format with staged, on-demand loading. That framing, reusable organizational knowledge as a discrete, loadable artifact, is close to how this paper treats compiled department skill files.</p>
+
+    <h3>Formal process and governance specification</h3>
+    <p>A 2026 formal-methods paper proposes a domain-specific protocol language for specifying human-agent responsibility boundaries, explicitly critiquing MetaGPT and similar frameworks for encoding process only inside agent prompts, which drift. That critique applies with equal force to this proposal.</p>
+
+    <h2 id="comparison"><span class="num">05</span>How it compares</h2>
+    <p>Laid out side by side, the honest picture is one of convergent evolution, not one lineage with a single missing piece.</p>
+    <div class="cmp-table">
+      <table class="cmp">
+        <thead><tr><th>Approach</th><th>Unit of work</th><th>Compilation target</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">MetaGPT (2023)</td><td>Single feature / task</td><td>Code, via structured role prompts</td><td><span class="status">Established</span></td></tr>
+          <tr><td class="hl">BMAD-METHOD</td><td>Feature or epic</td><td>Sharded story files → code</td><td><span class="status">Established</span></td></tr>
+          <tr><td class="hl">Spec-Driven Dev. (Kiro, Spec Kit)</td><td>Feature</td><td>Code + generated tests</td><td><span class="status">Established</span></td></tr>
+          <tr><td class="hl">Anthropic Agent Skills</td><td>Reusable capability</td><td>N/A — skills are the target</td><td><span class="status">Established</span></td></tr>
+          <tr><td class="hl">This proposal</td><td>The organization, continuously</td><td>Skill files, not code directly</td><td><span class="status hl">Partial synthesis</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Two differences hold up under that comparison. First, the unit of work: existing frameworks scope documentation to a feature that is largely retired once it ships; this proposal scopes it to the organization as a standing structure. Second, the compilation target: rather than compiling into code or tests directly, this proposal compiles into a reusable-capability format that downstream agents load on demand.</p>
+
+    <h2 id="timeline"><span class="num">06</span>A field that moved fast</h2>
+    <p>Worth seeing plainly: almost every element of this proposal was independently arrived at by others within a roughly three-year window.</p>
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="t-item"><div class="t-date">Aug 2023</div><div class="t-label">MetaGPT</div><div class="t-desc">Standardized Operating Procedures encoded into role-based agent prompts.</div></div>
+        <div class="t-item"><div class="t-date">2024</div><div class="t-label">BMAD-METHOD</div><div class="t-desc">Living planning docs plus a distinct "shard" step into execution-ready story files.</div></div>
+        <div class="t-item"><div class="t-date">Late 2025</div><div class="t-label">Anthropic Agent Skills</div><div class="t-desc">Open, filesystem-native format for reusable, on-demand agent capabilities.</div></div>
+        <div class="t-item"><div class="t-date">2025–2026</div><div class="t-label">Spec-driven development goes mainstream</div><div class="t-desc">GitHub Spec Kit and AWS Kiro popularize specs as the source of truth.</div></div>
+        <div class="t-item"><div class="t-date">Mid 2026</div><div class="t-label">The compiler analogy made explicit</div><div class="t-desc">Independent commentary and open-source projects describe agent artifacts as compiler IR.</div></div>
+      </div>
+      <figcaption>Fig. 3 — A rough timeline of the closest prior work. This proposal sits at the end of this sequence, not before it.</figcaption>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <div class="v-label">Key finding</div>
+      <h3>The general paradigm is not novel. A narrower synthesis is.</h3>
+      <p>Treating structured documentation as the real interface between human intent and AI execution, and compiling it into something downstream agents run against, is well-established by 2026, visible independently in MetaGPT's SOPs, BMAD's shard step, and the spec-driven-development ecosystem. The compiler/IR framing has also already been stated explicitly elsewhere.</p>
+      <p>What is not already established is the combination of <strong>(1)</strong> scoping the source documentation to a persistent, department-organized organization rather than a per-feature spec, and <strong>(2)</strong> compiling that memory specifically into a reusable agent-skill format rather than into code, tests, or a task DAG. That combination is a legitimate, modest contribution: a specific point in an existing design space, not a new paradigm.</p>
+    </div>
+
+    <h2 id="limitations"><span class="num">07</span>Limitations</h2>
+    <ul>
+      <li><strong>No formal enforcement layer.</strong> Encoding process expectations only in prompts is subject to drift; nothing here guarantees compilation behaves deterministically without a separate checking mechanism.</li>
+      <li><strong>Compilation quality is unproven at scale.</strong> A synthesis step reading an entire organizational knowledge base and producing correct, non-contradictory skill files is harder than it sounds.</li>
+      <li><strong>The org-scoped framing is the weakest-evidenced claim.</strong> It's argued here on structural grounds, not demonstrated empirically.</li>
+    </ul>
+
+    <details class="expand">
+      <summary>A note on why the "Coach" role exists at all</summary>
+      <div class="expand-body">
+        <p>A natural objection: if department agents already produce good documentation, why add a separate compilation role instead of letting builder agents read it directly?</p>
+        <p>The reason is the same reason compilers exist instead of interpreters reading source directly for every execution: repeated, ad-hoc interpretation of a large, evolving document set is slow and inconsistent between runs. A dedicated compilation step does that synthesis once and produces a stable artifact.</p>
+      </div>
+    </details>
+
+    <p class="pull-quote">The compiler analogy is correct. It just isn't new, and neither is most of the pipeline it describes. What's left after checking is smaller, and more honest, than the pitch.</p>
+
+    <h2 id="references"><span class="num">08</span>References</h2>
+    <ol class="refs">
+      <li><a href="https://arxiv.org/abs/2308.00352" target="_blank" rel="noopener">Hong, S. et al. "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework." arXiv:2308.00352, 2023.</a><span class="ref-note">Standardized Operating Procedures encoded into role-based agent prompts; the closest and earliest prior art to this paper's pipeline.</span></li>
+      <li><a href="https://arxiv.org/abs/2606.20615" target="_blank" rel="noopener">Prifti, Y. "Specifying AI-SDLC Processes: A Protocol Language for Human-Agent Boundaries." arXiv:2606.20615, 2026.</a><span class="ref-note">Formal critique of prompt-encoded process as subject to drift; motivates this paper's limitations section.</span></li>
+      <li><a href="https://github.com/bmad-code-org/BMAD-METHOD" target="_blank" rel="noopener">BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development. GitHub, bmad-code-org.</a><span class="ref-note">Agentic planning + document-sharding pipeline; the closest analog to the proposed knowledge-compilation step.</span></li>
+      <li><a href="https://github.com/github/spec-kit" target="_blank" rel="noopener">GitHub Spec Kit — open-source spec-driven development toolkit.</a><span class="ref-note">Specification treated as source of truth; part of the broader spec-driven development movement.</span></li>
+      <li><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic. "Agent Skills" — Claude Platform Docs.</a><span class="ref-note">The reusable, filesystem-native compilation-target format referenced throughout this paper.</span></li>
+      <li><a href="https://github.com/mronus/spec" target="_blank" rel="noopener">"Spec: A language-agnostic Intermediate Representation for autonomous agent-driven software development." GitHub, mronus.</a><span class="ref-note">Independent project drawing the same compiler/IR analogy explicitly.</span></li>
+      <li><a href="https://arxiv.org/abs/2604.26275" target="_blank" rel="noopener">"Agentic AI in the Software Development Lifecycle." arXiv:2604.26275, 2026.</a><span class="ref-note">Survey covering MetaGPT, ChatDev, AgileCoder, and the broader agentic-SWE literature.</span></li>
+    </ol>
+
+    <div class="cite-block">
+      <h2><span class="num">—</span>How to cite this work</h2>
+      <div class="cite-box">
+        <span class="field">Bouzidi, H.</span> (2026). <span class="field">Documentation as an Intermediate Representation for AI-Native Software Engineering.</span> HB Research.<br>
+        https://hamdibouzidi.com/research-documentation-as-ir.html
+      </div>
+    </div>
+
+    <div class="article-footer">
+      <div class="author-card">
+        <div class="avatar">H.B.</div>
+        <p><b>Hamdi Bouzidi</b> is an Independent AI Researcher working on AI-native software engineering, organizational intelligence, and software architecture. Based in Montreal. <a href="mailto:hamdi.bz@proton.me">Get in touch</a> or find him on <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+      <div class="next-reading">
+        <a class="back-link" href="research-skill-governed-execution-graphs.html">From Skills to Execution →</a>
+      </div>
+    </div>
+
+  </article>
+
+  <div class="page-footer-links">
+    <a href="mailto:hamdi.bz@proton.me">hamdi.bz@proton.me</a>
+    <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="research.html">Back to Research</a>
+  </div>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>

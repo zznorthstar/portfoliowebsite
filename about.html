@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Hamdi Bouzidi</title>
+<meta name="description" content="Hamdi Bouzidi — how a career in sales led to independent AI research. Background, philosophy, career journey, current work, and contact. Montreal, Canada.">
+<link rel="canonical" href="https://hamdibouzidi.com/about.html">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="About — Hamdi Bouzidi">
+<meta property="og:description" content="How a career in sales led to independent AI research. Background, philosophy, and career journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Hamdi Bouzidi",
+    "jobTitle": "Independent AI Researcher",
+    "url": "https://hamdibouzidi.com/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Montreal", "addressCountry": "CA" },
+    "knowsLanguage": ["English", "French", "Arabic"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Samiel",
+  "description": "Independent AI research and product studio founded by Hamdi Bouzidi. Monowire, Morphix, and Orizonz are Samiel research threads and products.",
+  "founder": { "@type": "Person", "name": "Hamdi Bouzidi" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamdibouzidi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "About Me", "item": "https://hamdibouzidi.com/about.html" }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#131117; --surface-2:#17141c;
+    --border: rgba(237,233,242,0.08); --border-strong: rgba(237,233,242,0.16);
+    --text:#f0ecf5; --text-muted:#9a94a3; --text-faint:#68626f;
+    --purple:#6E2BFF; --purple-bright:#9B5CFF; --purple-soft:rgba(110,43,255,0.12);
+    --turquoise:#2FE6D8; --lime:#A6FF3E; --lemon:#FFE066;
+    --radius:10px; --radius-pill:100px;
+    --serif:'Fraunces', serif; --sans:'IBM Plex Sans', sans-serif; --mono:'IBM Plex Mono', monospace;
+    --navh:64px; --col:720px;
+    --ease: cubic-bezier(.22,1,.36,1); --dur:220ms;
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px; --sp-9:104px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--purple); color:#fff; }
+  a{ color:var(--purple-bright); }
+  .wrap{ max-width:var(--col); margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+  .nav-wrap{ max-width:1080px; margin:0 auto; padding-left:var(--sp-5); padding-right:var(--sp-5); width:100%; }
+
+  .tabnav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--navh); background:rgba(10,10,11,0.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+  .tabnav-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; column-gap:var(--sp-4); }
+  .mark{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.1rem; color:var(--purple-bright); flex-shrink:0; text-decoration:none; justify-self:start; }
+  .tabs{ display:flex; gap:var(--sp-2); overflow-x:auto; scrollbar-width:none; justify-self:center; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:0.73rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; padding:9px 16px; border-radius:var(--radius-pill);
+    border:1px solid transparent; white-space:nowrap;
+    transition:color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .tab svg{ width:15px; height:15px; opacity:0.55; flex-shrink:0; transition:opacity 180ms ease; }
+  .tab:hover{ color:var(--text); }
+  .tab:hover svg{ opacity:0.9; }
+  .tab.active{ color:var(--purple-bright); background:var(--purple-soft); border-color:rgba(155,92,255,0.35); box-shadow:0 0 14px rgba(110,43,255,0.14); }
+  .tab.active svg{ opacity:1; }
+  @media (max-width:640px){ .tabnav-inner{ display:flex; gap:var(--sp-3); } .tabs{ justify-self:auto; } .tab{ padding:8px 12px; font-size:0.66rem; } }
+
+  main{ padding-top:calc(var(--navh) + var(--sp-8)); padding-bottom:var(--sp-8); margin:0 auto; max-width:1080px; }
+  .page-head{ margin-bottom:var(--sp-2); }
+  .page-head .kicker{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); display:block; margin-bottom:var(--sp-3); }
+  .page-head h1{ font-family:var(--serif); font-weight:600; font-style:italic; font-size:clamp(1.9rem,4vw,2.6rem); }
+  .lede{ font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--text); line-height:1.55; margin:var(--sp-5) 0 var(--sp-6); max-width:60ch; }
+
+  article p{ color:var(--text); opacity:0.9; margin-bottom:var(--sp-4); font-size:0.98rem; max-width:66ch; line-height:1.65; }
+  article strong{ color:var(--text); font-weight:600; }
+  article em{ color:var(--purple-bright); font-style:italic; }
+  article h2{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.3rem; margin:var(--sp-8) 0 var(--sp-4); color:var(--text); }
+  article h2 .n{ font-family:var(--mono); font-style:normal; font-size:0.75rem; color:var(--text-faint); margin-right:var(--sp-3); }
+
+  /* ---------- Track Record: contained metric blocks ---------- */
+  .stats-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:var(--sp-4) 0 var(--sp-5); max-width:var(--col); }
+  .stat{ background:var(--surface); padding:var(--sp-4) var(--sp-5); }
+  .stat .num{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.7rem; color:var(--lemon); line-height:1; }
+  .stat .label{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-muted); margin-top:var(--sp-2); }
+  .stat .detail{ font-size:0.8rem; color:var(--text); opacity:0.8; margin-top:var(--sp-2); line-height:1.5; }
+  @media (max-width:560px){ .stats-grid{ grid-template-columns:1fr; } }
+  .other-strengths{ display:flex; flex-wrap:wrap; gap:var(--sp-2); margin:0 0 var(--sp-2); }
+  .pill{ font-family:var(--mono); font-size:0.66rem; border:1px solid var(--border); border-radius:var(--radius-pill); padding:5px 13px; color:var(--text-muted); }
+
+  /* ---------- Career Journey: understated rows-as-cards ---------- */
+  .range-list{ display:flex; flex-direction:column; gap:var(--sp-3); margin:var(--sp-4) 0 var(--sp-6); max-width:var(--col); }
+  .range-item{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);
+    padding:var(--sp-4) var(--sp-5); display:flex; gap:var(--sp-5); align-items:baseline; flex-wrap:wrap;
+    transition:border-color 180ms ease;
+  }
+  .range-item:hover{ border-color:var(--border-strong); }
+  .range-item .org{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:1rem; color:var(--text); min-width:160px; }
+  .range-item .role{ font-family:var(--mono); font-size:0.66rem; color:var(--text-faint); }
+  .range-item p{ font-size:0.85rem; color:var(--text-muted); margin:var(--sp-1) 0 0; flex-basis:100%; opacity:1; max-width:none; }
+
+  /* ---------- Languages: small info cards ---------- */
+  .lang-list{ display:flex; gap:var(--sp-3); margin:var(--sp-4) 0 var(--sp-2); flex-wrap:wrap; }
+  .lang-item{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-4) var(--sp-5); min-width:130px; transition:border-color 180ms ease; }
+  .lang-item:hover{ border-color:var(--border-strong); }
+  .lang-item .name{ font-family:var(--serif); font-style:italic; font-size:1.05rem; color:var(--text); }
+  .lang-item .tag{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-top:3px; }
+
+  /* ---------- Current work: understated cards ---------- */
+  .current-list{ display:flex; flex-direction:column; gap:var(--sp-3); margin:var(--sp-4) 0 var(--sp-2); max-width:var(--col); }
+  .current-item{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:var(--sp-4) var(--sp-5); transition:border-color 180ms ease; }
+  .current-item:hover{ border-color:var(--border-strong); }
+  .current-item:nth-child(1) .name{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.05rem; color:var(--purple-bright); }
+  .current-item:nth-child(2) .name{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.05rem; color:var(--turquoise); }
+  .current-item:nth-child(3) .name{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.05rem; color:var(--lime); }
+  .current-item:nth-child(4) .name{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.05rem; color:var(--lemon); }
+  .current-item p{ font-size:0.88rem; color:var(--text-muted); margin-top:var(--sp-1); opacity:1; max-width:none; }
+
+  /* ---------- Contact: architectural frame ---------- */
+  .contact-block{
+    margin-top:var(--sp-8); border:1px solid var(--border); border-radius:var(--radius);
+    background:var(--surface); padding:var(--sp-6); max-width:var(--col);
+  }
+  .contact-block h2{ margin-top:0; }
+  .contact-block p{ max-width:none; }
+  .contact-block .links{ margin-top:var(--sp-4); display:flex; gap:var(--sp-5); flex-wrap:wrap; }
+  .contact-block .links a{ font-family:var(--mono); font-size:0.76rem; letter-spacing:0.03em; text-decoration:none; color:var(--purple-bright); border-bottom:1px solid rgba(110,43,255,0.4); padding-bottom:2px; }
+  .contact-block .foot{ margin-top:var(--sp-6); font-family:var(--mono); font-size:0.62rem; color:var(--text-faint); }
+
+  :focus-visible{ outline:1px solid var(--purple-bright); outline-offset:3px; border-radius:2px; }
+
+  .bg-fx{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background:var(--bg); }
+  .bg-fx .blob{ position:absolute; border-radius:50%; filter:blur(110px); }
+  .bg-fx .blob-a{ width:60vw; height:60vw; left:-15%; top:-20%; background:radial-gradient(circle, var(--purple) 0%, transparent 70%); animation:driftA 100s var(--ease) infinite, breatheA 46s ease-in-out infinite; }
+  .bg-fx .blob-b{ width:50vw; height:50vw; right:-15%; bottom:-15%; background:radial-gradient(circle, rgba(155,92,255,0.9) 0%, transparent 70%); animation:driftB 130s var(--ease) infinite, breatheB 58s ease-in-out infinite; }
+  .bg-fx .blob-c{ width:40vw; height:40vw; left:30%; top:35%; background:radial-gradient(circle, rgba(40,18,74,0.9) 0%, transparent 70%); animation:driftC 150s var(--ease) infinite, breatheC 64s ease-in-out infinite; }
+  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(6vw,7vh) scale(1.06); } }
+  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-5vw,-6vh) scale(1.04); } }
+  @keyframes driftC{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-3vw,4vh) scale(1.07); } }
+  @keyframes breatheA{ 0%,100%{ opacity:0.22; } 50%{ opacity:0.32; } }
+  @keyframes breatheB{ 0%,100%{ opacity:0.12; } 50%{ opacity:0.2; } }
+  @keyframes breatheC{ 0%,100%{ opacity:0.16; } 50%{ opacity:0.24; } }
+  @media (prefers-reduced-motion:reduce){ .bg-fx .blob{ animation:none !important; opacity:0.18 !important; } }
+  #constellationCanvas{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="bg-fx" id="bgFx"><div class="blob blob-a"></div><div class="blob blob-b"></div><div class="blob blob-c"></div></div>
+<canvas id="constellationCanvas"></canvas>
+
+<nav class="tabnav">
+  <div class="nav-wrap tabnav-inner">
+    <a class="mark" href="index.html">H.B.</a>
+    <div class="tabs" role="tablist">
+      <a class="tab" href="research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Research</span></a>
+      <a class="tab" href="proof-of-work.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="7 9 9.5 11.5 7 14"></polyline><line x1="11" y1="14" x2="14" y2="14"></line></svg><span>Proof of Work</span></a>
+      <a class="tab" href="skills.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"></rect><line x1="12" y1="8" x2="12" y2="4"></line><circle cx="12" cy="3" r="1"></circle><circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg><span>Skills.md</span></a>
+      <a class="tab active" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg><span>About Me</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <span class="kicker">About</span>
+    <h1>Hamdi Bouzidi</h1>
+  </div>
+  <p class="lede">Independent AI Researcher, based in Montreal. The short version: I spent years in sales before I wrote a line of production code, and that order turned out to matter more than either half on its own.</p>
+
+  <article>
+    <h2><span class="n">01</span>Career Journey</h2>
+    <div class="range-list">
+      <div class="range-item">
+        <div class="org">UnitUp</div>
+        <div class="role">Residential Leasing — Montreal</div>
+        <p>Placing tenants across a portfolio of residential buildings, building the systems behind a high-volume leasing practice.</p>
+      </div>
+      <div class="range-item">
+        <div class="org">Ribec Signalisation</div>
+        <div class="role">B2B — Industrial &amp; Construction Services</div>
+        <p>Sold construction service rentals into industrial accounts, translating operational cost data into ROI.</p>
+      </div>
+      <div class="range-item">
+        <div class="org">Karrat</div>
+        <div class="role">B2C — Telus &amp; Home Security</div>
+        <p>Door-to-door direct consumer sales, cold approaches with no scripted opening and no pipeline to fall back on.</p>
+      </div>
+      <div class="range-item">
+        <div class="org">Black Media 17</div>
+        <div class="role">A&amp;R</div>
+        <p>Scouted and developed emerging musical talent for artist development.</p>
+      </div>
+      <div class="range-item">
+        <div class="org">AI Optimize</div>
+        <div class="role">Pro Bono AI Consulting</div>
+        <p>Advised an early-stage startup on applied AI strategy, for the experience of solving a real problem outside my industry.</p>
+      </div>
+      <div class="range-item">
+        <div class="org">Music</div>
+        <div class="role">DJ &amp; Producer</div>
+        <p>An independent music project, ongoing since before any of the above.</p>
+      </div>
+    </div>
+
+    <h2><span class="n">02</span>Track Record</h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">19+</div>
+        <div class="label">Active accounts, at once</div>
+        <div class="detail">Nineteen-plus concurrent industrial B2B accounts, each with its own service schedule and renewal cycle, at a 100% renewal rate.</div>
+      </div>
+      <div class="stat">
+        <div class="num">8</div>
+        <div class="label">Contracts, one day</div>
+        <div class="detail">Closed eight contracts in a single prospecting day by diagnosing each account's actual need instead of running a standard pitch.</div>
+      </div>
+      <div class="stat">
+        <div class="num">500%</div>
+        <div class="label">Territory growth</div>
+        <div class="detail">At Ribec Signalisation, took a territory from four clients to five times its original size over two years.</div>
+      </div>
+      <div class="stat">
+        <div class="num">−20%</div>
+        <div class="label">Sales cycle time</div>
+        <div class="detail">Rebuilt the sales process end to end, cutting the average cycle by a fifth without skipping a qualification step.</div>
+      </div>
+    </div>
+    <div class="other-strengths">
+      <span class="pill">Consultative, ROI-first selling</span>
+      <span class="pill">Salesforce &amp; HubSpot discipline</span>
+      <span class="pill">Executive-level negotiation</span>
+      <span class="pill">Financial &amp; operational fluency</span>
+    </div>
+
+    <h2><span class="n">03</span>Languages</h2>
+    <p>Three native languages, not learned ones, means zero lag between what a client means and what I hear. It's how I've closed deals across Quebec's diverse market and with international, executive-level stakeholders, in whichever language the room is actually thinking in.</p>
+    <div class="lang-list">
+      <div class="lang-item"><div class="name">English</div><div class="tag">Native</div></div>
+      <div class="lang-item"><div class="name">Français</div><div class="tag">Native</div></div>
+      <div class="lang-item"><div class="name">العربية</div><div class="tag">Native</div></div>
+    </div>
+
+    <h2><span class="n">04</span>What I'm Building Now</h2>
+    <p>Samiel is the research studio and umbrella these threads sit under — Monowire is its flagship product, with Morphix and Orizonz as related research. Descriptions here stay intentionally high level, the point is direction, not implementation.</p>
+    <div class="current-list">
+      <div class="current-item">
+        <div class="name">Monowire</div>
+        <p>A Samiel product: a continuity layer for AI-assisted work — preserving the reasoning behind a project so it can be picked back up after time away without reconstructing it from scratch. The subject of Working Paper 001 and the active Monowire Research Map in Research.</p>
+      </div>
+      <div class="current-item">
+        <div class="name">Morphix</div>
+        <p>A Samiel research project into how organizational knowledge should be structured before it's ever handed to an AI system, informing how Monowire and related work organize documentation.</p>
+      </div>
+      <div class="current-item">
+        <div class="name">Orizonz</div>
+        <p>A Samiel research project reasoning about what's likely to happen next in a business, tracing relationships across markets, technology, and behavior that are hard to see from any single signal.</p>
+      </div>
+      <div class="current-item">
+        <div class="name">Samiel</div>
+        <p>The parent research studio behind Monowire and related AI-native systems. Its own open-ended thesis: what it means for an AI to have a persistent, addressable presence — somewhere real, not just a chat window.</p>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <h2><span class="n">05</span>Let's Talk</h2>
+      <p>Open to conversations on AI-native engineering, organizational intelligence, and anyone building something that needs someone who can research it and build it.</p>
+      <div class="links">
+        <a href="mailto:hamdi.bz@proton.me">Email</a>
+        <a href="https://www.linkedin.com/in/hamdi-bouzidi777/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="foot">HAMDI BOUZIDI — MONTREAL, CANADA</div>
+    </div>
+  </article>
+</main>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('constellationCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], edges = [], revealedEdges = 0, constellationRAF = null, lastEdgeTime = 0;
+  function resizeCanvas(){
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    return {width:w, height:h};
+  }
+  function startConstellation(){
+    if(constellationRAF) cancelAnimationFrame(constellationRAF);
+    const {width:w, height:h} = resizeCanvas();
+    const baseCount = Math.round((w*h) / 34000);
+    const STAR_COUNT = Math.min(70, Math.max(18, baseCount + Math.floor(Math.random()*6)));
+    stars = Array.from({length: STAR_COUNT}, () => ({ x: Math.random()*w, y: Math.random()*h, r: 0.8+Math.random()*1.4, twinkleOffset: Math.random()*Math.PI*2, appearAt: Math.random()*1400 }));
+    edges = [];
+    const MAX_DIST = Math.min(w,h) * 0.22;
+    for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<MAX_DIST){ edges.push({a:i,b:j,dist}); } } }
+    edges.sort((a,b)=>a.dist-b.dist); revealedEdges=0; lastEdgeTime=0;
+    const start = performance.now();
+    function frame(now){
+      const t = now-start; ctx.clearRect(0,0,w,h);
+      if(!reduceMotion && t-lastEdgeTime>180 && revealedEdges<edges.length){ revealedEdges++; lastEdgeTime=t; } else if(reduceMotion){ revealedEdges=edges.length; }
+      ctx.strokeStyle='rgba(155,92,255,0.2)'; ctx.lineWidth=1;
+      for(let k=0;k<revealedEdges;k++){ const e=edges[k]; const sA=stars[e.a], sB=stars[e.b]; if(t<sA.appearAt||t<sB.appearAt) continue; ctx.beginPath(); ctx.moveTo(sA.x,sA.y); ctx.lineTo(sB.x,sB.y); ctx.stroke(); }
+      stars.forEach(s=>{ if(t<s.appearAt) return; const tw=0.55+0.45*Math.sin(t/900+s.twinkleOffset); ctx.beginPath(); ctx.fillStyle=`rgba(240,236,245,${0.25+0.4*tw})`; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
+      if(revealedEdges<edges.length || !reduceMotion){ constellationRAF=requestAnimationFrame(frame); }
+    }
+    constellationRAF = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', startConstellation);
+  setTimeout(startConstellation, 200);
+</script>
+
+</body>
+</html>
