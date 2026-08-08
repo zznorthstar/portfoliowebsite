@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skill-Governed Execution Graphs for Multi-Agent Software Engineering: A Monowire by Samiel Study — Hamdi Bouzidi</title>
-<meta name="description" content="A Monowire by Samiel study proposing that procedural knowledge for AI coding agents be assigned upstream, during organizational documentation, rather than discovered by the execution agent at runtime — checked against the 2026 literature on skill compilation and execution graphs.">
+<title>Skill-Governed Execution Graphs for Multi-Agent Software Engineering: A Monowire by Samiel Study Hamdi Bouzidi</title>
+<meta name="description" content="A Monowire by Samiel study proposing that procedural knowledge for AI coding agents be assigned upstream, during organizational documentation, rather than discovered by the execution agent at runtime , checked against the 2026 literature on skill compilation and execution graphs.">
 <link rel="canonical" href="https://hamdibouzidi.com/research-skill-governed-execution-graphs.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Skill-Governed Execution Graphs for Multi-Agent Software Engineering: A Monowire by Samiel Study">
-<meta property="og:description" content="A Monowire by Samiel study on assigning procedural knowledge upstream, during organizational documentation, rather than at runtime — checked against the existing literature.">
+<meta property="og:description" content="A Monowire by Samiel study on assigning procedural knowledge upstream, during organizational documentation, rather than at runtime , checked against the existing literature.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,9 +297,9 @@
   <article>
 
     <h2 id="introduction"><span class="num">01</span>Introduction</h2>
-    <p class="lede">Agent Skills give AI coding agents reusable procedural knowledge — a written-down way of doing something a specific, well, instead of re-deriving it from scratch every session. That's a real improvement. It leaves one question mostly unanswered: who decides which skills apply to a given piece of work, and when?</p>
+    <p class="lede">Agent Skills give AI coding agents reusable procedural knowledge , a written-down way of doing something a specific, well, instead of re-deriving it from scratch every session. That's a real improvement. It leaves one question mostly unanswered: who decides which skills apply to a given piece of work, and when?</p>
     <p>In most systems available in 2026, the answer is the execution agent itself, at runtime, on every task. This paper proposes an alternative: that procedural knowledge can be assigned upstream, during the organizational documentation phase of a project, so that by the time a builder agent starts implementing, the relevant skills are already attached to the work rather than something it has to discover. We call the resulting structure a <em>Skill-Governed Execution Graph</em> (SGEG).</p>
-    <p>The idea emerged while designing Monowire, a Samiel product and multi-agent software engineering system in which AI departments — Product, Systems, Backend, UX, Infrastructure — reason about different aspects of a project and produce organizational documentation. Monowire is the environment this idea was noticed in, not the contribution itself. The methodology is intended to stand on its own, independent of any particular implementation.</p>
+    <p>The idea emerged while designing Monowire, a Samiel product and multi-agent software engineering system in which AI departments , Product, Systems, Backend, UX, Infrastructure , reason about different aspects of a project and produce organizational documentation. Monowire is the environment this idea was noticed in, not the contribution itself. The methodology is intended to stand on its own, independent of any particular implementation.</p>
     <p>This is a working hypothesis, not a validated result. Section 12 states plainly what appears to already exist in the literature, and it turns out to be a lot.</p>
 
     <h2 id="problem"><span class="num">02</span>Problem Definition</h2>
@@ -359,12 +360,12 @@
         </defs>
         <text x="450" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="0.5" fill="var(--text-faint)">THE DIFFERENCE: WHERE "WHICH SKILLS APPLY" GETS DECIDED, AND WHEN</text>
       </svg>
-      <figcaption>Fig. 1 — In the traditional pipeline, skill selection happens inside the agent, at runtime, on every task. In the proposed pipeline, it happens upstream, once, during organizational documentation, and is carried into execution as part of the graph.</figcaption>
+      <figcaption>Fig. 1 - In the traditional pipeline, skill selection happens inside the agent, at runtime, on every task. In the proposed pipeline, it happens upstream, once, during organizational documentation, and is carried into execution as part of the graph.</figcaption>
     </div>
 
     <h2 id="background"><span class="num">03</span>Background</h2>
-    <p>Three lines of prior work sit behind this proposal. <strong>Multi-agent software engineering</strong> systems such as MetaGPT and ChatDev assign roles to agents and require structured intermediate artifacts — documents, not just code — before implementation proceeds, an idea extended by frameworks like BMAD-METHOD, which shards planning documents into execution-ready story files. <strong>Agent Skills</strong>, as formalized by Anthropic's open Agent Skills format, package reusable procedural knowledge into loadable, filesystem-native units. And a fast-moving 2026 sub-literature on <strong>skill compilation and execution graphs</strong> — discussed in full in Section 4 — has independently begun turning prose skills into structured, typed, or graph-based representations to make agent behavior more reliable and auditable.</p>
-    <p>This paper sits at the intersection of the first and third. The second — Agent Skills themselves — is the substrate both draw on.</p>
+    <p>Three lines of prior work sit behind this proposal. <strong>Multi-agent software engineering</strong> systems such as MetaGPT and ChatDev assign roles to agents and require structured intermediate artifacts , documents, not just code , before implementation proceeds, an idea extended by frameworks like BMAD-METHOD, which shards planning documents into execution-ready story files. <strong>Agent Skills</strong>, as formalized by Anthropic's open Agent Skills format, package reusable procedural knowledge into loadable, filesystem-native units. And a fast-moving 2026 sub-literature on <strong>skill compilation and execution graphs</strong> , discussed in full in Section 4 , has independently begun turning prose skills into structured, typed, or graph-based representations to make agent behavior more reliable and auditable.</p>
+    <p>This paper sits at the intersection of the first and third. The second , Agent Skills themselves , is the substrate both draw on.</p>
 
     <h2 id="existing"><span class="num">04</span>Existing Approaches</h2>
     <p>A direct search of the 2026 literature turns up substantially more relevant prior art than the original framing of this idea anticipated. The table below lays out the closest work found.</p>
@@ -384,24 +385,24 @@
     </div>
 
     <h3>Multi-agent software engineering with structured documents</h3>
-    <p>MetaGPT assigns software-engineering roles to distinct agents and encodes Standardized Operating Procedures into their prompts, producing structured intermediate artifacts — a PRD, design docs, interface specs — before code generation. ChatDev takes a similar premise through a "chat chain." OrgAgent goes further toward this paper's concern directly: it organizes a multi-agent system into vertical layers modeled on a company (CEO/CTO/COO at the top), where the top layer's output determines the "execution configuration for the downstream process." That is close in spirit to organizational planning governing what happens downstream — the missing piece, from this proposal's angle, is that OrgAgent's downstream configuration is a task routing decision, not a graph of skill-bearing documentation nodes.</p>
+    <p>MetaGPT assigns software-engineering roles to distinct agents and encodes Standardized Operating Procedures into their prompts, producing structured intermediate artifacts , a PRD, design docs, interface specs , before code generation. ChatDev takes a similar premise through a "chat chain." OrgAgent goes further toward this paper's concern directly: it organizes a multi-agent system into vertical layers modeled on a company (CEO/CTO/COO at the top), where the top layer's output determines the "execution configuration for the downstream process." That is close in spirit to organizational planning governing what happens downstream , the missing piece, from this proposal's angle, is that OrgAgent's downstream configuration is a task routing decision, not a graph of skill-bearing documentation nodes.</p>
 
     <h3>Mandatory runtime skill invocation</h3>
-    <p>Superpowers, an open agentic-skills framework for coding agents, enforces a "skill-first" rule: if there is even a small chance a skill applies, the agent must invoke it before acting, including before asking clarifying questions. This is real, working skill enforcement, in production use across several coding-agent platforms. It is not upstream assignment, however — the agent still performs the "does this skill apply" check itself, on every task, at runtime. It solves the "agents skip skills" problem without touching the "who decides which skills are relevant" problem this paper is about.</p>
+    <p>Superpowers, an open agentic-skills framework for coding agents, enforces a "skill-first" rule: if there is even a small chance a skill applies, the agent must invoke it before acting, including before asking clarifying questions. This is real, working skill enforcement, in production use across several coding-agent platforms. It is not upstream assignment, however , the agent still performs the "does this skill apply" check itself, on every task, at runtime. It solves the "agents skip skills" problem without touching the "who decides which skills are relevant" problem this paper is about.</p>
 
     <h3>Skill compilation and execution graphs</h3>
-    <p>This is the closest prior art, and it needs to be named specifically. <strong>AIP</strong> (Agent Instruction Protocol, Blumenfeld &amp; Webber, June 2026) models a skill as a directed execution graph — discrete steps as nodes, typed input/output edges, a schema-validated YAML specification — with a compiler meta-skill that translates existing prose skills into this form. Compiling to AIP raised task pass rate from 53% to 67% in the reported evaluation. <strong>SIGIL</strong>, built around a typed intermediate representation called AG-IR, compiles a single prose skill into an executable harness that separates model-owned cognition from code-owned mechanism; compiled harnesses performed 86% of mandated steps versus 56% for prose, invariant across model generations. Related systems — SkVM (a skill virtual machine), SkillCompiler, and SkillSmith — pursue overlapping goals: compiling skills into typed, more reliably executable forms, sometimes across heterogeneous model backends.</p>
-    <p>Every one of these systems operates on a single skill: it takes one prose procedure and turns it into a more structured, enforceable representation of that procedure's own internal steps. None of them, as far as this review found, graphs the relationship between a project's organizational documentation and which skills that documentation implies — the graph in AIP is internal to one skill; the graph this paper proposes spans many skills across a project's departments.</p>
+    <p>This is the closest prior art, and it needs to be named specifically. <strong>AIP</strong> (Agent Instruction Protocol, Blumenfeld &amp; Webber, June 2026) models a skill as a directed execution graph , discrete steps as nodes, typed input/output edges, a schema-validated YAML specification , with a compiler meta-skill that translates existing prose skills into this form. Compiling to AIP raised task pass rate from 53% to 67% in the reported evaluation. <strong>SIGIL</strong>, built around a typed intermediate representation called AG-IR, compiles a single prose skill into an executable harness that separates model-owned cognition from code-owned mechanism; compiled harnesses performed 86% of mandated steps versus 56% for prose, invariant across model generations. Related systems , SkVM (a skill virtual machine), SkillCompiler, and SkillSmith , pursue overlapping goals: compiling skills into typed, more reliably executable forms, sometimes across heterogeneous model backends.</p>
+    <p>Every one of these systems operates on a single skill: it takes one prose procedure and turns it into a more structured, enforceable representation of that procedure's own internal steps. None of them, as far as this review found, graphs the relationship between a project's organizational documentation and which skills that documentation implies , the graph in AIP is internal to one skill; the graph this paper proposes spans many skills across a project's departments.</p>
 
     <h3>Governance and runtime enforcement, more broadly</h3>
     <p>A separate line of work supervises agent behavior at runtime without changing the underlying representation: AgentSpec provides a domain-specific language of symbolic rules checked against each run; GuardAgent and ShieldAgent evaluate or block actions at the tool boundary. A 2026 formal-methods paper, "Specifying AI-SDLC Processes," proposes a protocol language for human-agent responsibility boundaries across the software development lifecycle, explicitly critiquing systems like MetaGPT for encoding process only in agent prompts, where it can drift. That critique applies to this proposal too, and is addressed directly in Limitations.</p>
 
     <h2 id="sgeg"><span class="num">05</span>Skill-Governed Execution Graphs</h2>
-    <p>A Skill-Governed Execution Graph is a structure in which project documentation nodes — not individual skill files — carry references to the skills relevant to the work they describe, and are connected to each other in the order implementation is expected to proceed. The graph is a property of the <em>project's knowledge base</em>, assembled as documentation is written, not a property of any single skill.</p>
+    <p>A Skill-Governed Execution Graph is a structure in which project documentation nodes , not individual skill files , carry references to the skills relevant to the work they describe, and are connected to each other in the order implementation is expected to proceed. The graph is a property of the <em>project's knowledge base</em>, assembled as documentation is written, not a property of any single skill.</p>
     <p>This is the central distinction from AIP and SIGIL: those systems graph <em>inside</em> a skill. This proposal graphs <em>across</em> skills, at the level of a project's own documentation, before any individual skill is invoked.</p>
 
     <h2 id="architecture"><span class="num">06</span>Architecture</h2>
-    <p>The conceptual architecture below shows how a founder's conversation flows through organizational reasoning into a graph that governs execution. Presented as a motivating implementation, not the contribution itself — Monowire is one environment this can be explored in, not a claim about a new AI architecture.</p>
+    <p>The conceptual architecture below shows how a founder's conversation flows through organizational reasoning into a graph that governs execution. Presented as a motivating implementation, not the contribution itself , Monowire is one environment this can be explored in, not a claim about a new AI architecture.</p>
 
     <div class="figure">
       <svg viewBox="0 0 700 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig2title fig2desc">
@@ -447,14 +448,14 @@
         </g>
         <defs><marker id="a3" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="var(--text-faint)"></path></marker></defs>
       </svg>
-      <figcaption>Fig. 2 — Conversation flows through organizational reasoning into department-level documentation and skill assignment, which converge into a single execution graph before implementation. Skill Enforcement (Section 9) sits between the builder agent and the actual creation of output.</figcaption>
+      <figcaption>Fig. 2 - Conversation flows through organizational reasoning into department-level documentation and skill assignment, which converge into a single execution graph before implementation. Skill Enforcement (Section 9) sits between the builder agent and the actual creation of output.</figcaption>
     </div>
 
     <h2 id="assignment"><span class="num">07</span>Skill Assignment</h2>
-    <p>During documentation, each department reasons about the work it's describing and identifies which existing skills that work requires — not by inventing new skills, but by selecting from an approved registry (Section 10). A backend department documenting an authentication system, for instance, wouldn't just write "authentication uses PostgreSQL" — it would identify that the work requires several existing skills together: backend architecture, security, database design, API design, testing.</p>
-    <p>A metadata representation could look like this — illustrative only, not a claimed final format:</p>
+    <p>During documentation, each department reasons about the work it's describing and identifies which existing skills that work requires , not by inventing new skills, but by selecting from an approved registry (Section 10). A backend department documenting an authentication system, for instance, wouldn't just write "authentication uses PostgreSQL" it would identify that the work requires several existing skills together: backend architecture, security, database design, API design, testing.</p>
+    <p>A metadata representation could look like this , illustrative only, not a claimed final format:</p>
     <p style="font-family:var(--mono); font-size:0.82rem; color:var(--text-muted); background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:var(--sp-4);">type: execution_spec<br>department: backend<br><br>skills:<br>&nbsp;&nbsp;- backend-architecture<br>&nbsp;&nbsp;- security<br>&nbsp;&nbsp;- database-design<br>&nbsp;&nbsp;- api-design<br>&nbsp;&nbsp;- testing<br><br>next:<br>&nbsp;&nbsp;- authorization</p>
-    <p>Whether YAML frontmatter, a graph-native format closer to AIP's schema, or something else entirely is the better representation is an open question this paper doesn't resolve — see Section 16.</p>
+    <p>Whether YAML frontmatter, a graph-native format closer to AIP's schema, or something else entirely is the better representation is an open question this paper doesn't resolve , see Section 16.</p>
 
     <h2 id="documentation"><span class="num">08</span>Skill-Carrying Documentation</h2>
     <p>Because each documentation node references its required skills and its next node, the documentation as a whole forms a graph rather than a flat library:</p>
@@ -486,10 +487,10 @@
         </g>
         <defs><marker id="a4" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="var(--text-faint)"></path></marker></defs>
       </svg>
-      <figcaption>Fig. 3 — Each node can carry domain knowledge, constraints, dependencies, applicable skills, execution requirements, links to related documentation, the next execution node, and verification requirements.</figcaption>
+      <figcaption>Fig. 3 - Each node can carry domain knowledge, constraints, dependencies, applicable skills, execution requirements, links to related documentation, the next execution node, and verification requirements.</figcaption>
     </div>
 
-    <p>Whether this specific concept — documentation-as-execution-map, distinct from documentation-as-knowledge-repository — already exists under different terminology elsewhere is worth flagging honestly: the closest framing found is "executable documentation" and documentation-driven development discussions in the spec-driven-development ecosystem, which treat a specification as the thing implementation is generated from and validated against, rather than a description written after the fact. That's a related but not identical claim — specs there are typically per-feature, not a persistent, department-spanning graph.</p>
+    <p>Whether this specific concept documentation-as-execution-map, distinct from documentation-as-knowledge-repository already exists under different terminology elsewhere is worth flagging honestly: the closest framing found is "executable documentation" and documentation-driven development discussions in the spec-driven-development ecosystem, which treat a specification as the thing implementation is generated from and validated against, rather than a description written after the fact. That's a related but not identical claim , specs there are typically per-feature, not a persistent, department-spanning graph.</p>
 
     <h2 id="guards"><span class="num">09</span>Execution Guards</h2>
     <p>Every execution document can carry a small guard, conceptually:</p>
@@ -501,10 +502,10 @@
       <li>Do not bypass documented constraints.</li>
       <li>If a required skill is unavailable, stop and report the dependency.</li>
     </ul>
-    <p>This is directly inspired by the mandatory-invocation behavioral philosophy in systems like Superpowers, and it should be credited as such. <strong>Superpowers did not originate with this proposal, and neither did skill enforcement generally</strong> — Superpowers already enforces skill invocation in production, and SIGIL already compiles enforcement into a harness with a measured compliance rate. What this section investigates is narrower: whether enforcement that reads its instructions from an upstream-assigned execution graph, rather than deciding on its own what applies, behaves differently — a question Section 14 proposes testing rather than answering.</p>
+    <p>This is directly inspired by the mandatory-invocation behavioral philosophy in systems like Superpowers, and it should be credited as such. <strong>Superpowers did not originate with this proposal, and neither did skill enforcement generally</strong> Superpowers already enforces skill invocation in production, and SIGIL already compiles enforcement into a harness with a measured compliance rate. What this section investigates is narrower: whether enforcement that reads its instructions from an upstream-assigned execution graph, rather than deciding on its own what applies, behaves differently a question Section 14 proposes testing rather than answering.</p>
 
     <h2 id="agnostic"><span class="num">10</span>Agent-Agnostic Execution</h2>
-    <p>The skill system is not meant to belong to a particular model vendor. A skill is a portable procedural artifact; the execution graph determines which skills are relevant; the agent — Claude, GPT, Gemini, an open-source or local model — carries out the work within those constraints. This creates a three-way separation:</p>
+    <p>The skill system is not meant to belong to a particular model vendor. A skill is a portable procedural artifact; the execution graph determines which skills are relevant; the agent Claude, GPT, Gemini, an open-source or local model carries out the work within those constraints. This creates a three-way separation:</p>
 
     <div class="figure">
       <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig4title fig4desc">
@@ -525,13 +526,13 @@
           <text x="620" y="211" text-anchor="end" fill="var(--text-faint)" font-size="9">Builder Agent</text>
         </g>
       </svg>
-      <figcaption>Fig. 4 — Strategic intelligence stays with humans and organizational reasoning; procedural intelligence lives in skills; tactical intelligence is what the execution agent contributes on top of both.</figcaption>
+      <figcaption>Fig. 4 - Strategic intelligence stays with humans and organizational reasoning; procedural intelligence lives in skills; tactical intelligence is what the execution agent contributes on top of both.</figcaption>
     </div>
 
-    <p>This three-way split isn't new either. It echoes, in different language, the Mission Kernel principle from Monowire's own earlier design work — deterministic structure owns organizational state, AI reasons within it — and the broader multi-agent-orchestration convention of separating a coordinating layer from execution layers (seen in OrgAgent's hierarchy and in general orchestrator-driven multi-agent SWE patterns). The specific vocabulary of "strategic / procedural / tactical" doesn't appear to map exactly onto any one source found in this review, but the underlying separation-of-concerns idea clearly isn't original to this paper.</p>
+    <p>This three-way split isn't new either. It echoes, in different language, the Mission Kernel principle from Monowire's own earlier design work deterministic structure owns organizational state, AI reasons within it and the broader multi-agent-orchestration convention of separating a coordinating layer from execution layers (seen in OrgAgent's hierarchy and in general orchestrator-driven multi-agent SWE patterns). The specific vocabulary of "strategic / procedural / tactical" doesn't appear to map exactly onto any one source found in this review, but the underlying separation-of-concerns idea clearly isn't original to this paper.</p>
 
     <h2 id="relationship"><span class="num">11</span>Relationship to Existing Skill and Harness Systems</h2>
-    <p>To state it plainly: the mechanisms this paper proposes — execution graphs for skills, compiling procedural knowledge into a more structured and enforceable form, mandatory skill invocation — are each already demonstrated, working, and in some cases benchmarked, in systems published earlier in 2026. AIP uses the literal term "execution graph." SIGIL and AG-IR already separate model-owned reasoning from code-owned mechanism. Superpowers already enforces invocation in production coding agents. None of this originated here, and none of it should be attributed to Monowire.</p>
+    <p>To state it plainly: the mechanisms this paper proposes execution graphs for skills, compiling procedural knowledge into a more structured and enforceable form, mandatory skill invocation are each already demonstrated, working, and in some cases benchmarked, in systems published earlier in 2026. AIP uses the literal term "execution graph." SIGIL and AG-IR already separate model-owned reasoning from code-owned mechanism. Superpowers already enforces invocation in production coding agents. None of this originated here, and none of it should be attributed to Monowire.</p>
 
     <div class="timeline">
       <div class="timeline-track">
@@ -540,16 +541,16 @@
         <div class="t-item"><div class="t-date">Early–Mid 2026</div><div class="t-label">OrgAgent, Superpowers</div><div class="t-desc">Company-modeled agent hierarchies where a coordinating layer sets downstream execution config; mandatory runtime skill-invocation protocol for coding agents.</div></div>
         <div class="t-item"><div class="t-date">Jun–Jul 2026</div><div class="t-label">AIP, SIGIL / AG-IR, SkVM, SkillCompiler</div><div class="t-desc">A concentrated wave of work compiling individual prose skills into typed, graph-based, or otherwise structured and more reliably executable representations.</div></div>
       </div>
-      <figcaption>Fig. 5 — A rough timeline of the closest prior work. Skill compilation and execution-graph representations are a genuinely active area as of mid-2026, not a gap waiting to be filled from scratch.</figcaption>
+      <figcaption>Fig. 5 - A rough timeline of the closest prior work. Skill compilation and execution-graph representations are a genuinely active area as of mid-2026, not a gap waiting to be filled from scratch.</figcaption>
     </div>
 
     <h2 id="verdict"><span class="num">12</span>Is This Actually Novel?</h2>
     <div class="verdict">
       <div class="v-label">Key finding</div>
       <h3>Most of the mechanism is established. The scope of what gets graphed may not be.</h3>
-      <p>Execution graphs for skills, typed skill compilation, and mandatory skill enforcement are each independently established by mid-2026 — AIP, SIGIL/AG-IR, and Superpowers respectively. This paper does not originate any of those mechanisms, and Monowire should not be credited with inventing skill enforcement, skill compilation, or execution graphs as a concept.</p>
-      <p>What this review did not find is the specific combination the introduction described: organizational reasoning assigning skills to work <em>during documentation</em>, at the department level, before any single skill is compiled or invoked — producing a graph that spans a project's documentation across many skills and departments, rather than a graph internal to one skill's own steps. AIP compiles one skill into a graph of its internal steps; this proposal graphs which skills apply across a project's documentation, upstream of any of those skills being compiled at all.</p>
-      <p>That is a real, but narrow, potential contribution. It is a difference of scope and of when assignment happens, layered on top of mechanisms — graphs, typed compilation, enforcement — that this paper did not invent and that this review found substantial prior art for. Whether that scope difference produces any measurable benefit is exactly what Section 14 proposes to test, not something this paper claims to have shown.</p>
+      <p>Execution graphs for skills, typed skill compilation, and mandatory skill enforcement are each independently established by mid-2026  AIP, SIGIL/AG-IR, and Superpowers respectively. This paper does not originate any of those mechanisms, and Monowire should not be credited with inventing skill enforcement, skill compilation, or execution graphs as a concept.</p>
+      <p>What this review did not find is the specific combination the introduction described: organizational reasoning assigning skills to work <em>during documentation</em>, at the department level, before any single skill is compiled or invoked  producing a graph that spans a project's documentation across many skills and departments, rather than a graph internal to one skill's own steps. AIP compiles one skill into a graph of its internal steps; this proposal graphs which skills apply across a project's documentation, upstream of any of those skills being compiled at all.</p>
+      <p>That is a real, but narrow, potential contribution. It is a difference of scope and of when assignment happens, layered on top of mechanisms graphs, typed compilation, enforcement that this paper did not invent and that this review found substantial prior art for. Whether that scope difference produces any measurable benefit is exactly what Section 14 proposes to test, not something this paper claims to have shown.</p>
     </div>
 
     <h2 id="hypotheses"><span class="num">13</span>Hypotheses</h2>
@@ -558,19 +559,19 @@
       <li><strong>H1.</strong> Upstream skill assignment reduces the amount of procedural reasoning an execution agent must rediscover at runtime, relative to an agent that selects its own skills from a registry on every task.</li>
       <li><strong>H2.</strong> The same execution graph produces more consistent behavior across different underlying agent models than either no skill structure or runtime-only skill selection does.</li>
     </ul>
-    <p>Both are stated as hypotheses because they are currently untested. Section 12's finding — that the underlying mechanisms are largely established elsewhere — does not resolve either hypothesis; it just means the mechanisms needed to test them mostly already exist and don't need to be built from nothing.</p>
+    <p>Both are stated as hypotheses because they are currently untested. Section 12's finding that the underlying mechanisms are largely established elsewhere does not resolve either hypothesis; it just means the mechanisms needed to test them mostly already exist and don't need to be built from nothing.</p>
 
     <h2 id="evaluation"><span class="num">14</span>Proposed Evaluation</h2>
-    <p><strong>Proposed evaluation — no results yet.</strong> The following is an experimental design, not a completed study. No numbers below are real; none should be read as results.</p>
+    <p><strong>Proposed evaluation no results yet.</strong> The following is an experimental design, not a completed study. No numbers below are real; none should be read as results.</p>
     <div class="exp-conditions">
       <div class="exp-col">
-        <div class="exp-name">Condition A — Baseline</div>
+        <div class="exp-name">Condition A - Baseline</div>
         <div class="exp-step">Task</div>
         <div class="exp-step">Agent</div>
         <div class="exp-step">Implementation</div>
       </div>
       <div class="exp-col">
-        <div class="exp-name">Condition B — Runtime Skill Selection</div>
+        <div class="exp-name">Condition B - Runtime Skill Selection</div>
         <div class="exp-step">Task</div>
         <div class="exp-step">Agent</div>
         <div class="exp-step">Skill Registry</div>
@@ -578,7 +579,7 @@
         <div class="exp-step">Implementation</div>
       </div>
       <div class="exp-col">
-        <div class="exp-name">Condition C — SGEG</div>
+        <div class="exp-name">Condition C - SGEG</div>
         <div class="exp-step">Task</div>
         <div class="exp-step">Documentation</div>
         <div class="exp-step">Pre-assigned skills</div>
@@ -589,7 +590,7 @@
     </div>
     <p>Proposed metrics, none yet measured:</p>
     <ul class="metrics-list">
-      <li>Procedural compliance — required steps actually followed, per SIGIL's methodology of comparing agent behavior against a skill's own mandated steps</li>
+      <li>Procedural compliance required steps actually followed, per SIGIL's methodology of comparing agent behavior against a skill's own mandated steps</li>
       <li>Architectural consistency across repeated runs of the same task</li>
       <li>Constraint violations and rework required after initial implementation</li>
       <li>Task completion rate</li>
@@ -605,11 +606,11 @@
       <li><strong>Conflicting skills.</strong> Two departments referencing skills with contradictory guidance for overlapping work is a real failure mode this proposal doesn't yet resolve.</li>
       <li><strong>Over-constraining agents.</strong> Upstream assignment can remove flexibility a capable agent would have used well, especially on work that doesn't fit the anticipated shape.</li>
       <li><strong>Graph complexity and documentation maintenance.</strong> A graph is another artifact that has to be kept current; unmaintained, it becomes actively misleading rather than neutral.</li>
-      <li><strong>Skill-selection errors happen upstream now, not at the point of execution</strong> — which may make them harder to catch, since the person or agent doing the assigning is further from the actual implementation detail than the executor would be.</li>
+      <li><strong>Skill-selection errors happen upstream now, not at the point of execution</strong> which may make them harder to catch, since the person or agent doing the assigning is further from the actual implementation detail than the executor would be.</li>
       <li><strong>Context overhead.</strong> Carrying graph metadata and multiple assigned skills into every execution step has a real token cost that has to be weighed against any reliability gain.</li>
-      <li><strong>Agents can still ignore instructions.</strong> As the AI-SDLC protocol-language critique of MetaGPT-style systems points out, process encoded only as instructions — even upstream-assigned ones — is subject to drift unless paired with a genuinely separate enforcement mechanism, not just another layer of prose.</li>
+      <li><strong>Agents can still ignore instructions.</strong> As the AI-SDLC protocol-language critique of MetaGPT-style systems points out, process encoded only as instructions, even upstream-assigned ones, is subject to drift unless paired with a genuinely separate enforcement mechanism, not just another layer of prose.</li>
       <li><strong>False confidence created by documentation.</strong> A well-organized execution graph can look authoritative without actually being correct, which may make errors harder to question than an agent visibly improvising would be.</li>
-      <li><strong>Procedural compliance is hard to evaluate</strong> in the first place, independent of this proposal — SIGIL's own reported baseline compliance rate (56% of mandated steps followed from prose) suggests the underlying measurement problem is real and unresolved industry-wide, not specific to this design.</li>
+      <li><strong>Procedural compliance is hard to evaluate</strong> in the first place, independent of this proposal, SIGIL's own reported baseline compliance rate (56% of mandated steps followed from prose) suggests the underlying measurement problem is real and unresolved industry-wide, not specific to this design.</li>
       <li><strong>The central open question:</strong> does adding this structure actually improve outcomes, or does it simply relocate complexity from runtime reasoning to upstream documentation maintenance, without a net reduction? This paper does not know the answer. That is precisely what Section 14 is designed to find out.</li>
     </ul>
 
@@ -617,21 +618,21 @@
       <summary>A note on Coach and its relationship to this proposal</summary>
       <div class="expand-body">
         <p>Coach, discussed in Working Paper 002 of this Research section, is a knowledge-synthesis role that reads organizational documentation and compiles it into deterministic guidance for builder agents. It can be understood as one possible implementation of the broader pattern this paper describes: organizational knowledge → knowledge synthesis → skill assignment / compilation → skill registry → execution graph → builder agents.</p>
-        <p>Coach is not a novel AI architecture, and this paper's contribution — to the extent Section 12 supports calling it one — is the methodology, not Coach itself. If the methodology turns out not to hold up under the evaluation proposed in Section 14, that finding would apply to Coach's design too, not just to this paper's abstract claim.</p>
+        <p>Coach is not a novel AI architecture, and this paper's contribution, to the extent Section 12 supports calling it one is the methodology, not Coach itself. If the methodology turns out not to hold up under the evaluation proposed in Section 14, that finding would apply to Coach's design too, not just to this paper's abstract claim.</p>
       </div>
     </details>
 
     <h2 id="open"><span class="num">16</span>Open Questions</h2>
     <ul>
       <li>Is YAML frontmatter the right representation for skill-carrying documentation, or does a graph-native format closer to AIP's schema serve better once a project has enough nodes to matter?</li>
-      <li>What's the right unit of graph node — a single document, a department's whole knowledge base, something in between?</li>
+      <li>What's the right unit of graph node a single document, a department's whole knowledge base, something in between?</li>
       <li>Should skill assignment be revisited automatically as documentation changes, and if so, by what mechanism, without re-litigating Monowire's own Mission Kernel concerns about letting AI silently rewrite organizational state?</li>
       <li>A controlled skill registry (skill candidate → human or governance review → approved skill → registry) is proposed as a way to let the system learn recurring patterns over time without permitting uncontrolled self-modification. This extension is intentionally undeveloped here and left for future work rather than designed in depth.</li>
-      <li>How does this proposal's execution-graph scope interact with AIP if both were used together — a project-level graph of documentation, each node itself pointing at an AIP-compiled skill? That composition is untested and might be where the more interesting engineering actually is.</li>
+      <li>How does this proposal's execution-graph scope interact with AIP if both were used together a project-level graph of documentation, each node itself pointing at an AIP-compiled skill? That composition is untested and might be where the more interesting engineering actually is.</li>
     </ul>
 
     <h2 id="conclusion"><span class="num">17</span>Conclusion</h2>
-    <p>The honest version of this paper's contribution is smaller than its starting hypothesis. Execution graphs for skills, typed skill compilation, and mandatory enforcement are not new in mid-2026 — they're an active, competitive research area with working systems and reported benchmarks. What this paper investigates is narrower: whether graphing skill <em>assignment</em> across a project's organizational documentation, upstream of any individual skill being compiled or invoked, behaves differently from either no structure or runtime-only selection. That is a hypothesis with a proposed test attached to it, not a demonstrated result, and Section 15 lists real reasons it might not pan out.</p>
+    <p>The honest version of this paper's contribution is smaller than its starting hypothesis. Execution graphs for skills, typed skill compilation, and mandatory enforcement are not new in mid-2026 they're an active, competitive research area with working systems and reported benchmarks. What this paper investigates is narrower: whether graphing skill <em>assignment</em> across a project's organizational documentation, upstream of any individual skill being compiled or invoked, behaves differently from either no structure or runtime-only selection. That is a hypothesis with a proposed test attached to it, not a demonstrated result, and Section 15 lists real reasons it might not pan out.</p>
     <p class="pull-quote">The strongest version of this work is one that survives an honest attempt to disprove it. This paper is the hypothesis and the test design, not the proof.</p>
 
     <h2 id="references"><span class="num">—</span>References</h2>
@@ -640,12 +641,12 @@
       <li><a href="https://github.com/bmad-code-org/BMAD-METHOD" target="_blank" rel="noopener">BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development. GitHub, bmad-code-org.</a><span class="ref-note">Planning documents sharded into execution-ready story files for implementation agents.</span></li>
       <li><a href="https://arxiv.org/html/2604.01020v1" target="_blank" rel="noopener">"OrgAgent: Organize Your Multi-Agent System like a Company." arXiv:2604.01020, 2026.</a><span class="ref-note">Hierarchical, company-modeled agent system where a coordinating layer sets execution configuration for downstream layers.</span></li>
       <li><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra. "Superpowers: An Agentic Skills Framework &amp; Software Development Methodology." GitHub, 2026.</a><span class="ref-note">Mandatory skill-first invocation protocol for coding agents, in production use.</span></li>
-      <li><a href="https://arxiv.org/abs/2606.04781" target="_blank" rel="noopener">Blumenfeld, Z. and Webber, J. "AIP: A Graph Representation for Learning and Governing Agent Skills." arXiv:2606.04781, 2026.</a><span class="ref-note">The closest prior art — models a single skill as a directed execution graph with typed I/O edges and a schema-validated specification.</span></li>
+      <li><a href="https://arxiv.org/abs/2606.04781" target="_blank" rel="noopener">Blumenfeld, Z. and Webber, J. "AIP: A Graph Representation for Learning and Governing Agent Skills." arXiv:2606.04781, 2026.</a><span class="ref-note">The closest prior art models a single skill as a directed execution graph with typed I/O edges and a schema-validated specification.</span></li>
       <li><a href="https://arxiv.org/abs/2607.27309" target="_blank" rel="noopener">Dantanarayana, J. L. et al. "SIGIL: Compiling Agent Skills into Typed Harnesses." arXiv:2607.27309, 2026.</a><span class="ref-note">AG-IR, a typed intermediate representation compiling one prose skill into an executable, model-independent harness.</span></li>
       <li><a href="https://arxiv.org/html/2605.15215v1" target="_blank" rel="noopener">"SkillSmith: Compiling Agent Skills into Boundary-Guided Runtime Interfaces." arXiv:2605.15215, 2026.</a><span class="ref-note">Skill compilation into typed runtime interfaces, benchmarked against a separate skill virtual machine (SkVM).</span></li>
       <li><a href="https://www.emergentmind.com/topics/agent-skills" target="_blank" rel="noopener">"Agent Skills in LLM Systems." Emergent Mind, 2026.</a><span class="ref-note">Survey covering skill representation, acquisition, and the execution-graph framing of AIP specifically.</span></li>
       <li><a href="https://arxiv.org/abs/2606.20615" target="_blank" rel="noopener">Prifti, Y. "Specifying AI-SDLC Processes: A Protocol Language for Human-Agent Boundaries." arXiv:2606.20615, 2026.</a><span class="ref-note">Formal critique of prompt-encoded process (including MetaGPT-style SOPs) as subject to drift without separate enforcement.</span></li>
-      <li><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic. "Agent Skills" — Claude Platform Docs.</a><span class="ref-note">The open, filesystem-native prose skill format that this line of work compiles from.</span></li>
+      <li><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic. "Agent Skills" Claude Platform Docs.</a><span class="ref-note">The open, filesystem-native prose skill format that this line of work compiles from.</span></li>
     </ol>
 
     <div class="cite-block">

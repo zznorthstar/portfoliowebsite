@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monowire by Samiel: Research Map — Hamdi Bouzidi</title>
-<meta name="description" content="A working classification of every Monowire by Samiel architectural mechanism against the existing literature — which are already well established, which show a narrow potential difference, and which are worth a full working paper.">
+<title>Monowire by Samiel: Research Map Hamdi Bouzidi</title>
+<meta name="description" content="A working classification of every Monowire by Samiel architectural mechanism against the existing literature , which are already well established, which show a narrow potential difference, and which are worth a full working paper.">
 <link rel="canonical" href="https://hamdibouzidi.com/research-monowire-map.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Monowire by Samiel: Research Map">
@@ -238,7 +239,7 @@
   <div class="provenance">
     <div class="p-row">
       <div class="p-label">Research status</div>
-      <div class="p-text">Independent research note / working document. Not peer reviewed. This is a living index, not a completed study — its classifications will be revised as individual topics get deeper review.</div>
+      <div class="p-text">Independent research note / working document. Not peer reviewed. This is a living index, not a completed study , its classifications will be revised as individual topics get deeper review.</div>
     </div>
     <div class="p-row">
       <div class="p-label">Provenance</div>
@@ -252,21 +253,21 @@
 
   <article>
 
-    <p class="lede">Monowire is not one architectural claim. It's a collection of them — a conversational front-end, a hidden reasoning layer, a deterministic governance layer, a communication substrate, department specialization, an event-to-narrative system, a skill-execution graph, and a proposed learning loop. Bundling all of that into one paper would make every individual claim weaker and harder to check. This page does the opposite: it takes each mechanism separately, asks what the field already knows about it, and only recommends a full paper where there's an actual open question left.</p>
+    <p class="lede">Monowire is not one architectural claim. It's a collection of them , a conversational front-end, a hidden reasoning layer, a deterministic governance layer, a communication substrate, department specialization, an event-to-narrative system, a skill-execution graph, and a proposed learning loop. Bundling all of that into one paper would make every individual claim weaker and harder to check. This page does the opposite: it takes each mechanism separately, asks what the field already knows about it, and only recommends a full paper where there's an actual open question left.</p>
 
-    <p>The question this map asks, for every row, is deliberately not "is Monowire unique." It's: <em>which individual mechanism represents a genuinely interesting engineering hypothesis, and what evidence exists for or against it?</em> Most rows below turn out to be well-established patterns with a working name already in the 2026 literature. That's a good outcome, not a disappointing one — it means those pieces of Monowire don't need defending, they need citing.</p>
+    <p>The question this map asks, for every row, is deliberately not "is Monowire unique." It's: <em>which individual mechanism represents a genuinely interesting engineering hypothesis, and what evidence exists for or against it?</em> Most rows below turn out to be well-established patterns with a working name already in the 2026 literature. That's a good outcome, not a disappointing one , it means those pieces of Monowire don't need defending, they need citing.</p>
 
     <h2><span class="num">01</span>A Note on Scope: Topology vs. Transport</h2>
-    <p>One distinction governs several rows below and is worth stating up front. Communication protocols — MCP, ACP, A2A, Streamable HTTP, JSON-RPC notifications — are infrastructure choices, not architecture. They are also, as of mid-2026, thoroughly solved: the Agent Client Protocol already supports bidirectional JSON-RPC requests, real-time streaming notifications, and multiple concurrent sessions per connection, and MCP and A2A cover the adjacent tool-access and agent-to-agent legs of the same problem. None of that is Monowire's to claim.</p>
-    <p>What's left as an actual research question, once the transport layer is set aside, is Monowire's <strong>organizational topology</strong>: the separation between a human-facing conversational layer, a hidden reasoning layer, a deterministic governance layer, specialized departments, and a skill-governed execution graph — and whether that specific arrangement produces a measurable difference in outcome, independent of which protocol happens to carry the messages between them. Every row below that concerns "how components talk to each other" is marked Reject or Merge for exactly this reason; every row that concerns "who is responsible for what, and in what order" is treated as a live question.</p>
+    <p>One distinction governs several rows below and is worth stating up front. Communication protocols , MCP, ACP, A2A, Streamable HTTP, JSON-RPC notifications , are infrastructure choices, not architecture. They are also, as of mid-2026, thoroughly solved: the Agent Client Protocol already supports bidirectional JSON-RPC requests, real-time streaming notifications, and multiple concurrent sessions per connection, and MCP and A2A cover the adjacent tool-access and agent-to-agent legs of the same problem. None of that is Monowire's to claim.</p>
+    <p>What's left as an actual research question, once the transport layer is set aside, is Monowire's <strong>organizational topology</strong>: the separation between a human-facing conversational layer, a hidden reasoning layer, a deterministic governance layer, specialized departments, and a skill-governed execution graph , and whether that specific arrangement produces a measurable difference in outcome, independent of which protocol happens to carry the messages between them. Every row below that concerns "how components talk to each other" is marked Reject or Merge for exactly this reason; every row that concerns "who is responsible for what, and in what order" is treated as a live question.</p>
 
     <h2><span class="num">02</span>The Research Map</h2>
     <div class="legend">
       <span><span class="dot" style="background:var(--lemon);"></span> Investigate</span>
-      <span><span class="dot" style="background:var(--lemon); box-shadow:0 0 6px var(--lemon);"></span> Investigate — priority</span>
+      <span><span class="dot" style="background:var(--lemon); box-shadow:0 0 6px var(--lemon);"></span> Investigate , priority</span>
       <span><span class="dot" style="background:var(--turquoise);"></span> Merge into another topic</span>
       <span><span class="dot" style="background:var(--text-faint);"></span> Reject as standalone</span>
-      <span><span class="dot" style="background:var(--lime);"></span> Complete — already published</span>
+      <span><span class="dot" style="background:var(--lime);"></span> Complete , already published</span>
     </div>
 
     <div class="map-table">
@@ -277,17 +278,17 @@
         <tbody>
           <tr>
             <td class="topic">Main Chat → Hidden Architect → Departments</td>
-            <td class="prior">Supervisor-worker / orchestrator-worker hierarchical multi-agent pattern — the dominant production topology in 2026 (~70% of deployments in one industry survey).</td>
-            <td class="diff">Standard supervisor-worker usually has the user talk directly to the supervisor. Monowire adds a distinct conversational layer in front of it, whose entire job is human rapport, not task decomposition — an orchestrator deliberately not exposed to the user.</td>
+            <td class="prior">Supervisor-worker / orchestrator-worker hierarchical multi-agent pattern , the dominant production topology in 2026 (~70% of deployments in one industry survey).</td>
+            <td class="diff">Standard supervisor-worker usually has the user talk directly to the supervisor. Monowire adds a distinct conversational layer in front of it, whose entire job is human rapport, not task decomposition , an orchestrator deliberately not exposed to the user.</td>
             <td><span class="worthy-narrow">Narrow</span></td>
             <td><span class="status-chip investigate">Investigate</span></td>
           </tr>
           <tr>
             <td class="topic">Deterministic governance / Mechanical Layer</td>
-            <td class="prior">"Deterministic AI architecture" — state machines and hard-coded checkpoints wrapping probabilistic agents to prevent hallucinated or contradictory state — is a mainstream, well-documented 2026 industry pattern, including dedicated governance toolkits built around exactly this problem.</td>
+            <td class="prior">"Deterministic AI architecture" , state machines and hard-coded checkpoints wrapping probabilistic agents to prevent hallucinated or contradictory state , is a mainstream, well-documented 2026 industry pattern, including dedicated governance toolkits built around exactly this problem.</td>
             <td class="diff">None identified. Monowire's delegation ledger / ADR-conflict check is a specific instance of an already-named pattern, not a new mechanism.</td>
             <td><span class="worthy-no">Applied case study only</span></td>
-            <td><span class="status-chip reject">Established — document, don't claim</span></td>
+            <td><span class="status-chip reject">Established , document, don't claim</span></td>
           </tr>
           <tr>
             <td class="topic">Agent communication substrate (MCP / ACP / A2A / Streamable HTTP)</td>
@@ -301,7 +302,7 @@
             <td class="prior">ACP / A2A / MCP already define typed message envelopes; A2A Agent Cards already carry capability and session metadata.</td>
             <td class="diff">Monowire's proposed fields (mission_id, department, skill_requirements, decision_id) are domain-specific instances of an already-standard pattern.</td>
             <td><span class="worthy-no">No</span></td>
-            <td><span class="status-chip merge">Merge — implementation detail only</span></td>
+            <td><span class="status-chip merge">Merge , implementation detail only</span></td>
           </tr>
           <tr>
             <td class="topic">Notifications vs. responses / task lifecycle events</td>
@@ -312,17 +313,17 @@
           </tr>
           <tr>
             <td class="topic">Human ↔ machine semantic divergence detection</td>
-            <td class="prior">Adjacent fields exist — requirements traceability, agent audit-trail intent reconstruction — but a dedicated line of research on detecting real-time mismatches between a human's stated understanding and a multi-agent system's actual internal state wasn't found in this review.</td>
+            <td class="prior">Adjacent fields exist , requirements traceability, agent audit-trail intent reconstruction , but a dedicated line of research on detecting real-time mismatches between a human's stated understanding and a multi-agent system's actual internal state wasn't found in this review.</td>
             <td class="diff">Potentially the most distinct idea on this page, precisely because it wasn't clearly located elsewhere. Needs a deeper, dedicated search before that claim is trusted.</td>
             <td><span class="worthy-yes">Yes</span></td>
-            <td><span class="status-chip priority">Review complete — gap identified</span></td>
+            <td><span class="status-chip priority">Review complete , gap identified</span></td>
           </tr>
           <tr>
             <td class="topic">Follow the Thread (event stream → human narrative)</td>
             <td class="prior">Process-mining-to-narrative work exists (event logs transformed into LLM-generated "stories" of process state); LLM audit-trail and observability tooling is a dense, mature, compliance-oriented field.</td>
-            <td class="diff">Purpose, not mechanism. Audit trails answer "what happened and who's accountable." Follow the Thread is framed around reconstructing how understanding evolved, for the human's own benefit on return — a real but narrow distinction; the underlying mechanism (events → LLM narrative) is not new.</td>
+            <td class="diff">Purpose, not mechanism. Audit trails answer "what happened and who's accountable." Follow the Thread is framed around reconstructing how understanding evolved, for the human's own benefit on return , a real but narrow distinction; the underlying mechanism (events → LLM narrative) is not new.</td>
             <td><span class="worthy-narrow">Narrow</span></td>
-            <td><span class="status-chip investigate">Investigate — narrow framing only</span></td>
+            <td><span class="status-chip investigate">Investigate , narrow framing only</span></td>
           </tr>
           <tr>
             <td class="topic">Follow the Thread vs. conventional agent memory</td>
@@ -333,31 +334,31 @@
           </tr>
           <tr>
             <td class="topic">Organizational learning through persistent skills</td>
-            <td class="prior">Extremely dense and active in 2026 — automatic skill generation and refinement from agent experience and interaction traces is a named "generate-store-reuse" pattern with multiple published systems and at least one dedicated benchmark.</td>
+            <td class="prior">Extremely dense and active in 2026 , automatic skill generation and refinement from agent experience and interaction traces is a named "generate-store-reuse" pattern with multiple published systems and at least one dedicated benchmark.</td>
             <td class="diff">None clearly identified. The human-governance-gate detail (candidate → review → registry) already appears in the skill-permissions literature reviewed for Working Paper 003.</td>
             <td><span class="worthy-no">Not as a standalone paper</span></td>
-            <td><span class="status-chip reject">Reject — note briefly inside Working Paper 003 instead</span></td>
+            <td><span class="status-chip reject">Reject , note briefly inside Working Paper 003 instead</span></td>
           </tr>
           <tr>
             <td class="topic">Agent-agnostic organizational infrastructure</td>
-            <td class="prior">Exactly what ACP, MCP, and A2A already pursue at the protocol level — any editor to any agent, any agent to any tool, any agent to any agent.</td>
-            <td class="diff">The live question isn't "should the protocol be agent-agnostic" — that's already answered. It's "what organizational value remains once the protocol layer is fully commoditized," which is really the topology question from row one.</td>
+            <td class="prior">Exactly what ACP, MCP, and A2A already pursue at the protocol level , any editor to any agent, any agent to any tool, any agent to any agent.</td>
+            <td class="diff">The live question isn't "should the protocol be agent-agnostic" , that's already answered. It's "what organizational value remains once the protocol layer is fully commoditized," which is really the topology question from row one.</td>
             <td><span class="worthy-no">Not separately</span></td>
             <td><span class="status-chip merge">Merge with Main Chat → Architect → Departments</span></td>
           </tr>
           <tr>
             <td class="topic">Documentation as an intermediate representation</td>
-            <td class="prior">MetaGPT, BMAD, spec-driven development, Anthropic Agent Skills — reviewed in full.</td>
+            <td class="prior">MetaGPT, BMAD, spec-driven development, Anthropic Agent Skills , reviewed in full.</td>
             <td class="diff">A narrow synthesis: documentation as long-lived organizational memory, compiled into a reusable skill format. Published with that verdict stated directly.</td>
             <td><span class="worthy-narrow">Narrow, published</span></td>
-            <td><span class="status-chip complete">Complete — Working Paper 002</span></td>
+            <td><span class="status-chip complete">Complete , Working Paper 002</span></td>
           </tr>
           <tr>
             <td class="topic">Skill-governed execution graphs</td>
-            <td class="prior">AIP, SIGIL/AG-IR, SkVM, Superpowers, OrgAgent — reviewed in full.</td>
+            <td class="prior">AIP, SIGIL/AG-IR, SkVM, Superpowers, OrgAgent , reviewed in full.</td>
             <td class="diff">Scope: graphing skill assignment across a project's documentation, upstream of any single skill's compilation, rather than inside one skill's own steps. Published with that verdict stated directly.</td>
             <td><span class="worthy-narrow">Narrow, published</span></td>
-            <td><span class="status-chip complete">Complete — Working Paper 003</span></td>
+            <td><span class="status-chip complete">Complete , Working Paper 003</span></td>
           </tr>
         </tbody>
       </table>
@@ -368,12 +369,12 @@
     <div class="track-list">
       <div class="track-item">
         <div class="track-title">Monowire: Conversational Human-to-Agent Organizational Architecture</div>
-        <div class="track-status">Queued — main-chat/architect/department topology, folded together with the agent-agnostic-infrastructure question</div>
-        <p>The candidate hypothesis: separating a human-facing conversational layer from a hidden orchestrating layer, on top of an otherwise standard supervisor-worker topology, produces a measurable difference in either human cognitive overhead or downstream reasoning quality — independent of which transport protocol carries the messages.</p>
+        <div class="track-status">Queued , main-chat/architect/department topology, folded together with the agent-agnostic-infrastructure question</div>
+        <p>The candidate hypothesis: separating a human-facing conversational layer from a hidden orchestrating layer, on top of an otherwise standard supervisor-worker topology, produces a measurable difference in either human cognitive overhead or downstream reasoning quality , independent of which transport protocol carries the messages.</p>
       </div>
       <div class="track-item">
         <div class="track-title">Monowire: Human-Machine Semantic Divergence Detection</div>
-        <div class="track-status">High-priority research hypothesis — prior-art review complete, <a href="research-monowire-semantic-divergence.html">read the review</a>. Gap identified; hypothesis and falsification test defined; experiment not yet run. Not a claimed Monowire capability.</div>
+        <div class="track-status">High-priority research hypothesis , prior-art review complete, <a href="research-monowire-semantic-divergence.html">read the review</a>. Gap identified; hypothesis and falsification test defined; experiment not yet run. Not a claimed Monowire capability.</div>
         <p>The candidate hypothesis: a system observing both a human's stated understanding and a multi-agent system's actual internal state could detect semantic mismatches between the two earlier than either side would independently notice. Unverified.</p>
       </div>
     </div>
@@ -381,29 +382,29 @@
     <div class="track-list">
       <div class="track-item">
         <div class="track-title">Monowire: Follow the Thread and Project Continuity</div>
-        <div class="track-status">Queued — narrow framing only (continuity vs. compliance), not the underlying event-to-narrative mechanism</div>
+        <div class="track-status">Queued , narrow framing only (continuity vs. compliance), not the underlying event-to-narrative mechanism</div>
         <p>The mechanism (events → LLM-generated narrative) is not new. What may be worth a short paper is narrower: whether narrative reconstructed for the purpose of restoring a human's own mental model differs, in what it needs to include, from narrative reconstructed for audit or compliance purposes.</p>
       </div>
     </div>
     <p>Three topics are not being promoted to their own papers, based on this review:</p>
     <ul>
-      <li><strong>Deterministic governance layer</strong> — established industry pattern; worth a short applied section inside whichever topology paper needs it, not a standalone novelty claim.</li>
-      <li><strong>Organizational learning through persistent skills</strong> — collapses into an already dense 2026 literature; a brief note inside Working Paper 003's skill-registry section covers it more honestly than a dedicated paper would.</li>
-      <li><strong>Communication substrate, structured messages, notification semantics</strong> — infrastructure, not architecture, per the scope note in Section 1. These get mentioned as implementation detail wherever a paper actually needs them, and nowhere else.</li>
+      <li><strong>Deterministic governance layer</strong> , established industry pattern; worth a short applied section inside whichever topology paper needs it, not a standalone novelty claim.</li>
+      <li><strong>Organizational learning through persistent skills</strong> , collapses into an already dense 2026 literature; a brief note inside Working Paper 003's skill-registry section covers it more honestly than a dedicated paper would.</li>
+      <li><strong>Communication substrate, structured messages, notification semantics</strong> , infrastructure, not architecture, per the scope note in Section 1. These get mentioned as implementation detail wherever a paper actually needs them, and nowhere else.</li>
     </ul>
 
     <details class="expand">
       <summary>Why reject topics instead of writing a paper anyway</summary>
       <div class="expand-body">
-        <p>A paper can always be written about something well established — that's just a survey. The reason to not write one here is narrower: the stated goal of this research track is to find out which parts of Monowire are worth another engineer's attention, not to produce a fixed quota of papers. Writing a paper that concludes "this is a standard pattern, already well documented elsewhere" for every topic would dilute the two or three findings on this page that are actually worth someone's time to read.</p>
-        <p>Rejected topics aren't discarded — they're documented here, with their prior art, so the classification itself is checkable and revisable later if new evidence changes the picture.</p>
+        <p>A paper can always be written about something well established , that's just a survey. The reason to not write one here is narrower: the stated goal of this research track is to find out which parts of Monowire are worth another engineer's attention, not to produce a fixed quota of papers. Writing a paper that concludes "this is a standard pattern, already well documented elsewhere" for every topic would dilute the two or three findings on this page that are actually worth someone's time to read.</p>
+        <p>Rejected topics aren't discarded , they're documented here, with their prior art, so the classification itself is checkable and revisable later if new evidence changes the picture.</p>
       </div>
     </details>
 
     <h2><span class="num">04</span>The Learning Loop This Map Is Part Of</h2>
     <p>The longer-term intent behind this map is that Monowire's own architecture should be revisable by what these papers find, not just described by them:</p>
     <p style="font-family:var(--mono); font-size:0.84rem; color:var(--text-muted); line-height:2;">Monowire Architecture → Research Hypothesis → Prior Art Review → Formal Model → Experiment → Results → Adopt / Reject / Refine → Monowire Architecture</p>
-    <p>If a future experiment disproves one of the assumptions behind a row on this map, the corresponding piece of Monowire's design should change, not the other way around. That loop hasn't been closed yet for any row here — every "Investigate" status above is a hypothesis with a proposed next step, not a result.</p>
+    <p>If a future experiment disproves one of the assumptions behind a row on this map, the corresponding piece of Monowire's design should change, not the other way around. That loop hasn't been closed yet for any row here , every "Investigate" status above is a hypothesis with a proposed next step, not a result.</p>
 
     <p class="pull-quote">The objective was never "prove Monowire invented this." It's "here is a specific problem, here is what the field already knows, here is what Monowire proposes differently, and here is whether that difference seems worth testing."</p>
 
@@ -412,7 +413,7 @@
       <li><a href="https://decodethefuture.org/en/multi-agent-systems-explained/" target="_blank" rel="noopener">"Multi-Agent Systems Explained: 2026 Patterns." decodethefuture, 2026.</a><span class="ref-note">Supervisor/hierarchical and orchestrator-worker topologies as the dominant production patterns in 2026.</span></li>
       <li><a href="https://konghq.com/blog/engineering/deterministic-ai-architecture-enterprise-reliability" target="_blank" rel="noopener">"Deterministic AI Architecture: 5 Layers for Reliability." Kong Inc., 2026.</a><span class="ref-note">State-machine and deterministic-checkpoint wrapping of probabilistic agents, as an established enterprise pattern.</span></li>
       <li><a href="https://agentclientprotocol.com/overview/architecture" target="_blank" rel="noopener">"Architecture." Agent Client Protocol documentation.</a><span class="ref-note">Confirms bidirectional JSON-RPC requests, streaming notifications, and concurrent sessions per connection.</span></li>
-      <li><a href="https://arxiv.org/pdf/2512.19841" target="_blank" rel="noopener">"A Multi-Agent Retrieval-Augmented Framework for Work-in-Progress Prediction." arXiv, 2026.</a><span class="ref-note">Transforms structured event logs into human-readable narrative "stories" — the closest mechanism found to Follow the Thread.</span></li>
+      <li><a href="https://arxiv.org/pdf/2512.19841" target="_blank" rel="noopener">"A Multi-Agent Retrieval-Augmented Framework for Work-in-Progress Prediction." arXiv, 2026.</a><span class="ref-note">Transforms structured event logs into human-readable narrative "stories" , the closest mechanism found to Follow the Thread.</span></li>
       <li><a href="https://arxiv.org/html/2604.20087v1" target="_blank" rel="noopener">"SkillLearnBench: Benchmarking Continual Learning Methods for Agent Skill Generation." arXiv:2604.20087, 2026.</a><span class="ref-note">Dedicated benchmark for automatic skill generation from agent experience, confirming this is a dense, active area.</span></li>
       <li><a href="https://arxiv.org/html/2604.01020v1" target="_blank" rel="noopener">"OrgAgent: Organize Your Multi-Agent System like a Company." arXiv:2604.01020, 2026.</a><span class="ref-note">Hierarchical, company-modeled agent layers where a top layer determines downstream execution configuration.</span></li>
     </ol>

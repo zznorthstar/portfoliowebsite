@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magic Backend — Skills.md — Hamdi Bouzidi</title>
-<meta name="description" content="Magic Backend is an experimental Claude Skill for backend architecture and systems design — architectural reasoning, trade-offs, failure modes, and implementation guidance, not a technology encyclopedia.">
+<title>Magic Backend Skills.md Hamdi Bouzidi</title>
+<meta name="description" content="Magic Backend is an experimental Claude Skill for backend architecture and systems design architectural reasoning, trade-offs, failure modes, and implementation guidance, not a technology encyclopedia.">
 <link rel="canonical" href="https://hamdibouzidi.com/skills-magic-backend.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Magic Backend — Skills.md">
+<meta property="og:title" content="Magic Backend Skills.md">
 <meta property="og:description" content="An experimental Claude Skill for backend architecture: discovery before design, explicit assumptions, and the simplest architecture that satisfies the real requirements.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -168,7 +169,7 @@
     <h1>Magic Backend</h1>
     <span class="badge">Experimental</span>
   </div>
-  <p class="dek">A backend architecture and systems-design skill focused on architectural reasoning — trade-offs, failure modes, and implementation guidance — not a technology encyclopedia.</p>
+  <p class="dek">A backend architecture and systems-design skill focused on architectural reasoning, trade-offs, failure modes, and implementation guidance.</p>
   <div class="tag-row">
     <span class="tag">Backend</span>
     <span class="tag">Architecture</span>
@@ -202,20 +203,20 @@
     <ul>
       <li>Designing a new backend service or API from a set of requirements, however vague they start out.</li>
       <li>Reviewing an existing backend architecture for unnecessary complexity, missing failure handling, or scalability risk.</li>
-      <li>Planning a migration from one architecture to another — monolith to services, sync to async, single-region to multi-region.</li>
+      <li>Planning a migration from one architecture to another monolith to services, sync to async, single-region to multi-region.</li>
       <li>Deciding between competing approaches: modular monolith vs. microservices, REST vs. GraphQL vs. gRPC, synchronous vs. event-driven.</li>
     </ul>
-    <p>It is not the right tool for a code-level bug fix, a small script with no architectural surface, database schema internals, cloud infrastructure provisioning, a formal security audit, or performance profiling of an already-running system — see Boundaries below.</p>
+    <p>It is not the right tool for a code-level bug fix, a small script with no architectural surface, database schema internals, cloud infrastructure provisioning, a formal security audit, or performance profiling of an already-running system see Boundaries below.</p>
 
     <h2>How It Behaves</h2>
     <p>Every substantial request runs through the same discipline before any diagram or component list appears:</p>
     <ul>
-      <li><strong>Discovery first.</strong> It gathers requirements, constraints, scale, data ownership, security, and operational capacity before proposing structure — not after.</li>
+      <li><strong>Discovery first.</strong> It gathers requirements, constraints, scale, data ownership, security, and operational capacity before proposing structure, not after.</li>
       <li><strong>Asks before inventing.</strong> If a missing detail would materially change the architecture, it asks a short, targeted question instead of quietly assuming an answer. Low-impact gaps get a stated assumption instead of a question.</li>
       <li><strong>States assumptions and unknowns explicitly.</strong> Every architecture it produces separates what's Known, what's Assumed, what's Unknown, and which unknowns are architecture-sensitive.</li>
       <li><strong>Runs a complexity budget.</strong> Microservices, Kafka, service meshes, CQRS, and similar heavyweight components each need a stated justification, a simpler alternative that was considered, and why that alternative was rejected.</li>
       <li><strong>Thinks through failure, concretely.</strong> For real dependencies in the actual design, not as an abstract checklist: what fails, how it's detected, what the user sees, and how the system recovers.</li>
-      <li><strong>Validates its own output.</strong> Before presenting an API spec, schema sketch, or diagram, it checks the artifact against itself — naming consistency, logical connections, whether referenced components actually exist in the design.</li>
+      <li><strong>Validates its own output.</strong> Before presenting an API spec, schema sketch, or diagram, it checks the artifact against itself naming consistency, logical connections, whether referenced components actually exist in the design.</li>
     </ul>
 
     <h2>Modes</h2>
@@ -226,23 +227,23 @@
       </div>
       <div class="mode-card">
         <div class="mode-name">Review Mode</div>
-        <p>An architecture already exists. Understands it as built, identifies weaknesses, unnecessary complexity, and risk, and recommends improvements ranked by impact — does not default to a full redesign.</p>
+        <p>An architecture already exists. Understands it as built, identifies weaknesses, unnecessary complexity, and risk, and recommends improvements ranked by impact, does not default to a full redesign.</p>
       </div>
       <div class="mode-card">
         <div class="mode-name">Migration Mode</div>
-        <p>Moving from a current architecture to a target one. Plans staged migration with a working system at every intermediate step, a real rollback path, and validation criteria — avoids a big-bang cutover unless there's a specific reason one is required.</p>
+        <p>Moving from a current architecture to a target one. Plans staged migration with a working system at every intermediate step, a real rollback path, and validation criteria, avoids a big-bang cutover unless there's a specific reason one is required.</p>
       </div>
     </div>
 
     <h2>Examples</h2>
     <div class="example-list">
-      <div class="example-item"><span class="ex-n">01 — Vague idea</span><p>"I need a backend for a marketplace app" triggers discovery questions about volume, payment ownership, and real-time scope before any diagram, not after.</p></div>
-      <div class="example-item"><span class="ex-n">02 — Monolith vs. microservices</span><p>A three-person team building a new SaaS product gets a modular monolith recommendation, with the specific condition under which that recommendation would flip.</p></div>
-      <div class="example-item"><span class="ex-n">03 — REST vs. GraphQL vs. gRPC</span><p>An over-fetching mobile API problem gets a BFF-layer recommendation over a full GraphQL migration, unless the team already has GraphQL experience.</p></div>
-      <div class="example-item"><span class="ex-n">04 — Reviewing an existing system</span><p>Twelve microservices maintained by two engineers surfaces the team-size-to-complexity mismatch as the primary risk, ahead of any single service's internals.</p></div>
-      <div class="example-item"><span class="ex-n">05 — Failing third-party dependency</span><p>A synchronous payment integration gets timeout, retry with backoff, a circuit breaker, an idempotency key, and an explicit user-visible pending state.</p></div>
-      <div class="example-item"><span class="ex-n">06 — Monolith-to-distributed migration</span><p>Defaults to a Strangler Fig approach with data ownership transfer called out as the highest-risk, independently validated step.</p></div>
-      <div class="example-item"><span class="ex-n">07 — Insufficient information</span><p>"Design for massive scale" gets a clarifying question about what "massive" actually means here, rather than a guessed number driving the whole design.</p></div>
+      <div class="example-item"><span class="ex-n">01 - Vague idea</span><p>"I need a backend for a marketplace app" triggers discovery questions about volume, payment ownership, and real-time scope before any diagram, not after.</p></div>
+      <div class="example-item"><span class="ex-n">02 - Monolith vs. microservices</span><p>A three-person team building a new SaaS product gets a modular monolith recommendation, with the specific condition under which that recommendation would flip.</p></div>
+      <div class="example-item"><span class="ex-n">03 - REST vs. GraphQL vs. gRPC</span><p>An over-fetching mobile API problem gets a BFF-layer recommendation over a full GraphQL migration, unless the team already has GraphQL experience.</p></div>
+      <div class="example-item"><span class="ex-n">04 - Reviewing an existing system</span><p>Twelve microservices maintained by two engineers surfaces the team-size-to-complexity mismatch as the primary risk, ahead of any single service's internals.</p></div>
+      <div class="example-item"><span class="ex-n">05 - Failing third-party dependency</span><p>A synchronous payment integration gets timeout, retry with backoff, a circuit breaker, an idempotency key, and an explicit user-visible pending state.</p></div>
+      <div class="example-item"><span class="ex-n">06 - Monolith-to-distributed migration</span><p>Defaults to a Strangler Fig approach with data ownership transfer called out as the highest-risk, independently validated step.</p></div>
+      <div class="example-item"><span class="ex-n">07 - Insufficient information</span><p>"Design for massive scale" gets a clarifying question about what "massive" actually means here, rather than a guessed number driving the whole design.</p></div>
     </div>
 
     <h2>Boundaries</h2>
@@ -256,16 +257,16 @@
 
     <h2>Limitations</h2>
     <ul>
-      <li>Independently developed and not yet tested extensively across real-world projects — treated here as an experimental first pass, not a validated or production-proven system.</li>
+      <li>Independently developed and not yet tested extensively across real-world projects treated here as an experimental first pass, not a validated or production-proven system.</li>
       <li>Judgment quality depends on the quality of the discovery answers it's given; vague or incomplete answers produce a design with correspondingly wide unknowns.</li>
-      <li>Security and performance content is architectural, not a substitute for a formal audit or a profiling engagement — see Boundaries.</li>
+      <li>Security and performance content is architectural, not a substitute for a formal audit or a profiling engagement see Boundaries.</li>
       <li>Cost guidance identifies drivers and direction, not verified dollar figures.</li>
     </ul>
 
     <h2>Related Skills</h2>
     <div class="related">
-      <a href="skills-claude-coach.html">Claude Coach — knowledge synthesis from organizational documentation</a>
-      <a href="skills.html">More skills coming out of active research — see Skills.md</a>
+      <a href="skills-claude-coach.html">Claude Coach knowledge synthesis from organizational documentation</a>
+      <a href="skills.html">More skills coming out of active research see Skills.md</a>
     </div>
   </article>
 
@@ -289,7 +290,7 @@ metadata:
 ## Identity
 
 You are an experienced backend architect. Experienced architects are not
-distinguished by how much technology they know — they are distinguished by
+distinguished by how much technology they know they are distinguished by
 how they decide. They ask what needs to be true before committing to a
 structure. They know the simplest thing that could work, and they can
 explain, in plain terms, why they didn't choose the more interesting option.
@@ -310,13 +311,13 @@ catalog every backend technology that exists.
 - The task is a code-level bug fix with no architectural surface.
 - The work is a small script with no service boundary to reason about.
 - The request is really about database schema design, indexing, or query
-  optimization — hand off to a database-architect skill.
-- The request is about cloud infrastructure provisioning or networking —
+  optimization hand off to a database-architect skill.
+- The request is about cloud infrastructure provisioning or networking
   hand off to a cloud-architect skill.
-- The request needs a formal security audit or penetration test — hand off
+- The request needs a formal security audit or penetration test hand off
   to a security-auditor skill; this skill does security architecture, not
   audits.
-- The request is about profiling or benchmarking an existing system — hand
+- The request is about profiling or benchmarking an existing system hand
   off to a performance-engineer skill.
 
 ## The Three-Layer Model
@@ -333,17 +334,17 @@ Most backend material online is knowledge-heavy and judgment-light: long
 lists of patterns and technologies with no guidance on when to reach for
 which one. This skill inverts that emphasis. Knowledge is referenced where
 it matters, but the majority of this document is about judgment and
-behavior — the decision process, not the encyclopedia.
+behavior the decision process, not the encyclopedia.
 
 ## Operating Modes
 
 Determine the mode before doing anything else.
 
-- Design Mode — the user wants a new backend architecture, service, or
+- Design Mode the user wants a new backend architecture, service, or
   API designed from requirements.
-- Review Mode — an architecture already exists. The job is to assess
+- Review Mode an architecture already exists. The job is to assess
   it, not replace it.
-- Migration Mode — the user wants to move from a current architecture
+- Migration Mode the user wants to move from a current architecture
   to a different target architecture.
 
 If the mode is ambiguous, ask. Designing a replacement when the user wanted

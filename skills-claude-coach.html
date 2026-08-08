@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Coach — Skills.md — Hamdi Bouzidi</title>
+<title>Claude Coach, Skills.md Hamdi Bouzidi</title>
 <meta name="description" content="Claude Coach is an experimental Claude Skill that reads organizational documentation and compiles it into deterministic implementation guidance for builder agents.">
 <link rel="canonical" href="https://hamdibouzidi.com/skills-claude-coach.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Claude Coach — Skills.md">
+<meta property="og:title" content="Claude Coach Skills.md">
 <meta property="og:description" content="An experimental Claude Skill for knowledge synthesis: reads organizational documentation, compiles deterministic implementation guidance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,7 +194,7 @@
       <li>Multiple documents need to be reconciled into one consistent implementation guide before a builder agent starts work.</li>
       <li>You want an explicit, inspectable synthesis step between planning and execution, rather than having implementation agents interpret raw documentation on every run.</li>
     </ul>
-    <p>It is not the right tool for early-stage brainstorming, for writing the documentation itself, or for making product or architecture decisions — those stay entirely upstream of it.</p>
+    <p>It is not the right tool for early-stage brainstorming, for writing the documentation itself, or for making product or architecture decisions those stay entirely upstream of it.</p>
 
     <h2>Expected Inputs</h2>
     <p>A documentation corpus organized by department or domain (product, systems, backend, UX, infrastructure, etc.), written in Markdown, accumulated across one or more conversations or contributors.</p>
@@ -217,15 +218,15 @@
 
     <h2>Limitations</h2>
     <ul>
-      <li>Compilation quality depends entirely on the quality and consistency of the source documentation — it cannot invent context that was never written down.</li>
+      <li>Compilation quality depends entirely on the quality and consistency of the source documentation it cannot invent context that was never written down.</li>
       <li>No formal enforcement layer exists yet to guarantee the compiled output stays faithful to the source; today that's checked by review, not by the skill itself.</li>
-      <li>Experimental — behavior on very large, multi-year documentation corpora is untested.</li>
+      <li>Experimental behavior on very large, multi-year documentation corpora is untested.</li>
     </ul>
 
     <h2>Related Skills</h2>
     <div class="related">
-      <a href="skills-magic-backend.html">Magic Backend — backend architecture and systems design</a>
-      <a href="skills.html">More skills coming out of active research — see Skills.md</a>
+      <a href="skills-magic-backend.html">Magic Backend : backend architecture and systems design</a>
+      <a href="skills.html">More skills coming out of active research. see Skills.md</a>
     </div>
   </article>
 
@@ -293,7 +294,7 @@ them explicitly rather than silently resolving them in one direction.
 - Output quality depends entirely on the source documentation; the skill
   cannot invent context that was never written down.
 - No formal enforcement layer yet verifies the compiled output stays
-  faithful to the source — today that is checked by human review.
+  faithful to the source today that is checked by human review.
 - Behavior on very large, multi-year documentation corpora is untested.
 `;
 

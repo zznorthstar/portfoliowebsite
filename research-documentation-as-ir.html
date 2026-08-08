@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentation as an Intermediate Representation for AI-Native Software Engineering — Hamdi Bouzidi</title>
-<meta name="description" content="A proposed workflow — Idea, Conversation, Documentation, Knowledge Compilation, Creation — tested against the existing literature. By Hamdi Bouzidi, Independent AI Researcher.">
+<title>Documentation as an Intermediate Representation for AI-Native Software Engineering Hamdi Bouzidi</title>
+<meta name="description" content="A proposed workflow Idea, Conversation, Documentation, Knowledge Compilation, Creation tested against the existing literature. By Hamdi Bouzidi, Independent AI Researcher.">
 <link rel="canonical" href="https://hamdibouzidi.com/research-documentation-as-ir.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Documentation as an Intermediate Representation for AI-Native Software Engineering">
@@ -226,7 +227,7 @@
 
   <div class="article-tags"><span class="tag">AI-Native Engineering</span><span class="tag">Multi-Agent Systems</span><span class="tag">Software Architecture</span></div>
   <h1>Documentation as an Intermediate Representation for AI-Native Software Engineering</h1>
-  <p class="dek">A proposed workflow — Idea, Conversation, Documentation, Knowledge Compilation, Creation — and an honest test of whether it's actually new.</p>
+  <p class="dek">A proposed workflow Idea, Conversation, Documentation, Knowledge Compilation, Creation and an honest test of whether it's actually new.</p>
   <div class="meta-row">
     <span>Published Aug 7, 2026</span>
     <span>Updated Aug 8, 2026</span>
@@ -305,7 +306,7 @@
         <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--text-faint)"></path></marker></defs>
         <text x="450" y="220" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1" fill="var(--text-faint)">DOCUMENTATION IS WRITTEN CONTINUOUSLY · COMPILATION HAPPENS ON DEMAND</text>
       </svg>
-      <figcaption>Fig. 1 — The proposed pipeline. Documentation is the durable layer; knowledge compilation is a distinct, repeatable step.</figcaption>
+      <figcaption>Fig. 1 The proposed pipeline. Documentation is the durable layer; knowledge compilation is a distinct, repeatable step.</figcaption>
     </div>
 
     <p>The compilation step is the part that actually does work. In the implementation this paper draws on, a single role, referred to internally as Coach, performs it: it reads the accumulated documentation across every domain and produces deterministic, department-scoped skill files that downstream builder agents execute against. Its job is synthesis, not authorship.</p>
@@ -349,7 +350,7 @@
         </g>
         <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--text-faint)"></path></marker></defs>
       </svg>
-      <figcaption>Fig. 2 — Organizational documentation occupies the same structural position LLVM IR occupies in a traditional compiler: a stable, inspectable middle layer that decouples the front end from the back end.</figcaption>
+      <figcaption>Fig. 2 Organizational documentation occupies the same structural position LLVM IR occupies in a traditional compiler: a stable, inspectable middle layer that decouples the front end from the back end.</figcaption>
     </div>
 
     <p>The analogy is not original to this paper, section four covers that directly. What this paper adds is specificity about what plays the role of the front end, the IR, and the back end in an organizational rather than a single-file context, and an argument that the IR should be long-lived organizational memory rather than a spec authored once per feature and discarded.</p>
@@ -384,7 +385,7 @@
           <tr><td class="hl">MetaGPT (2023)</td><td>Single feature / task</td><td>Code, via structured role prompts</td><td><span class="status">Established</span></td></tr>
           <tr><td class="hl">BMAD-METHOD</td><td>Feature or epic</td><td>Sharded story files → code</td><td><span class="status">Established</span></td></tr>
           <tr><td class="hl">Spec-Driven Dev. (Kiro, Spec Kit)</td><td>Feature</td><td>Code + generated tests</td><td><span class="status">Established</span></td></tr>
-          <tr><td class="hl">Anthropic Agent Skills</td><td>Reusable capability</td><td>N/A — skills are the target</td><td><span class="status">Established</span></td></tr>
+          <tr><td class="hl">Anthropic Agent Skills</td><td>Reusable capability</td><td>N/A skills are the target</td><td><span class="status">Established</span></td></tr>
           <tr><td class="hl">This proposal</td><td>The organization, continuously</td><td>Skill files, not code directly</td><td><span class="status hl">Partial synthesis</span></td></tr>
         </tbody>
       </table>
@@ -401,7 +402,7 @@
         <div class="t-item"><div class="t-date">2025–2026</div><div class="t-label">Spec-driven development goes mainstream</div><div class="t-desc">GitHub Spec Kit and AWS Kiro popularize specs as the source of truth.</div></div>
         <div class="t-item"><div class="t-date">Mid 2026</div><div class="t-label">The compiler analogy made explicit</div><div class="t-desc">Independent commentary and open-source projects describe agent artifacts as compiler IR.</div></div>
       </div>
-      <figcaption>Fig. 3 — A rough timeline of the closest prior work. This proposal sits at the end of this sequence, not before it.</figcaption>
+      <figcaption>Fig. 3 A rough timeline of the closest prior work. This proposal sits at the end of this sequence, not before it.</figcaption>
     </div>
 
     <div class="verdict" id="verdict">
@@ -433,8 +434,8 @@
       <li><a href="https://arxiv.org/abs/2308.00352" target="_blank" rel="noopener">Hong, S. et al. "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework." arXiv:2308.00352, 2023.</a><span class="ref-note">Standardized Operating Procedures encoded into role-based agent prompts; the closest and earliest prior art to this paper's pipeline.</span></li>
       <li><a href="https://arxiv.org/abs/2606.20615" target="_blank" rel="noopener">Prifti, Y. "Specifying AI-SDLC Processes: A Protocol Language for Human-Agent Boundaries." arXiv:2606.20615, 2026.</a><span class="ref-note">Formal critique of prompt-encoded process as subject to drift; motivates this paper's limitations section.</span></li>
       <li><a href="https://github.com/bmad-code-org/BMAD-METHOD" target="_blank" rel="noopener">BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development. GitHub, bmad-code-org.</a><span class="ref-note">Agentic planning + document-sharding pipeline; the closest analog to the proposed knowledge-compilation step.</span></li>
-      <li><a href="https://github.com/github/spec-kit" target="_blank" rel="noopener">GitHub Spec Kit — open-source spec-driven development toolkit.</a><span class="ref-note">Specification treated as source of truth; part of the broader spec-driven development movement.</span></li>
-      <li><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic. "Agent Skills" — Claude Platform Docs.</a><span class="ref-note">The reusable, filesystem-native compilation-target format referenced throughout this paper.</span></li>
+      <li><a href="https://github.com/github/spec-kit" target="_blank" rel="noopener">GitHub Spec Kit open-source spec-driven development toolkit.</a><span class="ref-note">Specification treated as source of truth; part of the broader spec-driven development movement.</span></li>
+      <li><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic. "Agent Skills" Claude Platform Docs.</a><span class="ref-note">The reusable, filesystem-native compilation-target format referenced throughout this paper.</span></li>
       <li><a href="https://github.com/mronus/spec" target="_blank" rel="noopener">"Spec: A language-agnostic Intermediate Representation for autonomous agent-driven software development." GitHub, mronus.</a><span class="ref-note">Independent project drawing the same compiler/IR analogy explicitly.</span></li>
       <li><a href="https://arxiv.org/abs/2604.26275" target="_blank" rel="noopener">"Agentic AI in the Software Development Lifecycle." arXiv:2604.26275, 2026.</a><span class="ref-note">Survey covering MetaGPT, ChatDev, AgileCoder, and the broader agentic-SWE literature.</span></li>
     </ol>

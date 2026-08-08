@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection — Hamdi Bouzidi</title>
-<meta name="description" content="A prior-art review for Monowire by Samiel — whether observing both a human's evolving understanding and a multi-agent system's actual state could detect divergence before it compounds. An unverified research hypothesis with a proposed falsification test, not a claimed capability.">
+<title>Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection , Hamdi Bouzidi</title>
+<meta name="description" content="A prior-art review for Monowire by Samiel , whether observing both a human's evolving understanding and a multi-agent system's actual state could detect divergence before it compounds. An unverified research hypothesis with a proposed falsification test, not a claimed capability.">
 <link rel="canonical" href="https://hamdibouzidi.com/research-monowire-semantic-divergence.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection">
-<meta property="og:description" content="A prior-art review and unverified research hypothesis — not a claimed Monowire capability — on detecting divergence between a human's understanding and a multi-agent system's actual state.">
+<meta property="og:description" content="A prior-art review and unverified research hypothesis , not a claimed Monowire capability , on detecting divergence between a human's understanding and a multi-agent system's actual state.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -226,7 +227,7 @@
 
   <div class="article-tags"><span class="tag doctype">Research Hypothesis</span><span class="tag">Monowire by Samiel</span><span class="tag">Human-AI Interaction</span></div>
   <h1>Monowire by Samiel: Human ↔ Machine Semantic Divergence Detection</h1>
-  <p class="dek">A prior-art review and an unverified research hypothesis — not a claimed Monowire capability. No experiment has been run.</p>
+  <p class="dek">A prior-art review and an unverified research hypothesis , not a claimed Monowire capability. No experiment has been run.</p>
   <div class="meta-row">
     <span>Published Aug 8, 2026</span>
     <span>Updated Aug 8, 2026</span>
@@ -254,10 +255,10 @@
     <ol>
       <li><a href="#why">Why This Topic</a></li>
       <li><a href="#hypothesis">The Hypothesis Under Review</a></li>
-      <li><a href="#intent-drift">Cluster 1 — Intent Drift Detection</a></li>
-      <li><a href="#traceability">Cluster 2 — Requirements Traceability</a></li>
-      <li><a href="#grounding">Cluster 3 — Common Ground &amp; Grounding Theory</a></li>
-      <li><a href="#multi-agent">Cluster 4 — Multi-Agent State Consistency</a></li>
+      <li><a href="#intent-drift">Cluster 1 - Intent Drift Detection</a></li>
+      <li><a href="#traceability">Cluster 2 - Requirements Traceability</a></li>
+      <li><a href="#grounding">Cluster 3 - Common Ground &amp; Grounding Theory</a></li>
+      <li><a href="#multi-agent">Cluster 4 - Multi-Agent State Consistency</a></li>
       <li><a href="#comparison">How the Clusters Compare</a></li>
       <li><a href="#verdict">The Narrowest Defensible Gap</a></li>
       <li><a href="#experiment">A Falsifiable Experiment</a></li>
@@ -269,8 +270,8 @@
   <article>
 
     <h2 id="why"><span class="num">01</span>Why This Topic</h2>
-    <p class="lede">Monowire's design repeatedly returns to an idea worth testing: could a system track two things at once — what a human believes about a project, and what a hidden multi-agent organization has actually done — and use the gap between them to catch misunderstanding early? That is a hypothesis about what Monowire <em>could</em> do, not a description of a capability it currently has. Nothing described below has been built or tested. The Monowire Research Map classified this as the one mechanism it could not immediately locate clear, direct prior art for, and flagged it as the priority topic for a dedicated pass. This document is that pass.</p>
-    <p>The instruction going in was explicit: do not assume "watches both sides" is itself novel. Watching two things is not a research contribution by itself — plenty of systems observe multiple signals. The actual question is narrower and needs to survive contact with four adjacent, well-developed literatures before any claim gets made.</p>
+    <p class="lede">Monowire's design repeatedly returns to an idea worth testing: could a system track two things at once , what a human believes about a project, and what a hidden multi-agent organization has actually done , and use the gap between them to catch misunderstanding early? That is a hypothesis about what Monowire <em>could</em> do, not a description of a capability it currently has. Nothing described below has been built or tested. The Monowire Research Map classified this as the one mechanism it could not immediately locate clear, direct prior art for, and flagged it as the priority topic for a dedicated pass. This document is that pass.</p>
+    <p>The instruction going in was explicit: do not assume "watches both sides" is itself novel. Watching two things is not a research contribution by itself , plenty of systems observe multiple signals. The actual question is narrower and needs to survive contact with four adjacent, well-developed literatures before any claim gets made.</p>
 
     <div class="status-pipeline">
       <div class="sp-label">How to read this document</div>
@@ -281,39 +282,39 @@
         <span class="sp-step done">Proposed experiment</span><span class="sp-arrow">→</span>
         <span class="sp-step current">Currently unverified</span>
       </div>
-      <p>Every section below sits at one of these five stages. Sections 3–6 are prior art. Section 7 states the gap. Section 8 states the hypothesis and its falsification test. Nothing past that has happened yet — this page will be updated if and when it does.</p>
+      <p>Every section below sits at one of these five stages. Sections 3–6 are prior art. Section 7 states the gap. Section 8 states the hypothesis and its falsification test. Nothing past that has happened yet , this page will be updated if and when it does.</p>
     </div>
 
     <h2 id="hypothesis"><span class="num">02</span>The Hypothesis Under Review</h2>
-    <p>Stated precisely, as a hypothesis rather than a description of current behavior: a system that continuously observed (a) a human's naturally expressed, evolving understanding of a project, extracted from ordinary conversation rather than explicit confirmation, and (b) the actual internal state of a multi-agent system executing that project over its full multi-session lifetime, would be able to detect semantic divergence between the two earlier than either side would independently notice — and intervene before the divergence compounds into wasted work. Monowire does not currently do this. Whether it could is the question.</p>
+    <p>Stated precisely, as a hypothesis rather than a description of current behavior: a system that continuously observed (a) a human's naturally expressed, evolving understanding of a project, extracted from ordinary conversation rather than explicit confirmation, and (b) the actual internal state of a multi-agent system executing that project over its full multi-session lifetime, would be able to detect semantic divergence between the two earlier than either side would independently notice , and intervene before the divergence compounds into wasted work. Monowire does not currently do this. Whether it could is the question.</p>
     <p>Four literatures were checked against this, each covering part of the claim.</p>
 
-    <h2 id="intent-drift"><span class="num">03</span>Cluster 1 — Intent Drift Detection</h2>
-    <p>"Intent drift" is a fully established, actively commercialized 2026 field. Multiple vendors (Zenity, Varonis Agent IBAC, ARMO) ship products that monitor whether an agent's ongoing behavior — its tool calls, data access, and action chains — stays aligned with the intent behind the request that started its session. NIST's AI Risk Management Framework and the OWASP Top 10 for Agentic Applications both treat this as a named risk category. At least one formal framework (MI9) applies goal-conditioned drift detection using distributional-distance metrics with graduated containment responses.</p>
-    <p>This is close, but structurally one-sided. Every system found compares the agent's current behavior against a <em>fixed baseline</em> — the original request, or a policy derived from it. None of them treat the human side as a second, independently evolving signal. If the human's own understanding of the project changes — which it does, constantly, in any real multi-week engagement — intent-drift tooling has no mechanism for noticing that the baseline itself has moved.</p>
+    <h2 id="intent-drift"><span class="num">03</span>Cluster 1 - Intent Drift Detection</h2>
+    <p>"Intent drift" is a fully established, actively commercialized 2026 field. Multiple vendors (Zenity, Varonis Agent IBAC, ARMO) ship products that monitor whether an agent's ongoing behavior , its tool calls, data access, and action chains , stays aligned with the intent behind the request that started its session. NIST's AI Risk Management Framework and the OWASP Top 10 for Agentic Applications both treat this as a named risk category. At least one formal framework (MI9) applies goal-conditioned drift detection using distributional-distance metrics with graduated containment responses.</p>
+    <p>This is close, but structurally one-sided. Every system found compares the agent's current behavior against a <em>fixed baseline</em> , the original request, or a policy derived from it. None of them treat the human side as a second, independently evolving signal. If the human's own understanding of the project changes , which it does, constantly, in any real multi-week engagement , intent-drift tooling has no mechanism for noticing that the baseline itself has moved.</p>
 
-    <h2 id="traceability"><span class="num">04</span>Cluster 2 — Requirements Traceability</h2>
+    <h2 id="traceability"><span class="num">04</span>Cluster 2 , Requirements Traceability</h2>
     <p>Requirements traceability is a decades-old, formalized software-engineering discipline, mandatory in regulated industries (ISO 26262, DO-178C, IEC 62304) and built around the traceability matrix: forward and backward links connecting stakeholder requirements to design, code, and tests. It exists specifically to catch mismatches between what stakeholders wanted and what got built.</p>
-    <p>Also close, and also structurally different from the hypothesis. Traceability is artifact-based and typically periodic or audit-triggered — it compares static documents at a point in time, not a continuously updated model of a person's currently-held beliefs extracted from ongoing natural conversation. Nobody in this cluster is trying to infer what a stakeholder currently believes; they're tracking whether a written requirement has a documented path to an implementation.</p>
+    <p>Also close, and also structurally different from the hypothesis. Traceability is artifact-based and typically periodic or audit-triggered , it compares static documents at a point in time, not a continuously updated model of a person's currently-held beliefs extracted from ongoing natural conversation. Nobody in this cluster is trying to infer what a stakeholder currently believes; they're tracking whether a written requirement has a documented path to an implementation.</p>
 
-    <h2 id="grounding"><span class="num">05</span>Cluster 3 — Common Ground &amp; Grounding Theory</h2>
-    <p>This is the closest cluster, and it needed the most careful reading. Clark and Brennan's grounding theory — mutual knowledge built and repaired turn by turn in conversation — has a real, current line of human-AI research behind it in 2026: a benchmark for common ground in human-AI collaboration, a study titled "Navigating Rifts in Human-LLM Grounding," and work showing LLMs generate conversational text with measurably less grounding behavior (fewer clarifications, fewer acknowledgments) than humans do with each other.</p>
-    <p>This cluster directly studies misunderstanding between a human and an AI system, in real time, from conversational signals — which is most of what the Monowire hypothesis asks for. The scope, however, is consistently the single conversation: grounding breakdown is measured turn by turn, within one dialogue session, between a human and the conversational agent they're directly talking to. None of it extends to a human's belief about the state of a separate, downstream, multi-agent execution system that continues working autonomously between conversations — which is the specific situation Monowire's proposed Main Chat / Main Architect / Departments split would create, if built.</p>
+    <h2 id="grounding"><span class="num">05</span>Cluster 3 , Common Ground &amp; Grounding Theory</h2>
+    <p>This is the closest cluster, and it needed the most careful reading. Clark and Brennan's grounding theory , mutual knowledge built and repaired turn by turn in conversation , has a real, current line of human-AI research behind it in 2026: a benchmark for common ground in human-AI collaboration, a study titled "Navigating Rifts in Human-LLM Grounding," and work showing LLMs generate conversational text with measurably less grounding behavior (fewer clarifications, fewer acknowledgments) than humans do with each other.</p>
+    <p>This cluster directly studies misunderstanding between a human and an AI system, in real time, from conversational signals , which is most of what the Monowire hypothesis asks for. The scope, however, is consistently the single conversation: grounding breakdown is measured turn by turn, within one dialogue session, between a human and the conversational agent they're directly talking to. None of it extends to a human's belief about the state of a separate, downstream, multi-agent execution system that continues working autonomously between conversations , which is the specific situation Monowire's proposed Main Chat / Main Architect / Departments split would create, if built.</p>
 
-    <h2 id="multi-agent"><span class="num">06</span>Cluster 4 — Multi-Agent State Consistency</h2>
-    <p>A separate, practical body of work covers state mismatches <em>between agents</em> in production multi-agent systems — schema-version mismatches between deployed agents, order-status disagreements across fulfillment/billing/shipping agents, decomposition-trace logging gaps in hierarchical task planning that hide non-determinism from monitoring. This is real, established engineering practice for keeping a multi-agent system internally consistent.</p>
-    <p>It's the wrong side of the boundary for this hypothesis, though — it's agent-to-agent, not human-to-organization. It's a useful adjacent pattern (the detection techniques generalize), but it doesn't touch the human's belief state at all.</p>
+    <h2 id="multi-agent"><span class="num">06</span>Cluster 4 , Multi-Agent State Consistency</h2>
+    <p>A separate, practical body of work covers state mismatches <em>between agents</em> in production multi-agent systems , schema-version mismatches between deployed agents, order-status disagreements across fulfillment/billing/shipping agents, decomposition-trace logging gaps in hierarchical task planning that hide non-determinism from monitoring. This is real, established engineering practice for keeping a multi-agent system internally consistent.</p>
+    <p>It's the wrong side of the boundary for this hypothesis, though , it's agent-to-agent, not human-to-organization. It's a useful adjacent pattern (the detection techniques generalize), but it doesn't touch the human's belief state at all.</p>
 
     <h2 id="comparison"><span class="num">07</span>How the Clusters Compare</h2>
     <div class="cmp-table">
       <table class="cmp">
         <thead><tr><th>Cluster</th><th>What it compares</th><th>Time frame</th><th>Human side modeled?</th></tr></thead>
         <tbody>
-          <tr><td class="hl">Intent drift detection</td><td>Agent behavior vs. original request baseline</td><td>Single session, continuous</td><td>No — baseline is fixed</td></tr>
-          <tr><td class="hl">Requirements traceability</td><td>Written requirements vs. implementation artifacts</td><td>Periodic / audit-triggered</td><td>No — static documents only</td></tr>
-          <tr><td class="hl">Common ground / grounding theory</td><td>Human utterance vs. AI's inferred understanding</td><td>Turn-by-turn, single conversation</td><td>Yes — but scoped to one dialogue</td></tr>
-          <tr><td class="hl">Multi-agent state consistency</td><td>Agent state vs. other agent state</td><td>Continuous, production runtime</td><td>No — agent-to-agent only</td></tr>
-          <tr><td class="hl">This hypothesis</td><td>Human's evolving belief vs. org's actual state</td><td>Continuous, across a project's full multi-session lifetime</td><td>Yes — modeled independently, across sessions</td></tr>
+          <tr><td class="hl">Intent drift detection</td><td>Agent behavior vs. original request baseline</td><td>Single session, continuous</td><td>No - baseline is fixed</td></tr>
+          <tr><td class="hl">Requirements traceability</td><td>Written requirements vs. implementation artifacts</td><td>Periodic / audit-triggered</td><td>No - static documents only</td></tr>
+          <tr><td class="hl">Common ground / grounding theory</td><td>Human utterance vs. AI's inferred understanding</td><td>Turn-by-turn, single conversation</td><td>Yes - but scoped to one dialogue</td></tr>
+          <tr><td class="hl">Multi-agent state consistency</td><td>Agent state vs. other agent state</td><td>Continuous, production runtime</td><td>No - agent-to-agent only</td></tr>
+          <tr><td class="hl">This hypothesis</td><td>Human's evolving belief vs. org's actual state</td><td>Continuous, across a project's full multi-session lifetime</td><td>Yes - modeled independently, across sessions</td></tr>
         </tbody>
       </table>
     </div>
@@ -322,30 +323,30 @@
       <div class="v-label">Key finding</div>
       <h3>Every individual piece exists. The specific combination does not, as far as this review found.</h3>
       <p>Intent drift detection tracks agent behavior against a fixed baseline. Requirements traceability tracks documents against documents, periodically. Grounding theory tracks human-AI misunderstanding, but within one conversation. None of the four clusters model a human's currently-held belief about a system as an independently evolving signal, sustained and re-inferred across many separate sessions over a project's full lifetime, and diffed continuously against that system's real internal state.</p>
-      <p>That is a narrower claim than "Monowire watches both sides," and it should be treated as unproven rather than established. The gap is real enough on paper to justify one experiment. It is not yet evidence that the mechanism works, or that it would outperform the two literatures it sits closest to — grounding theory's single-conversation detectors and intent-drift's continuous behavioral monitors — if those techniques were simply extended across sessions instead.</p>
+      <p>That is a narrower claim than "Monowire watches both sides," and it should be treated as unproven rather than established. The gap is real enough on paper to justify one experiment. It is not yet evidence that the mechanism works, or that it would outperform the two literatures it sits closest to , grounding theory's single-conversation detectors and intent-drift's continuous behavioral monitors , if those techniques were simply extended across sessions instead.</p>
     </div>
 
     <h2 id="experiment"><span class="num">08</span>A Falsifiable Experiment</h2>
     <p>The hypothesis is testable without building the full Monowire architecture. A minimal version:</p>
     <div class="exp-box">
-      <div class="exp-label">Proposed design — not yet run</div>
+      <div class="exp-label">Proposed design , not yet run</div>
       <div class="exp-step"><span class="exp-n">01</span>Run a multi-session project (real or simulated) where a human directs a multi-agent system across several separated conversations, with autonomous work happening between sessions.</div>
-      <div class="exp-step"><span class="exp-n">02</span>At the start of each new session, extract the human's current belief about key project facts from their natural conversational opening — not through explicit confirmation prompts.</div>
+      <div class="exp-step"><span class="exp-n">02</span>At the start of each new session, extract the human's current belief about key project facts from their natural conversational opening , not through explicit confirmation prompts.</div>
       <div class="exp-step"><span class="exp-n">03</span>Independently extract the system's actual current state for those same facts from its own documentation, delegation records, or code.</div>
       <div class="exp-step"><span class="exp-n">04</span>Diff the two. Log every detected divergence, its magnitude, and how many turns or how much time passed before the human noticed it unaided (or the project completed without either side noticing).</div>
       <div class="exp-step"><span class="exp-n">05</span>Compare against two baselines: a single-conversation grounding-detection approach applied naively across sessions, and an intent-drift monitor comparing only against the original request.</div>
     </div>
-    <p>The hypothesis is falsified if the dual-observation approach detects divergence no earlier, and no more often, than either baseline extended across sessions — in which case the honest conclusion is that this reduces to the existing literature rather than extending it.</p>
+    <p>The hypothesis is falsified if the dual-observation approach detects divergence no earlier, and no more often, than either baseline extended across sessions , in which case the honest conclusion is that this reduces to the existing literature rather than extending it.</p>
 
     <h2 id="limits"><span class="num">09</span>Limitations of This Review</h2>
     <ul>
       <li>This is a search-based literature review, not a systematic one. A dedicated search of a specific venue (CHI, CSCW, or a multi-agent-systems-specific outlet) might surface work this pass missed.</li>
-      <li>"No prior art found" is a claim about search results, not a claim about the field. The clusters above were chosen because they were the closest candidates found — a genuinely matching system under different terminology could exist and simply not have surfaced.</li>
+      <li>"No prior art found" is a claim about search results, not a claim about the field. The clusters above were chosen because they were the closest candidates found , a genuinely matching system under different terminology could exist and simply not have surfaced.</li>
       <li>The proposed experiment measures detection timing and frequency, not downstream impact (rework avoided, cost saved). A positive result on detection alone would still leave the practical value of the mechanism unproven.</li>
-      <li>Extracting a human's "current belief" from natural conversation without explicit confirmation is itself an unsolved measurement problem — the grounding-theory literature reviewed here (Cluster 3) is largely about how hard this is to do reliably even within a single turn.</li>
+      <li>Extracting a human's "current belief" from natural conversation without explicit confirmation is itself an unsolved measurement problem , the grounding-theory literature reviewed here (Cluster 3) is largely about how hard this is to do reliably even within a single turn.</li>
     </ul>
 
-    <p class="pull-quote">The honest version of this review is: the mechanism is plausible, the individual pieces are well studied, and the specific combination — sustained across a project's lifetime rather than one conversation — appears to be an open gap. That is a reason to run the experiment, not a reason to claim the result.</p>
+    <p class="pull-quote">The honest version of this review is: the mechanism is plausible, the individual pieces are well studied, and the specific combination , sustained across a project's lifetime rather than one conversation , appears to be an open gap. That is a reason to run the experiment, not a reason to claim the result.</p>
 
     <h2 id="references"><span class="num">—</span>References</h2>
     <ol class="refs">
