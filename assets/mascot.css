@@ -1,0 +1,173 @@
+/* One palette-matched pixel companion. All decoration stays outside hit targets. */
+.pixel-arrow {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: currentColor;
+  vertical-align: -3px;
+  shape-rendering: crispEdges;
+  pointer-events: none;
+}
+.studio-grid h3 .pixel-arrow {
+  width: 20px;
+  height: 20px;
+}
+.project-media {
+  position: relative;
+  min-width: 0;
+}
+.project-media > .project-image {
+  position: relative;
+  z-index: 1;
+}
+.mascot-ledge {
+  position: relative;
+  height: 0;
+  margin-top: 72px;
+  border-top: 1px solid var(--border);
+}
+.intro-mascot-ledge {
+  margin-bottom: 32px;
+}
+.hero-copy:has(.mascot-ledge) .hero-description {
+  margin-top: 24px;
+}
+.mascot-perch {
+  position: relative;
+}
+.mascot-host {
+  --mascot-size: 96px;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  height: var(--mascot-size);
+  bottom: calc(var(--mascot-size) * -0.1875);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+.mascot-host[data-mode="peek"] {
+  top: calc(var(--mascot-size) * -0.8125);
+  bottom: auto;
+  z-index: 0;
+}
+.footer-bottom > .mascot-host {
+  top: calc(var(--mascot-size) * -0.8125);
+  bottom: auto;
+}
+.site-mascot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--mascot-size);
+  height: var(--mascot-size);
+  pointer-events: none;
+}
+.site-mascot[hidden] {
+  display: none;
+}
+.mascot-facing,
+.mascot-sprite {
+  width: 100%;
+  height: 100%;
+}
+.mascot-sprite {
+  background: url("mascot/cat-sprites.webp") 0 0 / 200% 200% no-repeat;
+  image-rendering: pixelated;
+}
+.site-mascot[data-pose="awake"] .mascot-sprite {
+  background-position: 100% 0;
+  transform: translateY(calc(var(--mascot-size) * -0.08));
+}
+.site-mascot[data-pose="walk"] .mascot-sprite {
+  background-position: 0 100%;
+  transform: translateY(calc(var(--mascot-size) * -0.016));
+}
+.site-mascot[data-pose="peek"] .mascot-sprite {
+  background-position: 100% 100%;
+}
+.studio-grid.mascot-perch > a {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+}
+.studio-grid.mascot-perch > .studio-feature {
+  background: var(--surface);
+}
+.studio-grid.mascot-perch > a:hover {
+  background: var(--surface);
+}
+.research-preview-grid.mascot-perch > :not(.mascot-host) {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+}
+.research-preview-grid.mascot-perch {
+  border-top: 1px solid var(--border);
+}
+.proof-gallery.mascot-perch > figure {
+  position: relative;
+  z-index: 1;
+}
+.mascot-section-edge {
+  position: absolute;
+  top: 0;
+  left: clamp(24px, 5vw, 80px);
+  right: clamp(24px, 5vw, 80px);
+  height: 0;
+  border-top: 1px solid var(--border);
+}
+.mascot-section-edge > .mascot-host {
+  z-index: 2;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .site-mascot[data-pose="sleep"] .mascot-sprite {
+    animation: cat-breathe 4s ease-in-out infinite;
+  }
+  .site-mascot[data-pose="walk"] .mascot-sprite {
+    animation: cat-step 0.6s steps(1, end) infinite;
+  }
+  .site-mascot[data-paused="true"] .mascot-sprite {
+    animation-play-state: paused;
+  }
+}
+@keyframes cat-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+}
+@keyframes cat-step {
+  0%,
+  100% {
+    background-position: 0 100%;
+    transform: translateY(calc(var(--mascot-size) * -0.016));
+  }
+  50% {
+    background-position: 100% 0;
+    transform: translateY(calc(var(--mascot-size) * -0.08));
+  }
+}
+@media (max-width: 767px) {
+  .mascot-host {
+    --mascot-size: 80px;
+    left: 12px;
+    right: 12px;
+  }
+  .mascot-ledge {
+    margin-top: 64px;
+  }
+  .pixel-arrow {
+    width: 14px;
+    height: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot-sprite {
+    animation: none !important;
+  }
+}

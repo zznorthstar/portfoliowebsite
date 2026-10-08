@@ -86,3 +86,39 @@ Final mobile Lighthouse: performance **95**, accessibility **100**, best practic
 layout shift **0.038**, and total blocking time **10 milliseconds** in the
 throttled local run. Deployment should enable compression and asset caching;
 the local Python preview does not provide production delivery optimizations.
+
+## Pixel companion refinement
+
+The subsequent update preserves this design and addresses three observed issues:
+desktop caption clearance around the large mark, mobile project frames following
+the image's natural height, and platform-independent pixel arrows in place of
+Unicode arrow characters.
+
+Proposed refinement score: **38/40** (intuitive 9, ease of use 9, delight 10,
+aesthetics 10). Variance, motion, and density remain **8 / 7 / 3**.
+
+One orange-and-cream pixel cat lives on a ledge beneath the hero headline. It
+sleeps with a dangling paw, wakes briefly, walks along the ledge, and returns to
+sleep. As section edges become visible, the same character moves to project,
+studio, research, about, and footer perches. Project frames cover the lower sprite
+to give its peeking head a sense of depth. Other pages have an introductory ledge
+and a footer perch; proof-of-work galleries provide additional hiding places.
+
+`assets/mascot.css` and `assets/mascot.js` isolate this decoration from the existing
+site interactions. The character is hidden from assistive technology and never
+intercepts clicks. IntersectionObserver selects visible perches without a scroll
+listener. Animation stops off-screen or while the tab is hidden; reduced motion
+uses a still pose. The introductory ledges are present in the HTML before paint
+so the animation script does not shift page content.
+
+The original generated artwork, optimized delivery asset, and generation prompt
+are documented in `assets/mascot/README.md`.
+
+Verification of the refinement covers caption clearance and overflow at 360, 390,
+768, 820, 1024, 1280, 1440, 1600, and 2000 pixels, plus all 16 pages at mobile and
+desktop sizes. Browser checks confirm the wake/walk sequence, section peeks,
+footer return, intrinsic mobile image ratios, reduced motion, menu, image dialogs,
+and demo navigation. No console errors or failed asset responses were observed.
+The final local mobile Lighthouse run scored **93 / 100 / 100 / 100** for
+performance, accessibility, best practices, and SEO, with **0.038** layout shift
+and **0 ms** total blocking time.
