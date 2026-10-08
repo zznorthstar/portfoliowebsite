@@ -122,3 +122,49 @@ and demo navigation. No console errors or failed asset responses were observed.
 The final local mobile Lighthouse run scored **93 / 100 / 100 / 100** for
 performance, accessibility, best practices, and SEO, with **0.038** layout shift
 and **0 ms** total blocking time.
+
+## Interactive companion refinement
+
+Proposed score: **38/40** — intuitive 9, ease of use 9, delight 10, aesthetics 10.
+This preserves the approved layout, typography, palette, responsive image sizing,
+caption clearance, pixel arrows, project links, and demo behavior.
+
+The opening ledge now tells one story: breathing and pixel snores, an expanding
+sleep bubble, a small pop, a startled hop, a stretch, and a long walk along the
+available ledge. Eight new walk frames replace the old two-pose approximation.
+Horizontal travel uses a normalized position, so every step remains inside the
+current line at every viewport width. The end-of-page scene licks a paw, washes
+its face, then turns to meet the viewer's gaze.
+
+Middle appearances mark selected section boundaries, with six entrance styles,
+varied positions and facing directions, and variation by page and visit. They
+physically retreat behind the edge after a few seconds. Individual project images
+and gallery frames no longer each get a cat. A visible cat keeps its scene until
+it leaves the viewport; viewport-height and browser-toolbar changes never restart
+the animation or fade it. Width changes only register its horizontal position.
+
+This supersedes the earlier decorative-only interaction: the character is now a
+native, labelled button, usable with touch, mouse, Enter, or Space. A first pet
+gets a warm reaction and a pixel heart. Repeated taps within a short interval get
+a mild, charmingly annoyed reaction. The interrupted scene resumes in place.
+Reactions have a polite accessible status. Reduced motion retains still poses and
+tap feedback without animated effects or haptics.
+
+WebHaptics 0.0.6 is pinned and served locally with its MIT license. Very short
+feedback is enabled only on touch devices after a trusted interaction. Taps are
+rate limited, and ambient scene feedback has a fourteen-second cooldown. No
+feedback accompanies individual footsteps or continuous scrolling, and no debug
+audio is enabled. Physical feedback depends on the device and browser.
+
+The generated masters, registered delivery atlas, exact generation prompt, and
+reproducible asset registration script are in `assets/mascot/`.
+
+Verification: all sixteen pages at 390 and 1440 pixels, including opening and
+footer scenes, curated cue touch targets, no horizontal overflow, no interactive
+button inside links or hidden accessibility ancestors, and no failed asset loads
+or page errors. Focused checks cover snore/pop/startle timing, all eight walk
+frames, travel bounds, rapid petting and cooldown, keyboard petting, scene resume,
+mobile scroll jitter and height changes, reduced motion, mobile navigation, and
+the unsupported-vibration fallback. Haptic timing was checked with a browser
+stub; physical device feedback was not measured. The local mobile Lighthouse run
+remains **93 / 100 / 100 / 100**, with **0.038** CLS and **0 ms** blocking time.

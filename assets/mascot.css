@@ -1,4 +1,4 @@
-/* One palette-matched pixel companion. All decoration stays outside hit targets. */
+/* Shared pixel arrows and a touchable, palette-matched companion. */
 .pixel-arrow {
   display: inline-block;
   width: 16px;
@@ -42,19 +42,39 @@
   left: 16px;
   right: 16px;
   height: var(--mascot-size);
-  bottom: calc(var(--mascot-size) * -0.1875);
-  z-index: 2;
+  top: calc(var(--mascot-size) * -0.8125);
+  z-index: 3;
   pointer-events: none;
   user-select: none;
 }
-.mascot-host[data-mode="peek"] {
-  top: calc(var(--mascot-size) * -0.8125);
-  bottom: auto;
-  z-index: 0;
+.mascot-host-bottom {
+  top: auto;
+  bottom: calc(var(--mascot-size) * -0.1875);
 }
-.footer-bottom > .mascot-host {
-  top: calc(var(--mascot-size) * -0.8125);
-  bottom: auto;
+.mascot-host[data-scene="cue"] {
+  clip-path: inset(-50px 0 18.75% 0);
+}
+.mascot-host[data-scene="cue"]::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--mascot-size) * 0.8125 - 1px);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+.mascot-cue-edge {
+  position: relative;
+  height: 0;
+  border-top: 1px solid var(--border);
+}
+.mascot-position {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--mascot-size);
+  height: var(--mascot-size);
+  pointer-events: none;
 }
 .site-mascot {
   position: absolute;
@@ -62,94 +82,266 @@
   left: 0;
   width: var(--mascot-size);
   height: var(--mascot-size);
-  pointer-events: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  appearance: none;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
 }
 .site-mascot[hidden] {
   display: none;
 }
+.site-mascot:focus-visible {
+  outline: 2px dashed var(--accent, #ed8355);
+  outline-offset: 3px;
+}
 .mascot-facing,
 .mascot-sprite {
+  display: block;
   width: 100%;
   height: 100%;
 }
+.mascot-facing {
+  position: relative;
+}
 .mascot-sprite {
-  background: url("mascot/cat-sprites.webp") 0 0 / 200% 200% no-repeat;
+  background: url("mascot/cat-atlas.webp") var(--frame-x, 88.888889%) 0 / 1900%
+    100% no-repeat;
   image-rendering: pixelated;
+  transform-origin: 50% 81.25%;
 }
-.site-mascot[data-pose="awake"] .mascot-sprite {
-  background-position: 100% 0;
-  transform: translateY(calc(var(--mascot-size) * -0.08));
-}
-.site-mascot[data-pose="walk"] .mascot-sprite {
-  background-position: 0 100%;
-  transform: translateY(calc(var(--mascot-size) * -0.016));
-}
-.site-mascot[data-pose="peek"] .mascot-sprite {
-  background-position: 100% 100%;
-}
-.studio-grid.mascot-perch > a {
-  position: relative;
-  z-index: 1;
-  background: var(--bg);
-}
-.studio-grid.mascot-perch > .studio-feature {
-  background: var(--surface);
-}
-.studio-grid.mascot-perch > a:hover {
-  background: var(--surface);
-}
-.research-preview-grid.mascot-perch > :not(.mascot-host) {
-  position: relative;
-  z-index: 1;
-  background: var(--surface);
-}
-.research-preview-grid.mascot-perch {
-  border-top: 1px solid var(--border);
-}
-.proof-gallery.mascot-perch > figure {
-  position: relative;
-  z-index: 1;
-}
-.mascot-section-edge {
+.cat-bubble,
+.cat-pop,
+.cat-snore,
+.cat-heart,
+.cat-steam {
+  display: none;
   position: absolute;
-  top: 0;
-  left: clamp(24px, 5vw, 80px);
-  right: clamp(24px, 5vw, 80px);
-  height: 0;
-  border-top: 1px solid var(--border);
+  pointer-events: none;
 }
-.mascot-section-edge > .mascot-host {
-  z-index: 2;
+.cat-bubble {
+  left: 75%;
+  top: 66%;
+  width: 24%;
+  height: 24%;
+  fill: #f3f3e9;
+  fill-opacity: 0.65;
+  stroke: #ed8355;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  transform-origin: 0 100%;
+}
+.bubble-shine {
+  fill: #fff;
+  fill-opacity: 0.85;
+  stroke: none;
+}
+.site-mascot[data-bubble="grow"] .cat-bubble {
+  display: block;
+  animation: bubble-snooze 2s ease-in-out infinite;
+}
+.site-mascot[data-bubble="grow"] .cat-snore {
+  display: block;
+  left: 72%;
+  top: 24%;
+}
+.cat-snore i {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--accent, #ed8355);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 28%,
+    60% 28%,
+    60% 55%,
+    35% 55%,
+    35% 75%,
+    100% 75%,
+    100% 100%,
+    0 100%,
+    0 70%,
+    25% 70%,
+    25% 45%,
+    55% 45%,
+    55% 25%,
+    0 25%
+  );
+  animation: cat-snore 2s ease-out infinite;
+}
+.cat-snore i:nth-child(2) {
+  animation-delay: 1s;
+  width: 6px;
+  height: 6px;
+}
+.site-mascot[data-bubble="pop"] .cat-pop {
+  display: block;
+  left: 86%;
+  top: 70%;
+}
+.cat-pop i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #f3f3e9;
+  animation: bubble-pop 0.23s ease-out both;
+  --dx: -12px;
+  --dy: -11px;
+}
+.cat-pop i:nth-child(2) {
+  --dx: 12px;
+  --dy: -9px;
+}
+.cat-pop i:nth-child(3) {
+  --dx: -10px;
+  --dy: 9px;
+}
+.cat-pop i:nth-child(4) {
+  --dx: 12px;
+  --dy: 10px;
+}
+.site-mascot[data-reaction="happy"] .cat-heart {
+  display: block;
+  left: 65%;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  fill: var(--accent, #ed8355);
+  animation: cat-love 1.6s ease-out both;
+}
+.site-mascot[data-reaction="grumpy"] .cat-steam {
+  display: block;
+  top: 4%;
+  left: 70%;
+}
+.cat-steam i {
+  position: absolute;
+  width: 3px;
+  height: 9px;
+  background: var(--accent, #ed8355);
+  animation: cat-steam 0.7s ease-in-out 2;
+}
+.cat-steam i:nth-child(2) {
+  left: 7px;
+  animation-delay: 0.15s;
+}
+.cat-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 @media (prefers-reduced-motion: no-preference) {
   .site-mascot[data-pose="sleep"] .mascot-sprite {
-    animation: cat-breathe 4s ease-in-out infinite;
+    animation: cat-breathe 2s ease-in-out infinite;
   }
   .site-mascot[data-pose="walk"] .mascot-sprite {
-    animation: cat-step 0.6s steps(1, end) infinite;
+    animation: cat-walk 0.8s steps(1, end) infinite;
   }
-  .site-mascot[data-paused="true"] .mascot-sprite {
-    animation-play-state: paused;
+  .site-mascot[data-paused="true"] *,
+  .site-mascot[data-paused="true"] i {
+    animation-play-state: paused !important;
+  }
+}
+@keyframes cat-walk {
+  0%,
+  100% {
+    background-position: 0% 0;
+  }
+  12.5% {
+    background-position: 5.555556% 0;
+  }
+  25% {
+    background-position: 11.111111% 0;
+  }
+  37.5% {
+    background-position: 16.666667% 0;
+  }
+  50% {
+    background-position: 22.222222% 0;
+  }
+  62.5% {
+    background-position: 27.777778% 0;
+  }
+  75% {
+    background-position: 33.333333% 0;
+  }
+  87.5% {
+    background-position: 38.888889% 0;
   }
 }
 @keyframes cat-breathe {
   0%,
   100% {
-    transform: translateY(0);
+    transform: scaleY(1);
   }
   50% {
-    transform: translateY(1px);
+    transform: scaleY(1.025) translateY(-0.5px);
   }
 }
-@keyframes cat-step {
+@keyframes bubble-snooze {
   0%,
   100% {
-    background-position: 0 100%;
-    transform: translateY(calc(var(--mascot-size) * -0.016));
+    transform: scale(0.35);
   }
-  50% {
-    background-position: 100% 0;
-    transform: translateY(calc(var(--mascot-size) * -0.08));
+  70% {
+    transform: scale(1);
+  }
+}
+@keyframes cat-snore {
+  0% {
+    opacity: 0;
+    transform: translate(0, 8px) scale(0.6);
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, -17px) scale(1);
+  }
+}
+@keyframes bubble-pop {
+  to {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
+@keyframes cat-love {
+  0% {
+    transform: translateY(6px) scale(0.5);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-14px) scale(1);
+    opacity: 0;
+  }
+}
+@keyframes cat-steam {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  45% {
+    transform: translateY(-6px);
+    opacity: 0.75;
   }
 }
 @media (max-width: 767px) {
@@ -167,7 +359,16 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mascot-sprite {
+  .site-mascot *,
+  .site-mascot i {
     animation: none !important;
+  }
+  .cat-bubble,
+  .cat-snore,
+  .cat-pop {
+    display: none !important;
+  }
+  .site-mascot[data-reaction="happy"] .cat-heart {
+    opacity: 1;
   }
 }
