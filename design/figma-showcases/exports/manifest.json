@@ -1,0 +1,194 @@
+[
+  {
+    "file": "assets/images/showcases/asksql-desktop-dark-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 21178
+  },
+  {
+    "file": "assets/images/showcases/asksql-desktop-dark-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 44636
+  },
+  {
+    "file": "assets/images/showcases/asksql-desktop-light-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 20768
+  },
+  {
+    "file": "assets/images/showcases/asksql-desktop-light-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 43246
+  },
+  {
+    "file": "assets/images/showcases/asksql-mobile-dark-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 18402
+  },
+  {
+    "file": "assets/images/showcases/asksql-mobile-dark-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 34990
+  },
+  {
+    "file": "assets/images/showcases/asksql-mobile-light-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 18228
+  },
+  {
+    "file": "assets/images/showcases/asksql-mobile-light-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 34438
+  },
+  {
+    "file": "assets/images/showcases/docchaser-desktop-dark-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 27162
+  },
+  {
+    "file": "assets/images/showcases/docchaser-desktop-dark-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 54522
+  },
+  {
+    "file": "assets/images/showcases/docchaser-desktop-light-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 26052
+  },
+  {
+    "file": "assets/images/showcases/docchaser-desktop-light-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 51728
+  },
+  {
+    "file": "assets/images/showcases/docchaser-mobile-dark-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 20404
+  },
+  {
+    "file": "assets/images/showcases/docchaser-mobile-dark-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 38692
+  },
+  {
+    "file": "assets/images/showcases/docchaser-mobile-light-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 19562
+  },
+  {
+    "file": "assets/images/showcases/docchaser-mobile-light-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 36616
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-desktop-dark-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 45114
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-desktop-dark-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 130902
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-desktop-light-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 44948
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-desktop-light-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 130212
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-mobile-dark-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 34766
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-mobile-dark-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 93584
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-mobile-light-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 34542
+  },
+  {
+    "file": "assets/images/showcases/listing-photo-pipeline-mobile-light-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 86832
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-desktop-dark-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 25170
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-desktop-dark-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 55172
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-desktop-light-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 24638
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-desktop-light-1920.webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 52682
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-mobile-dark-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 19876
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-mobile-dark-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 39318
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-mobile-light-600.webp",
+    "width": 600,
+    "height": 480,
+    "bytes": 18966
+  },
+  {
+    "file": "assets/images/showcases/recruiterai-mobile-light-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "bytes": 37470
+  }
+]

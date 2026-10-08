@@ -1,6 +1,7 @@
-// Prepared, not executed: native Figma motion must be reviewed before shipping.
+// Authored and reviewed in the paid-team file. Existing-node guard prevents duplication.
+// Figma previews replay their timeline; website entrances play one cycle.
 // use_figma skillNames: figma-use,figma-use-motion,figma-generate-library,figma-generate-design
-const showcaseSet=await figma.getNodeByIdAsync('6:1130');
+const showcaseSet=await figma.getNodeByIdAsync('1:1191');
 const showcaseVariants=showcaseSet.children.map(c=>({name:c.name,node:c}));
 let page=figma.root.children.find(p=>p.name==='02 · Motion prototypes');
 const created=[];const changed=[];const frames=[];
@@ -31,15 +32,15 @@ for(const mobile of [false,true]){
  const x=mobile?24:72,top=mobile?77:234,h=mobile?38.88:99.53;
  const intro=text(f,'AI systems architect. Commercial thinker.',x,mobile?40:189,mobile?11:13,'text-muted','Manrope','SemiBold');keyframes(intro,'TRANSLATION_Y',8,0,0,.42);keyframes(intro,'OPACITY',.5,1,0,.42);
  for(let i=0;i<2;i++){
-  const line=track(lines[mobile?1:0].createInstance());f.appendChild(line);line.x=x;line.y=top+i*h;line.setProperties({[lineProp]:i?'Multiply impact.':'Unite ideas.'});
+  const mask=track(figma.createFrame());mask.name='Headline line mask';mask.resize(mobile?342:782,mobile?39:100);mask.fills=[];mask.clipsContent=true;f.appendChild(mask);mask.x=x;mask.y=top+i*h;const line=track(lines[mobile?1:0].createInstance());mask.appendChild(line);line.x=0;line.y=0;line.setProperties({[lineProp]:i?'Multiply impact.':'Unite ideas.'});
   const t=line.findAllWithCriteria({types:['TEXT']})[0];if(i)t.fills=[paint('accent')];
-  keyframes(t,'TRANSLATION_Y',mobile?15:36,0,.06+i*.12,mobile?.62:.72);keyframes(t,'OPACITY',.35,1,.06+i*.12,mobile?.62:.72);
+  keyframes(line,'TRANSLATION_Y',mobile?15:36,0,.06+i*.12,mobile?.62:.72);keyframes(line,'OPACITY',.35,1,.06+i*.12,mobile?.62:.72);
  }
  const desc=text(f,'I’m Hamdi. I connect people, business, and AI to build\nsystems that solve real problems.',x,mobile?216:539,mobile?14:17,'text-muted');if(mobile){desc.textAutoResize='HEIGHT';desc.resize(342,desc.height);}keyframes(desc,'TRANSLATION_Y',10,0,.24,.5);keyframes(desc,'OPACITY',.4,1,.24,.5);
  const action=track(figma.createAutoLayout('HORIZONTAL'));action.name='Hero actions';action.fills=[];f.appendChild(action);action.x=x;action.y=mobile?314:625;action.itemSpacing=32;
  const button=track(figma.createAutoLayout());button.fills=[paint('text')];button.paddingLeft=22;button.paddingRight=22;button.paddingTop=16;button.paddingBottom=16;action.appendChild(button);text(button,'Explore my work',0,0,13,'bg','Manrope','SemiBold');text(action,'Read the research',0,0,13,'text','Manrope','SemiBold');
  keyframes(action,'TRANSLATION_Y',6,0,.36,.4);keyframes(action,'OPACITY',.65,1,.36,.4);
- const photo=rect(f,'Portrait',mobile?207:1028,mobile?413:167,mobile?159:340,mobile?212:453,'surface-2');photo.fills=[{type:'IMAGE',imageHash:'1fc5df681c70d8371879ce112bef45b595db587c',scaleMode:'FILL'}];keyframes(photo,'TRANSLATION_Y',mobile?10:16,0,.08,.8);keyframes(photo,'SCALE_X',1.025,1,.08,.8);keyframes(photo,'SCALE_Y',1.025,1,.08,.8);
+ const photo=rect(f,'Portrait',mobile?207:1028,mobile?413:167,mobile?159:340,mobile?212:453,'surface-2');photo.fills=[{type:'IMAGE',imageHash:'499657ebda1a2a1b6b8c742e59daac229c5f27b6',scaleMode:'FILL',filters:{saturation:-1}}];keyframes(photo,'TRANSLATION_Y',mobile?10:16,0,.08,.8);keyframes(photo,'SCALE_X',1.025,1,.08,.8);keyframes(photo,'SCALE_Y',1.025,1,.08,.8);
  const mark=track(figma.createFrame());mark.name='Identity tile';mark.resize(mobile?110:144,mobile?110:144);mark.fills=[paint('accent-fill')];f.appendChild(mark);mark.x=mobile?24:894;mark.y=mobile?435:577;mark.clipsContent=true;
  rect(mark,'Vertical arm',mobile?48:64,24,mobile?14:16,mobile?62:96,'text');rect(mark,'Horizontal arm',24,mobile?48:64,mobile?62:96,mobile?14:16,'text');
  keyframes(mark,'TRANSLATION_X',-10,0,.22,.75);keyframes(mark,'TRANSLATION_Y',8,0,.22,.75);keyframes(mark,'ROTATION',8,0,.22,.75);

@@ -165,8 +165,11 @@
         <div class="hero-copy">
           <p class="hero-intro">AI systems architect. Commercial thinker.</p>
           <h1 id="hero-title">
-            <span class="hero-line">Unite ideas.</span
-            ><span class="hero-line accent-text">Multiply impact.</span>
+            <span class="hero-line"
+              ><span class="hero-line-copy">Unite ideas.</span></span
+            ><span class="hero-line accent-text"
+              ><span class="hero-line-copy">Multiply impact.</span></span
+            >
           </h1>
           <div aria-hidden="true" class="mascot-ledge intro-mascot-ledge"></div>
           <p class="hero-description">
@@ -325,19 +328,69 @@
                 aria-label="View Doc Chaser"
                 class="project-image"
                 href="proof-of-work.html#doc-chaser"
-                ><img
-                  alt="Doc Chaser document collection workflow, from QR scan to upload and signature"
-                  height="1086"
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 50vw, 90vw"
-                  src="assets/images/docchaser-1.webp"
-                  srcset="
-                    assets/images/docchaser-1-640.webp  640w,
-                    assets/images/docchaser-1-960.webp  960w,
-                    assets/images/docchaser-1.webp     1448w
-                  "
-                  width="1448"
-              /></a>
+                ><picture class="showcase-picture" data-showcase="docchaser">
+                  <source
+                    data-format="mobile"
+                    data-color="dark"
+                    media="(max-width: 1023px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/docchaser-mobile-dark-600.webp   600w,
+                      assets/images/showcases/docchaser-mobile-dark-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="mobile"
+                    data-color="light"
+                    media="(max-width: 1023px)"
+                    srcset="
+                      assets/images/showcases/docchaser-mobile-light-600.webp   600w,
+                      assets/images/showcases/docchaser-mobile-light-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="dark"
+                    media="(min-width: 1024px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/docchaser-desktop-dark-960.webp   960w,
+                      assets/images/showcases/docchaser-desktop-dark-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="light"
+                    media="(min-width: 1024px)"
+                    srcset="
+                      assets/images/showcases/docchaser-desktop-light-960.webp   960w,
+                      assets/images/showcases/docchaser-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <img
+                    alt="Doc Chaser applicant tracking, QR capture, document upload and signed application"
+                    loading="lazy"
+                    decoding="async"
+                    src="assets/images/showcases/docchaser-desktop-light-960.webp"
+                    srcset="
+                      assets/images/showcases/docchaser-desktop-light-960.webp   960w,
+                      assets/images/showcases/docchaser-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  /> </picture
+              ></a>
             </div>
           </article>
           <article class="project-slide">
@@ -369,19 +422,69 @@
                 aria-label="Open the RecruiterAI demo"
                 class="project-image"
                 href="demo.html"
-                ><img
-                  alt="RecruiterAI candidate profiling board and review workflow"
-                  height="1086"
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 50vw, 90vw"
-                  src="assets/images/recruiterai-board.webp"
-                  srcset="
-                    assets/images/recruiterai-board-640.webp  640w,
-                    assets/images/recruiterai-board-960.webp  960w,
-                    assets/images/recruiterai-board.webp     1448w
-                  "
-                  width="1448"
-              /></a>
+                ><picture class="showcase-picture" data-showcase="recruiterai">
+                  <source
+                    data-format="mobile"
+                    data-color="dark"
+                    media="(max-width: 1023px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/recruiterai-mobile-dark-600.webp   600w,
+                      assets/images/showcases/recruiterai-mobile-dark-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="mobile"
+                    data-color="light"
+                    media="(max-width: 1023px)"
+                    srcset="
+                      assets/images/showcases/recruiterai-mobile-light-600.webp   600w,
+                      assets/images/showcases/recruiterai-mobile-light-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="dark"
+                    media="(min-width: 1024px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/recruiterai-desktop-dark-960.webp   960w,
+                      assets/images/showcases/recruiterai-desktop-dark-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="light"
+                    media="(min-width: 1024px)"
+                    srcset="
+                      assets/images/showcases/recruiterai-desktop-light-960.webp   960w,
+                      assets/images/showcases/recruiterai-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <img
+                    alt="RecruiterAI candidate profiling board and first-year simulation"
+                    loading="lazy"
+                    decoding="async"
+                    src="assets/images/showcases/recruiterai-desktop-light-960.webp"
+                    srcset="
+                      assets/images/showcases/recruiterai-desktop-light-960.webp   960w,
+                      assets/images/showcases/recruiterai-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  /> </picture
+              ></a>
             </div>
           </article>
           <article class="project-slide">
@@ -415,19 +518,72 @@
                 aria-label="View the listing photo pipeline"
                 class="project-image"
                 href="proof-of-work.html#listing-photo-pipeline"
-                ><img
-                  alt="Automated listing photo pipeline with before-and-after photos and batch editing overview"
-                  height="1086"
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 50vw, 90vw"
-                  src="assets/images/listing-photo-pipeline.webp"
-                  srcset="
-                    assets/images/listing-photo-pipeline-640.webp  640w,
-                    assets/images/listing-photo-pipeline-960.webp  960w,
-                    assets/images/listing-photo-pipeline.webp     1448w
-                  "
-                  width="1448"
-              /></a>
+                ><picture
+                  class="showcase-picture"
+                  data-showcase="listing-photo-pipeline"
+                >
+                  <source
+                    data-format="mobile"
+                    data-color="dark"
+                    media="(max-width: 1023px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/listing-photo-pipeline-mobile-dark-600.webp   600w,
+                      assets/images/showcases/listing-photo-pipeline-mobile-dark-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="mobile"
+                    data-color="light"
+                    media="(max-width: 1023px)"
+                    srcset="
+                      assets/images/showcases/listing-photo-pipeline-mobile-light-600.webp   600w,
+                      assets/images/showcases/listing-photo-pipeline-mobile-light-1200.webp 1200w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="600"
+                    height="480"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="dark"
+                    media="(min-width: 1024px) and (prefers-color-scheme: dark)"
+                    srcset="
+                      assets/images/showcases/listing-photo-pipeline-desktop-dark-960.webp   960w,
+                      assets/images/showcases/listing-photo-pipeline-desktop-dark-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <source
+                    data-format="desktop"
+                    data-color="light"
+                    media="(min-width: 1024px)"
+                    srcset="
+                      assets/images/showcases/listing-photo-pipeline-desktop-light-960.webp   960w,
+                      assets/images/showcases/listing-photo-pipeline-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  />
+                  <img
+                    alt="Original and edited listing photos with the photo review workflow"
+                    loading="lazy"
+                    decoding="async"
+                    src="assets/images/showcases/listing-photo-pipeline-desktop-light-960.webp"
+                    srcset="
+                      assets/images/showcases/listing-photo-pipeline-desktop-light-960.webp   960w,
+                      assets/images/showcases/listing-photo-pipeline-desktop-light-1920.webp 1920w
+                    "
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 48px)"
+                    width="960"
+                    height="540"
+                  /> </picture
+              ></a>
             </div>
           </article>
         </div>

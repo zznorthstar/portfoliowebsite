@@ -7,7 +7,17 @@
   const theme = document.querySelector(".theme-toggle");
   const currentTheme = () =>
     root.dataset.theme || (scheme.matches ? "dark" : "light");
+  function updateShowcaseTheme() {
+    document.querySelectorAll(".showcase-picture source").forEach((source) => {
+      const size =
+        source.dataset.format === "mobile"
+          ? "(max-width: 1023px)"
+          : "(min-width: 1024px)";
+      source.media = source.dataset.color === currentTheme() ? size : "not all";
+    });
+  }
   function updateThemeLabel() {
+    updateShowcaseTheme();
     if (!theme) return;
     theme.textContent = currentTheme() === "dark" ? "Light" : "Dark";
     theme.setAttribute(
@@ -70,7 +80,11 @@
     document.querySelectorAll(".proof-gallery img").forEach((img) => {
       function open() {
         origin = img;
+        const showcase = img.closest(".showcase-picture");
         preview.src =
+          (showcase
+            ? `assets/images/showcases/${showcase.dataset.showcase}-${innerWidth < 1024 ? "mobile" : "desktop"}-${currentTheme()}-${innerWidth < 1024 ? 1200 : 1920}.webp`
+            : null) ||
           img.dataset.fullSrc ||
           (img.closest("picture") ? img.currentSrc : img.src);
         preview.alt = img.alt;
@@ -96,31 +110,26 @@
   }
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  // Invert the Figma curve's x coordinate; preserve (.22, 1, .36, 1)
+  // rather than substituting a named GSAP ease with a different shape.
+  const editorialEase = (progress) => {
+    let low = 0,
+      high = 1,
+      t = progress;
+    for (let i = 0; i < 18; i++) {
+      t = (low + high) / 2;
+      const x =
+        3 * 0.22 * (1 - t) ** 2 * t + 3 * 0.36 * (1 - t) * t ** 2 + t ** 3;
+      if (x < progress) low = t;
+      else high = t;
+    }
+    return progress === 0 || progress === 1 ? progress : 1 - (1 - t) ** 3;
+  };
   const media = gsap.matchMedia();
   media.add("(prefers-reduced-motion: no-preference)", () => {
     const hero = document.querySelector(".home-hero");
     if (hero) {
-      // Keep the headline and portrait visible while they enter, so motion
-      // does not delay the first useful view or largest contentful paint.
-      gsap
-        .timeline({ defaults: { ease: "power3.out" } })
-        .from(".hero-intro", { y: 12, opacity: 0, duration: 0.5 })
-        .from(
-          ".hero-line",
-          { y: 42, duration: 0.8, stagger: 0.12 },
-          0.1,
-        )
-        .from(
-          ".hero-description, .hero-actions",
-          { y: 18, opacity: 0, duration: 0.65, stagger: 0.08 },
-          0.45,
-        )
-        .from(".portrait-frame", { y: 24, duration: 0.8 }, 0.3)
-        .from(
-          ".hero-symbol",
-          { scale: 0.75, rotation: -45, opacity: 0, duration: 0.8 },
-          0.4,
-        );
+      // The Figma entrance is native CSS; only the inner photo has scroll motion.
       gsap.to(".portrait-frame img", {
         yPercent: 5,
         scale: 1.05,
@@ -250,6 +259,31 @@
             anticipatePin: 1,
           },
         });
+        slides.forEach((slide, index) => {
+          const visual = slide.querySelector(".showcase-picture");
+          if (!visual) return;
+          gsap.fromTo(
+            visual,
+            { y: 20, scale: 0.98, opacity: 0.55 },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 0.7,
+              ease: editorialEase,
+              clearProps: "transform,opacity",
+              scrollTrigger:
+                index === 0
+                  ? { trigger: stage, start: "top 90%", once: true }
+                  : {
+                      trigger: slide,
+                      containerAnimation: tween,
+                      start: "left 90%",
+                      once: true,
+                    },
+            },
+          );
+        });
         // Keyboard users can focus every project even when its slide is off screen.
         const onFocus = (event) => {
           const slide = event.target.closest(".project-slide");
@@ -276,6 +310,27 @@
       },
     );
   }
+  media.add(
+    "(max-width: 1023px) and (prefers-reduced-motion: no-preference)",
+    () => {
+      document
+        .querySelectorAll(".project-media .showcase-picture")
+        .forEach((visual) => {
+          gsap.fromTo(
+            visual,
+            { y: 14, opacity: 0.55 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: editorialEase,
+              clearProps: "transform,opacity",
+              scrollTrigger: { trigger: visual, start: "top 94%", once: true },
+            },
+          );
+        });
+    },
+  );
   // Hover feedback stays on compositor transforms, and is omitted on touch devices.
   media.add(
     "(hover: hover) and (prefers-reduced-motion: no-preference)",

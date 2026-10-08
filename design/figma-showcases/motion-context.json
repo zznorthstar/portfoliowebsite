@@ -1,0 +1,192 @@
+{
+  "desktopHero": [
+    {
+      "nodes": [
+        {
+          "nodeId": "5:1333",
+          "nodeName": "AI systems architect. Commercial thinker.",
+          "nodeType": "TEXT",
+          "codeSnippets": {
+            "css": "animation: kf_5_1333_opacity_0 2s linear, kf_5_1333_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1333_opacity_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.5; } 21% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1333_translate_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 8px; } 21% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1341",
+          "fallbackNodeId": "5:1327",
+          "nodeName": "Motion / Hero line",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1341_opacity_0 2s linear, kf_5_1341_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1341_opacity_0 { 0% { opacity: 0.35; } 3% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.35; } 39% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1341_translate_0 { 0% { translate: 0px 36px; } 3% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 36px; } 39% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1350",
+          "fallbackNodeId": "5:1327",
+          "nodeName": "Motion / Hero line",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1350_opacity_0 2s linear, kf_5_1350_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1350_opacity_0 { 0% { opacity: 0.35; } 9% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.35; } 45% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1350_translate_0 { 0% { translate: 0px 36px; } 9% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 36px; } 45% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1358",
+          "nodeName": "I’m Hamdi. I connect people, business, and AI to build systems that solve real problems.",
+          "nodeType": "TEXT",
+          "codeSnippets": {
+            "css": "animation: kf_5_1358_opacity_0 2s linear, kf_5_1358_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1358_opacity_0 { 0% { opacity: 0.4; } 12% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.4; } 37% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1358_translate_0 { 0% { translate: 0px 10px; } 12% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 10px; } 37% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1365",
+          "nodeName": "Hero actions",
+          "nodeType": "FRAME",
+          "codeSnippets": {
+            "css": "animation: kf_5_1365_opacity_0 2s linear, kf_5_1365_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1365_opacity_0 { 0% { opacity: 0.65; } 18% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.65; } 38% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1365_translate_0 { 0% { translate: 0px 6px; } 18% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 6px; } 38% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1375",
+          "nodeName": "Portrait",
+          "nodeType": "ROUNDED_RECTANGLE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1375_translate_0 2s linear, kf_5_1375_scale_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1375_translate_0 { 0% { translate: 0px 16px; } 4% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 16px; } 44% { translate: 0px 0px; } 100% { translate: 0px 0px; } } @keyframes kf_5_1375_scale_0 { 0% { scale: 1.025 1.025; } 4% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); scale: 1.025 1.025; } 44% { scale: 1 1; } 100% { scale: 1 1; } }"
+          }
+        },
+        {
+          "nodeId": "5:1385",
+          "nodeName": "Identity tile",
+          "nodeType": "FRAME",
+          "codeSnippets": {
+            "css": "@property --rotate-transform { syntax: '<angle>'; initial-value: 0rad; inherits: false; } transform: rotate(var(--rotate-transform, -0.14rad)); animation: kf_5_1385_rotate_0 2s linear, kf_5_1385_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1385_rotate_0 { 0% { --rotate-transform: -0.14rad; } 11% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); --rotate-transform: -0.14rad; } 48.5% { --rotate-transform: 0rad; } 100% { --rotate-transform: 0rad; } } @keyframes kf_5_1385_translate_0 { 0% { translate: -10px 8px; } 11% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: -10px 8px; } 48.5% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        }
+      ],
+      "timelineCohorts": [
+        {
+          "rootNodeId": "5:1332",
+          "durationMs": 2000,
+          "loopMode": "loop",
+          "memberNodeIds": [
+            "5:1333",
+            "5:1341",
+            "5:1350",
+            "5:1358",
+            "5:1365",
+            "5:1375",
+            "5:1385"
+          ]
+        }
+      ]
+    }
+  ],
+  "mobileHero": [
+    {
+      "nodes": [
+        {
+          "nodeId": "5:1399",
+          "nodeName": "AI systems architect. Commercial thinker.",
+          "nodeType": "TEXT",
+          "codeSnippets": {
+            "css": "animation: kf_5_1399_opacity_0 2s linear, kf_5_1399_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1399_opacity_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.5; } 21% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1399_translate_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 8px; } 21% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1407",
+          "fallbackNodeId": "5:1329",
+          "nodeName": "Motion / Hero line",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1407_opacity_0 2s linear, kf_5_1407_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1407_opacity_0 { 0% { opacity: 0.35; } 3% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.35; } 34% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1407_translate_0 { 0% { translate: 0px 15px; } 3% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 15px; } 34% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1416",
+          "fallbackNodeId": "5:1329",
+          "nodeName": "Motion / Hero line",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1416_opacity_0 2s linear, kf_5_1416_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1416_opacity_0 { 0% { opacity: 0.35; } 9% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.35; } 40% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1416_translate_0 { 0% { translate: 0px 15px; } 9% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 15px; } 40% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1424",
+          "nodeName": "I’m Hamdi. I connect people, business, and AI to build systems that solve real problems.",
+          "nodeType": "TEXT",
+          "codeSnippets": {
+            "css": "animation: kf_5_1424_opacity_0 2s linear, kf_5_1424_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1424_opacity_0 { 0% { opacity: 0.4; } 12% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.4; } 37% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1424_translate_0 { 0% { translate: 0px 10px; } 12% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 10px; } 37% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1431",
+          "nodeName": "Hero actions",
+          "nodeType": "FRAME",
+          "codeSnippets": {
+            "css": "animation: kf_5_1431_opacity_0 2s linear, kf_5_1431_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1431_opacity_0 { 0% { opacity: 0.65; } 18% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.65; } 38% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1431_translate_0 { 0% { translate: 0px 6px; } 18% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 6px; } 38% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        },
+        {
+          "nodeId": "5:1441",
+          "nodeName": "Portrait",
+          "nodeType": "ROUNDED_RECTANGLE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1441_translate_0 2s linear, kf_5_1441_scale_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1441_translate_0 { 0% { translate: 0px 10px; } 4% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 10px; } 44% { translate: 0px 0px; } 100% { translate: 0px 0px; } } @keyframes kf_5_1441_scale_0 { 0% { scale: 1.025 1.025; } 4% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); scale: 1.025 1.025; } 44% { scale: 1 1; } 100% { scale: 1 1; } }"
+          }
+        },
+        {
+          "nodeId": "5:1451",
+          "nodeName": "Identity tile",
+          "nodeType": "FRAME",
+          "codeSnippets": {
+            "css": "@property --rotate-transform { syntax: '<angle>'; initial-value: 0rad; inherits: false; } transform: rotate(var(--rotate-transform, -0.14rad)); animation: kf_5_1451_rotate_0 2s linear, kf_5_1451_translate_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1451_rotate_0 { 0% { --rotate-transform: -0.14rad; } 11% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); --rotate-transform: -0.14rad; } 48.5% { --rotate-transform: 0rad; } 100% { --rotate-transform: 0rad; } } @keyframes kf_5_1451_translate_0 { 0% { translate: -10px 8px; } 11% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: -10px 8px; } 48.5% { translate: 0px 0px; } 100% { translate: 0px 0px; } }"
+          }
+        }
+      ],
+      "timelineCohorts": [
+        {
+          "rootNodeId": "5:1398",
+          "durationMs": 2000,
+          "loopMode": "loop",
+          "memberNodeIds": [
+            "5:1399",
+            "5:1407",
+            "5:1416",
+            "5:1424",
+            "5:1431",
+            "5:1441",
+            "5:1451"
+          ]
+        }
+      ]
+    }
+  ],
+  "desktopProject": [
+    {
+      "nodes": [
+        {
+          "nodeId": "5:1465",
+          "fallbackNodeId": "1:101",
+          "nodeName": "Showcase / docchaser",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1465_opacity_0 2s linear, kf_5_1465_translate_0 2s linear, kf_5_1465_scale_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1465_opacity_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.55; } 35% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1465_translate_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 20px; } 35% { translate: 0px 0px; } 100% { translate: 0px 0px; } } @keyframes kf_5_1465_scale_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); scale: 0.98 0.98; } 35% { scale: 1 1; } 100% { scale: 1 1; } }"
+          }
+        }
+      ]
+    }
+  ],
+  "mobileProject": [
+    {
+      "nodes": [
+        {
+          "nodeId": "5:1763",
+          "fallbackNodeId": "1:386",
+          "nodeName": "Showcase / docchaser",
+          "nodeType": "INSTANCE",
+          "codeSnippets": {
+            "css": "animation: kf_5_1763_opacity_0 2s linear, kf_5_1763_translate_0 2s linear, kf_5_1763_scale_0 2s linear; animation-iteration-count: infinite; @keyframes kf_5_1763_opacity_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.55; } 30% { opacity: 1; } 100% { opacity: 1; } } @keyframes kf_5_1763_translate_0 { 0% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 0px 14px; } 30% { translate: 0px 0px; } 100% { translate: 0px 0px; } } @keyframes kf_5_1763_scale_0 { 0% { scale: 1 1; } 100% { scale: 1 1; } }"
+          }
+        }
+      ]
+    }
+  ]
+}

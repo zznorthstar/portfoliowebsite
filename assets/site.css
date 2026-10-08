@@ -367,6 +367,107 @@ h1 {
 .hero-line {
   display: block;
 }
+.hero-line-copy {
+  display: block;
+}
+/* Timings reviewed in Figma. Entrance runs once; content is never gated. */
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero {
+    --entrance-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --headline-rise: 36px;
+    --headline-duration: 0.72s;
+    --portrait-rise: 16px;
+  }
+  .home-hero .hero-line {
+    overflow: clip;
+    overflow-clip-margin: 0.12em;
+  }
+  .home-hero .hero-intro {
+    animation: hero-intro-in 0.42s var(--entrance-ease) both;
+  }
+  .home-hero .hero-line-copy {
+    animation: hero-line-in var(--headline-duration) var(--entrance-ease) 0.06s
+      both;
+  }
+  .home-hero .hero-line:nth-child(2) .hero-line-copy {
+    animation-delay: 0.18s;
+  }
+  .home-hero .hero-description {
+    animation: hero-description-in 0.5s var(--entrance-ease) 0.24s both;
+  }
+  .home-hero .hero-actions {
+    animation: hero-actions-in 0.4s var(--entrance-ease) 0.36s both;
+  }
+  .home-hero .portrait-frame {
+    animation: hero-portrait-in 0.8s var(--entrance-ease) 0.08s both;
+  }
+  .home-hero .hero-symbol {
+    animation: hero-tile-in 0.75s var(--entrance-ease) 0.22s both;
+  }
+  @keyframes hero-intro-in {
+    from {
+      transform: translateY(8px);
+      opacity: 0.5;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes hero-line-in {
+    from {
+      transform: translateY(var(--headline-rise));
+      opacity: 0.35;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes hero-description-in {
+    from {
+      transform: translateY(10px);
+      opacity: 0.4;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes hero-actions-in {
+    from {
+      transform: translateY(6px);
+      opacity: 0.65;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes hero-portrait-in {
+    from {
+      transform: translateY(var(--portrait-rise)) scale(1.025);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes hero-tile-in {
+    from {
+      transform: translate(-10px, 8px) rotate(-8deg);
+    }
+    to {
+      transform: none;
+    }
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .home-hero {
+    --headline-rise: 15px;
+    --headline-duration: 0.62s;
+    --portrait-rise: 10px;
+  }
+}
 .accent-text {
   color: var(--accent);
 }
@@ -556,17 +657,39 @@ h1 {
   display: block;
   min-width: 0;
   overflow: hidden;
-  background: var(--bg);
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(65, 61, 42, 0.08);
-  border: 1px solid var(--border);
+  background: transparent;
+  padding: 0;
+  border: 0;
 }
 .project-image img {
   display: block;
   width: 100%;
-  height: clamp(300px, 36vw, 470px);
+  height: auto;
   object-fit: contain;
   object-position: top center;
+}
+.showcase-picture {
+  display: block;
+  width: 100%;
+}
+.showcase-picture img {
+  aspect-ratio: 16 / 9;
+}
+.proof-gallery.showcase-gallery {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 960px;
+}
+.proof-gallery.showcase-gallery figure {
+  padding: 0;
+  background: transparent;
+}
+.proof-gallery.showcase-gallery img {
+  height: auto;
+}
+@media (max-width: 1023px) {
+  .showcase-picture img {
+    aspect-ratio: 5 / 4;
+  }
 }
 .photo-project {
   padding: 0;
@@ -2169,7 +2292,7 @@ tr:last-child td {
     border: 0;
   }
   .project-image img {
-    height: 300px;
+    height: auto;
   }
   .home-hero {
     min-height: 640px;
@@ -2396,7 +2519,7 @@ tr:last-child td {
     margin-bottom: 16px;
   }
   .project-image {
-    padding: 12px;
+    padding: 0;
   }
   .project-image img {
     height: auto;

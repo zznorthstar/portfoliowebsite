@@ -202,3 +202,38 @@ consecutive grooming captures matching complete atlas tiles. Image fit and
 full-resolution enlargement checks cover 360, 390, 768, 1440, and 2000px widths.
 Source mappings and the repeatable image preparation script are documented in
 `assets/images/README.md`.
+
+
+## Figma editorial polish — October 2026
+
+Design score: **38/40** (intuitive 10, ease 9, delight 9, aesthetics 10).
+[Editable Figma system](https://www.figma.com/design/75oJWNsf8h0YFhQjXnTk8a).
+
+Four project component families provide independent 16:9 desktop and 5:4 mobile
+compositions, each in the existing light/dark palettes. Source typography,
+spacing tokens and identity remain unchanged. Flat editable UI, restrained orange
+accents, subtle panel borders and transparent edge masks replace device posters.
+PNG masters and responsive WebP exports are in `design/figma-showcases/exports/`
+and `assets/images/showcases/`. Review boards use approximately 796px desktop and
+342px mobile presentation widths.
+
+Homepage and proof gallery compositions use responsive native picture elements.
+The photo pipeline retains its original photographic evidence; AskSQL retains
+its selectable HTML SQL example. Artwork enlargement remains keyboard accessible
+and uses the matching theme and format at full resolution.
+
+Native Figma keyframes establish a short, coordinated hero entrance: clipped
+headline lines, visible opacity floors, a slight portrait settle and a small
+identity-tile correction. CSS implements the entrance once; existing GSAP handles
+once-only project arrivals and desktop horizontal pinning. The exact easing is
+`cubic-bezier(.22,1,.36,1)`. Reduced motion disables these effects. No new animation
+runtime, video, GIF, smooth-scroll interception, or mascot renderer changes.
+
+The reusable component inventory, audit decisions, motion timings, native API
+limitations and export manifest are documented in `design/figma-showcases/README.md`.
+
+Verification covers Chrome at 360, 390, 768, 1024, 1440 and 2000px, Firefox mobile,
+light/dark switching, actual image aspect ratios, keyboard zoom/focus return,
+mobile navigation, no-JS images, dynamic reduced-motion cleanup, and existing
+mascot touch feedback. Tablet columns use the simplified composition through
+1023px; their former fixed image height was removed.

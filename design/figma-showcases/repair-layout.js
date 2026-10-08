@@ -1,3 +1,5 @@
+// HISTORICAL: targets the abandoned Starter-account draft, not the current file.
+// Do not run against the current paid-team file; corrections are in showcases.js.
 // Run through use_figma after connected MCP access is restored.
 // This repairs existing components in place; it does not recreate them.
 const page = await figma.getNodeByIdAsync('0:1');
