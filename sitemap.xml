@@ -46,22 +46,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hamdibouzidi.com/skills.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hamdibouzidi.com/skills-claude-coach.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://hamdibouzidi.com/skills-magic-backend.html</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://hamdibouzidi.com/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -89,6 +73,6 @@
 </urlset>
 <!--
   NEW RESEARCH PAPERS: add a <url> block above following the same pattern
-  as research-documentation-as-ir.html and research-memory-problem.html —
+  as research-documentation-as-ir.html and research-memory-problem.html ;
   <loc> as the canonical URL, <lastmod> as the publish/update date.
 -->
