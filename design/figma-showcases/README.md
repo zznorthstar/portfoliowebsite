@@ -102,3 +102,10 @@ compositions remain active through 1023px so narrow tablet columns retain legibi
 Additional checks covered no-JS images, Firefox mobile, changing reduced-motion
 preferences at runtime, the exact entrance timing/easing, and the existing cat's
 happy touch reaction. No page errors occurred in the final targeted checks.
+
+## Deployment packaging
+
+Cloudflare serves the repository root as static assets. A fresh-checkout dry run
+reproduced a deployment failure when `.git/objects/pack` exceeded the 25 MiB
+per-file limit. `.assetsignore` excludes Git metadata from the website payload;
+the same checkout then passed the dry run. Website assets and routes are unchanged.
