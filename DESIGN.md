@@ -168,3 +168,37 @@ mobile scroll jitter and height changes, reduced motion, mobile navigation, and
 the unsupported-vibration fallback. Haptic timing was checked with a browser
 stub; physical device feedback was not measured. The local mobile Lighthouse run
 remains **93 / 100 / 100 / 100**, with **0.038** CLS and **0 ms** blocking time.
+
+## Mobile rendering and refreshed imagery
+
+Correction score: **38/40** — intuitive 9, ease of use 10, delight 9, aesthetics 10.
+The approved site design and desktop scene choreography are retained.
+
+The sleep bubble attaches to the sleeping frame's nose at (62, 66) on its 96px
+canvas, grows upward, and pops at its new center. A decoded atlas is now drawn to
+a small canvas using exact integer source rectangles. This replaces percentage
+background positioning and prevents adjacent-frame slices during mobile sprite
+updates. Each update draws one complete frame. Walk updates run only while the
+cat is walking and visible; grooming and idle scenes do not keep an extra render
+loop alive. The native button and existing touch reactions remain in place.
+
+Before a mobile section cameo, the script checks text line rectangles and
+interactive elements across its full entrance area. It tries clear positions
+along the ledge and omits the cameo if none fit. Mobile entrances stay within
+that checked area. Desktop entrances retain their earlier paths. Mobile wake-up
+hop height is reduced to preserve clearance beneath the headline.
+
+Seven replacement project illustrations are used as supplied. Their 4:3 canvas
+already fits the existing contain-style gallery. Responsive WebP delivery assets
+preserve the complete compositions, with matching HTML dimensions and source
+descriptors. The homepage pipeline graphic uses the same existing preview style
+as the other projects instead of the old photo-cover style. Gallery enlargement
+loads the native-width image for legibility. No gallery grid, fixed frame height,
+site typography, spacing system, or page layout was rewritten.
+
+Local verification covers mobile text clearance across all sixteen pages,
+scroll/height-change stability, all eight walk frames, touch reactions, and sixty
+consecutive grooming captures matching complete atlas tiles. Image fit and
+full-resolution enlargement checks cover 360, 390, 768, 1440, and 2000px widths.
+Source mappings and the repeatable image preparation script are documented in
+`assets/images/README.md`.

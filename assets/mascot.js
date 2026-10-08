@@ -1,11 +1,21 @@
 /* One companion, curated scenes, native touch/keyboard interaction. */
-(() => {
+(async () => {
   "use strict";
   const main = document.querySelector("main");
   if (!main || !window.gsap || !window.IntersectionObserver) return;
   const scriptURL = document.currentScript.src;
+  // Decode once before displaying anything. Integer source rectangles avoid
+  // percentage rounding/adjacent-frame bleed in mobile sprite backgrounds.
+  const atlas = new Image();
+  atlas.src = new URL("mascot/cat-atlas.webp", scriptURL).href;
+  try {
+    await atlas.decode();
+  } catch {
+    return;
+  }
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const coarse = matchMedia("(pointer: coarse)");
+  const phone = matchMedia("(max-width: 767px)");
   const pageKey = document.body.className;
   const pageSeed = [...pageKey].reduce(
     (n, c) => (n * 31 + c.charCodeAt(0)) >>> 0,
@@ -27,7 +37,7 @@
   cat.setAttribute("aria-label", "Pet the pixel cat");
   cat.hidden = true;
   cat.innerHTML = `<span class="mascot-facing" aria-hidden="true">
-    <span class="mascot-sprite"></span>
+    <canvas class="mascot-sprite" width="96" height="96"></canvas>
     <span class="cat-snore"><i></i><i></i></span>
     <svg class="cat-bubble" viewBox="0 0 20 20"><path d="M6 2h8v2h4v4h2v6h-2v4h-4v2H6v-2H2v-4H0V8h2V4h4z"/><path class="bubble-shine" d="M6 5h5v2H6v4H4V7h2z"/></svg>
     <span class="cat-pop"><i></i><i></i><i></i><i></i></span>
@@ -36,6 +46,10 @@
   </span>`;
   position.append(cat);
   const facing = cat.firstElementChild;
+  const canvas = cat.querySelector("canvas");
+  const painter = canvas.getContext("2d");
+  if (!painter) return;
+  painter.imageSmoothingEnabled = false;
   const status = document.createElement("span");
   status.className = "cat-status";
   status.setAttribute("role", "status");
@@ -52,6 +66,9 @@
   let direction = 1;
   let poseName = "sleep";
   let frameIndex = 16;
+  let paintedFrame = -1;
+  let walkElapsed = 0;
+  let ticking = false;
   const travel = { fraction: 0.5 };
   let pokes = [];
   let lastMood = "";
@@ -172,11 +189,35 @@
     facing.style.transform = `scaleX(${value})`;
   }
   function pose(name, frame) {
+    if (poseName !== name && name === "walk") walkElapsed = 0;
     poseName = name;
     frameIndex = frame;
     cat.dataset.pose = name;
     cat.dataset.frame = String(frame);
-    cat.style.setProperty("--frame-x", `${(frame / 18) * 100}%`);
+    paintFrame(frame);
+    syncFrames();
+  }
+  function paintFrame(frame) {
+    if (paintedFrame === frame) return;
+    painter.clearRect(0, 0, 96, 96);
+    painter.drawImage(atlas, frame * 96, 0, 96, 96, 0, 0, 96, 96);
+    paintedFrame = frame;
+    canvas.dataset.frame = String(frame);
+  }
+  function animateFrame(_time, elapsed) {
+    if (poseName !== "walk" || cat.dataset.paused === "true") return;
+    walkElapsed += Math.min(elapsed, 100) / 1000;
+    paintFrame(Math.floor(walkElapsed / 0.1) % 8);
+  }
+  function syncFrames() {
+    const active =
+      poseName === "walk" &&
+      cat.dataset.paused !== "true" &&
+      !document.hidden &&
+      !reduced.matches;
+    if (active && !ticking) gsap.ticker.add(animateFrame);
+    if (!active && ticking) gsap.ticker.remove(animateFrame);
+    ticking = active;
   }
   function walk(tl, target, speed = 36) {
     const from = tl.walkFrom ?? travel.fraction;
@@ -250,7 +291,11 @@
           cat.dataset.bubble = "";
           pose("startled", 14);
         })
-        .to(cat, { y: -13, duration: 0.18, ease: "power2.out" })
+        .to(cat, {
+          y: phone.matches ? -2 : -13,
+          duration: 0.18,
+          ease: "power2.out",
+        })
         .to(cat, { y: 0, duration: 0.26, ease: "power2.in" })
         .call(() => pose("stretch", 15))
         .to({}, { duration: 0.8 })
@@ -264,7 +309,9 @@
     } else if (scene.kind === "ending") {
       groom(story, 4);
     } else {
-      const v = scene.variant;
+      // Mobile entrances stay in the space vetted below; no sideways path
+      // through a paragraph to reach an otherwise clear resting position.
+      const v = phone.matches ? [0, 1, 3, 4][scene.variant % 4] : scene.variant;
       pose("peek", 18);
       // Six entrances: peek, hop, side-step, shy lean, stretch, and a quick stroll.
       if (v === 0) {
@@ -322,6 +369,74 @@
       r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth
     );
   }
+  function mobileClearance(scene) {
+    if (!phone.matches || scene.kind !== "cue") return true;
+    const host = scene.host.getBoundingClientRect();
+    const key = `${innerWidth}:${host.width}:${Math.round(host.top + scrollY)}:${document.documentElement.scrollHeight}`;
+    if (scene.clearanceKey === key) return scene.clearance;
+    const size = parseFloat(
+      getComputedStyle(scene.host).getPropertyValue("--mascot-size"),
+    );
+    const available = Math.max(0, host.width - size);
+    const overlaps = (a, b) =>
+      a.left < b.right &&
+      a.right > b.left &&
+      a.top < b.bottom &&
+      a.bottom > b.top;
+    const band = {
+      left: host.left,
+      right: host.right,
+      top: host.top - 18,
+      bottom: host.top + size * 0.8125 + 2,
+    };
+    const occupied = [];
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          return node.textContent.trim() &&
+            !node.parentElement.closest(
+              "script, style, .mascot-host, .cat-status, dialog:not([open])",
+            )
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        },
+      },
+    );
+    const range = document.createRange();
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!overlaps(band, node.parentElement.getBoundingClientRect())) continue;
+      range.selectNodeContents(node);
+      for (const rect of range.getClientRects()) {
+        if (rect.width && rect.height && overlaps(band, rect))
+          occupied.push(rect);
+      }
+    }
+    document
+      .querySelectorAll(
+        "main a, main button, main input, main textarea, main summary, footer a",
+      )
+      .forEach((element) => {
+        if (element.closest(".mascot-host")) return;
+        const rect = element.getBoundingClientRect();
+        if (rect.width && rect.height && overlaps(band, rect))
+          occupied.push(rect);
+      });
+    scene.clearanceKey = key;
+    scene.clearance = false;
+    for (const fraction of [scene.start, 0.96, 0.04, 0.72, 0.28]) {
+      const left = host.left + available * fraction;
+      const area = { ...band, left: left - 12, right: left + size + 12 };
+      if (occupied.some((rect) => overlaps(area, rect))) continue;
+      scene.start = fraction;
+      scene.clearance = true;
+      break;
+    }
+    scene.host.dataset.mobileClearance = scene.clearance ? "clear" : "blocked";
+    return scene.clearance;
+  }
   function choose() {
     queued = false;
     if (destroyed) return;
@@ -338,7 +453,8 @@
         r.bottom > 115 &&
         r.top < innerHeight - 24 &&
         r.right > 0 &&
-        r.left < innerWidth
+        r.left < innerWidth &&
+        mobileClearance(s)
       );
     });
     candidates.sort(
@@ -378,6 +494,7 @@
       if (!snapshot) story?.resume();
       reaction?.resume();
     }
+    syncFrames();
   }
 
   cat.addEventListener("click", (event) => {
@@ -468,11 +585,14 @@
   window.addEventListener("pagehide", (event) => {
     story?.pause();
     reaction?.pause();
+    gsap.ticker.remove(animateFrame);
+    ticking = false;
     haptics?.cancel();
     if (event.persisted) return;
     destroyed = true;
     story?.kill();
     reaction?.kill();
+    gsap.ticker.remove(animateFrame);
     haptics?.destroy();
     observer.disconnect();
     resize.disconnect();

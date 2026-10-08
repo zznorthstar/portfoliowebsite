@@ -112,8 +112,6 @@
   position: relative;
 }
 .mascot-sprite {
-  background: url("mascot/cat-atlas.webp") var(--frame-x, 88.888889%) 0 / 1900%
-    100% no-repeat;
   image-rendering: pixelated;
   transform-origin: 50% 81.25%;
 }
@@ -127,8 +125,9 @@
   pointer-events: none;
 }
 .cat-bubble {
-  left: 75%;
-  top: 66%;
+  /* Sleep frame nose: (62, 66) in its 96px canvas. Grow upward from it. */
+  left: 64.583333%;
+  top: 44.75%;
   width: 24%;
   height: 24%;
   fill: #f3f3e9;
@@ -184,8 +183,8 @@
 }
 .site-mascot[data-bubble="pop"] .cat-pop {
   display: block;
-  left: 86%;
-  top: 70%;
+  left: 76.5%;
+  top: 56.75%;
 }
 .cat-pop i {
   position: absolute;
@@ -248,39 +247,9 @@
   .site-mascot[data-pose="sleep"] .mascot-sprite {
     animation: cat-breathe 2s ease-in-out infinite;
   }
-  .site-mascot[data-pose="walk"] .mascot-sprite {
-    animation: cat-walk 0.8s steps(1, end) infinite;
-  }
   .site-mascot[data-paused="true"] *,
   .site-mascot[data-paused="true"] i {
     animation-play-state: paused !important;
-  }
-}
-@keyframes cat-walk {
-  0%,
-  100% {
-    background-position: 0% 0;
-  }
-  12.5% {
-    background-position: 5.555556% 0;
-  }
-  25% {
-    background-position: 11.111111% 0;
-  }
-  37.5% {
-    background-position: 16.666667% 0;
-  }
-  50% {
-    background-position: 22.222222% 0;
-  }
-  62.5% {
-    background-position: 27.777778% 0;
-  }
-  75% {
-    background-position: 33.333333% 0;
-  }
-  87.5% {
-    background-position: 38.888889% 0;
   }
 }
 @keyframes cat-breathe {

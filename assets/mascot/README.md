@@ -54,6 +54,16 @@ ground lines: website CSS supplies those. Pixel artwork only, consistent sprite 
 - One native button visits curated section edges. It is keyboard accessible,
   touchable in every pose, and respects reduced motion. No cat per gallery image.
 
+### Mobile rendering correction
+
+The atlas is decoded once, then exact 96 × 96 integer source rectangles are drawn
+to a canvas. CSS no longer positions a scaled nineteen-frame background strip.
+Only walking installs a frame ticker; it stops when interrupted or off-screen.
+Grooming and reaction poses paint a complete tile when the pose changes. The
+sleep bubble's bottom-left origin is registered to nose coordinate (62, 66),
+so it grows above the muzzle. On phones, section cameos require clear space
+across their entrance area and are omitted where text or controls would overlap.
+
 ### Exact generation prompt
 
 Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET extending the orange cat in the reference. Preserve the same original orange tabby identity, proportions, face, stripes, cream muzzle/chest, palette (#ed8355 orange, #b84a22 darker orange, #f3f3e9 cream, #242422 charcoal), chunky crisp pixels, and cute expression. Transparent alpha, no shadows, text, labels, grid lines, backgrounds or ground. EXACT 4 columns x 4 rows square grid, SIXTEEN equal cells, generous transparent padding around every pose. Every character fully inside its cell. Consistent scale and ground baseline at 80% of each cell height. All side views face RIGHT, tail LEFT. Row 1 cells 1-4 and Row 2 cells 1-4: EIGHT sequential frames of one natural feline WALK CYCLE in profile, not running. Same body/head position in all eight frames; only limbs, shoulder bob, and tail move naturally through contact, recoil, passing, high-point and opposite contacts. Four legs clearly distinct and anatomically sensible; alternating front/back paws and relaxed lifted tail. These are sequential animation frames and must align perfectly in size and baseline. Row3 cell1: sitting, licking raised right front paw, head tipped down, eyes closed. Row3 cell2: sitting, paw sweeps over ear/face while grooming. Row3 cell3: seated, grooming paw lowered, turning head toward viewer. Row3 cell4: seated, looking straight AT VIEWER with very cute big eyes and relaxed cream front paws, soft smile. Row4 cell1: delighted friendly touch reaction, eyes closed happy, head leaned into pet, tiny lifted front paw, NO floating symbols. Row4 cell2: slightly annoyed but still charming, narrowed eyes, ears sideways, flicked tail, NO aggression or scary features. Row4 cell3: startled wake-up, ears alert, eyes wide, paws off ground as a tiny surprised hop. Row4 cell4: stretch after waking, front paws extended right, back gently arched, tail lifted. The reference sheet is for CHARACTER IDENTITY ONLY. Make a fresh sheet with the sixteen specified frames, not the old four poses. Same pixel resolution and style in every cell. Very clean pixel-art animation asset, no blur/antialias painting, transparency everywhere around the character.

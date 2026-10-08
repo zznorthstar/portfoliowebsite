@@ -70,7 +70,9 @@
     document.querySelectorAll(".proof-gallery img").forEach((img) => {
       function open() {
         origin = img;
-        preview.src = img.closest("picture") ? img.currentSrc : img.src;
+        preview.src =
+          img.dataset.fullSrc ||
+          (img.closest("picture") ? img.currentSrc : img.src);
         preview.alt = img.alt;
         imageDialog.showModal();
       }
